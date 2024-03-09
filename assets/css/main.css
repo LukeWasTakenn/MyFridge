@@ -1,0 +1,23 @@
+@import "colors.css";
+
+body {
+    font-family: 'Inter', 'Arial', sans-serif;
+    background-color: var(--background);
+}
+
+footer {
+    background-color: var(--primary);
+    color: var(--background);
+}
+
+.fs-7 {
+    font-size: 0.95rem;
+}
+
+.primary-link {
+    color: var(--primary);
+}
+
+.login-container {
+    max-width: 576px;
+}

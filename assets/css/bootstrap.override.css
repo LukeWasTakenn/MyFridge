@@ -1,0 +1,46 @@
+@import 'colors.css';
+
+:root {
+    --bs-body-bg: var(--background);
+    --bs-body-color: var(--text);
+    --bs-secondary-color: var(--text);
+    --bs-secondary-bg: var(--secondary);
+    --bs-primary: var(--primary);
+}
+
+.btn-primary {
+    --bs-btn-color: var(--background);
+    --bs-btn-bg: var(--primary);
+    --bs-btn-border-color: var(--primary);
+    --bs-btn-hover-color: var(--background);
+    --bs-btn-hover-bg: var(--primary-500);
+    --bs-btn-hover-border-color: var(--primary);
+    --bs-btn-focus-shadow-rgb: 120, 108, 159;
+    --bs-btn-active-color: var(--background);
+    --bs-btn-active-bg: var(--primary);
+    --bs-btn-active-border-color: var(--primary);
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: var(--background);
+    --bs-btn-disabled-bg: var(--primary);
+    --bs-btn-disabled-border-color: var(--primary);
+}
+
+
+.form-control {
+    &:focus {
+        border-color: var(--primary);
+        box-shadow: var(--box-shadow-primary);
+    }
+}
+
+.form-check-input {
+    &:checked {
+        background-color: var(--primary);
+        border-color: var(--primary);
+    }
+
+    &:focus {
+        box-shadow: var(--box-shadow-primary);
+        border-color: var(--primary);
+    }
+}
