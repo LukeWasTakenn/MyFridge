@@ -16,8 +16,13 @@ footer {
 
 .primary-link {
     color: var(--primary);
+    text-decoration: none;
+    
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 .login-container {
-    max-width: 576px;
+    max-width: 524px;
 }

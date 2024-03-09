@@ -5,7 +5,7 @@ include_once 'includes/header.php';
 ?>
 
     <main class="container-fluid container-md min-vh-100 d-flex align-items-center justify-content-center">
-        <div class="d-flex gap-3 flex-column rounded p-3 shadow border login-container w-100">
+        <div class="d-flex gap-3 flex-column rounded p-4 shadow border login-container w-100">
             <div>
                 <h2 class="mb-0">Login</h2>
                 <p class="text-secondary fs-7 m-0">Start exploring your favourite recipes today</p>
@@ -17,9 +17,9 @@ include_once 'includes/header.php';
                 </div>
                 <div>
                     <label for="password">Password</label>
-                    <input id="password" class="form-control"/>
+                    <input id="password" type="password" class="form-control"/>
                 </div>
-                <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover primary-link fs-7"
+                <a class="primary-link fs-7 text-align-right"
                    href="#"
                 >
                     Forgot password?
@@ -28,7 +28,7 @@ include_once 'includes/header.php';
                     Login
                 </button>
             </form>
-            <div class="fs-7">Don't have an account? <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover primary-link"
+            <div class="fs-7 text-align-center">Don't have an account? <a class="primary-link" href="#"
                 >
                     Sign up
                 </a>
