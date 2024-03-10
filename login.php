@@ -13,7 +13,7 @@ include_once 'includes/header.php';
             <form class="d-flex flex-column gap-3">
                 <div>
                     <label for="email">Email</label>
-                    <input id="email" class="form-control"/>
+                    <input id="email" type="email" class="form-control"/>
                 </div>
                 <div>
                     <label for="password">Password</label>
