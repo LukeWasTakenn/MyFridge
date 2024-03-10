@@ -50,13 +50,15 @@ if (str_contains($_SERVER['REQUEST_URI'], 'admin')) {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Recipes</a>
+                    <a class="nav-link <?= $page === 'recipes' ? 'active' : null ?>" aria-current="page" href="#">Recipes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Bookmarks</a>
+                    <a class="nav-link <?= $page === 'bookmarks' ? 'active' : null ?>" href="#">Bookmarks</a>
                 </li>
             </ul>
-            <a class="nav-link" href="<?= $path ?>login.php">Login</a>
+            <div class="navbar-nav">
+                <a class="nav-link p-0 m-0 <?= $page === 'login' ? 'active' : null ?>" href="<?= $path ?>login.php">Login</a>
+            </div>
         </div>
     </div>
 </nav>
