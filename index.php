@@ -4,12 +4,24 @@ include_once 'includes/header.php'
 
 ?>
 
-<main class="container-fluid container-md min-vh-100">
-    <button class="btn btn-primary">Hello</button>
-    <input type="text" class="form-control mt-5"/>
-    <div class="form-check mt-4">
-        <input type="checkbox" id="check" class="form-check-input"/>
-        <label class="" for="form-check-label">Test check</label>
+<main class="container-fluid container-md min-vh-100 d-flex justify-content-start justify-content-md-between align-items-center flex-column flex-lg-row gap-5">
+    <div class="d-flex align-items-start flex-column gap-2" style="flex: 0.5">
+        <h1>Find recipes from <span style="color:var(--primary);">your</span> fridge</h1>
+        <p>Stretch your grocery budget with MyFridge. Amazing meals made easy.</p>
+        <button class="btn btn-primary">
+            Browse recipes ->
+        </button>
+    </div>
+    <div class="d-flex flex-column flex-lg-row gap-2" style="flex: 0.5">
+        <div>
+            <img src="assets/images/hero-1.jpg" class="rounded img-fluid"/>
+        </div>
+        <div>
+            <img src="assets/images/hero-2.jpg" class="rounded img-fluid">
+        </div>
+        <div>
+            <img src="assets/images/hero-3.jpg" class="rounded img-fluid"/>
+        </div>
     </div>
 </main>
 
