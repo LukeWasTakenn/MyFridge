@@ -15,7 +15,7 @@
     --bs-btn-hover-color: var(--background);
     --bs-btn-hover-bg: var(--primary-500);
     --bs-btn-hover-border-color: var(--primary);
-    --bs-btn-focus-shadow-rgb: 120, 108, 159;
+    --bs-btn-focus-shadow-rgb: 186, 87, 114;
     --bs-btn-active-color: var(--background);
     --bs-btn-active-bg: var(--primary);
     --bs-btn-active-border-color: var(--primary);
@@ -29,7 +29,7 @@
 .form-control {
     &:focus {
         border-color: var(--primary);
-        box-shadow: var(--box-shadow-primary);
+        box-shadow: none;
     }
 }
 
@@ -40,7 +40,13 @@
     }
 
     &:focus {
-        box-shadow: var(--box-shadow-primary);
+        box-shadow: none;
         border-color: var(--primary);
+    }
+}
+
+.nav-link {
+    &:focus-visible {
+        box-shadow: var(--box-shadow-primary);
     }
 }

@@ -6,7 +6,7 @@
     --secondary: #de9dae;
     --accent: #d66180;
 
-    --box-shadow-primary: none;
+    --box-shadow-primary: 0 0 0 0.25rem var(--primary-200);
 
     --bs-border-color: var(--background-200);
 
