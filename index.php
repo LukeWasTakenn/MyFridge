@@ -8,9 +8,9 @@ include_once 'includes/header.php'
     <div class="d-flex align-items-start flex-column gap-2" style="flex: 0.5">
         <h1>Find recipes from <span style="color:var(--primary);">your</span> fridge</h1>
         <p>Stretch your grocery budget with MyFridge. Amazing meals made easy.</p>
-        <button class="btn btn-primary">
+        <a class="btn btn-primary" href="recipes.php">
             Browse recipes ->
-        </button>
+        </a>
     </div>
     <div class="d-flex flex-column flex-lg-row gap-2" style="flex: 0.5">
         <div>
