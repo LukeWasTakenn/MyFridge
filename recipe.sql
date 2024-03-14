@@ -24,13 +24,17 @@ CREATE TABLE `recipes`
     `recipe_id`      INT AUTO_INCREMENT
         PRIMARY KEY,
     `creator_id`     INT          NOT NULL,
+    `category_id`    INT          NULL,
     `title`          VARCHAR(50)  NOT NULL,
     `description`    LONGTEXT     NOT NULL,
     `image`          VARCHAR(255) NOT NULL,
     `estimate_price` INT(6)       NOT NULL,
     `estimate_time`  INT(5)       NOT NULL,
     CONSTRAINT `recipes_accounts_account_id_fk`
-        FOREIGN KEY (`creator_id`) REFERENCES `accounts` (`account_id`)
+        FOREIGN KEY (`creator_id`) REFERENCES `accounts` (`account_id`),
+    CONSTRAINT `recipes_categories_category_id_fk`
+        FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`)
+            ON DELETE SET NULL
 );
 
 CREATE TABLE `recipe_ingredients`
@@ -55,5 +59,12 @@ CREATE TABLE `recipe_likes`
         FOREIGN KEY (`account_id`) REFERENCES `accounts` (`account_id`),
     CONSTRAINT `recipe_likes_recipes_recipe_id_fk`
         FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`recipe_id`)
+);
+
+CREATE TABLE `categories`
+(
+    `category_id` INT AUTO_INCREMENT
+        PRIMARY KEY,
+    `name`        VARCHAR(255) NULL
 );
 
