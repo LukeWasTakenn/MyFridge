@@ -1,5 +1,7 @@
 <?php
 
+global $HEADER_LINKS;
+
 $url = basename($_SERVER['REQUEST_URI'], '.php');
 $url = explode('.php', $url);
 
@@ -38,6 +40,13 @@ if (str_contains($_SERVER['REQUEST_URI'], 'admin')) {
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./assets/css/main.css"/>
     <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.override.css"/>
+
+    <?php
+        if ($HEADER_LINKS && count($HEADER_LINKS) > 0) {
+            foreach ($HEADER_LINKS as $link)
+                echo $link;
+        }
+    ?>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg">

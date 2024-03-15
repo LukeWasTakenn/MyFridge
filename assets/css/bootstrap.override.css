@@ -25,6 +25,23 @@
     --bs-btn-disabled-border-color: var(--primary);
 }
 
+.btn-secondary {
+    --bs-btn-color: var(--text);
+    --bs-btn-bg: var(--secondary-100);
+    --bs-btn-border-color: var(--secondary-100);
+    --bs-btn-hover-color: var(--text);
+    --bs-btn-hover-bg: var(--secondary-200);
+    --bs-btn-hover-border-color: var(--secondary-100);
+    --bs-btn-focus-shadow-rgb: none;
+    --bs-btn-active-color: var(--text);
+    --bs-btn-active-bg: var(--secondary-200);
+    --bs-btn-active-border-color: var(--secondary-200);
+    --bs-btn-active-shadow: none;
+    --bs-btn-disabled-color: var(--text);
+    --bs-btn-disabled-bg: var(--secondary-100);
+    --bs-btn-disabled-border-color: var(--secondary-100);
+}
+
 
 .form-control {
     &:focus {

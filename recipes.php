@@ -1,8 +1,16 @@
 <?php
 
+$HEADER_LINKS = [
+        "<script src='/assets/js/recipe.js'></script>"
+];
+
 include_once 'includes/header.php';
 
+// todo: move to db
+$categories = ["Breakfast", "Lunch", "Dinner", "Desert", "Appetizer", "Soup"];
+
 ?>
+
 
 <main class="container-fluid container-md min-vh-100 pt-4">
     <div class="d-flex flex-1 flex-column flex-lg-row gap-5">
@@ -11,24 +19,11 @@ include_once 'includes/header.php';
             <input class="form-control" placeholder="Search..."/>
             <p class="m-0">Categories</p>
             <div class="d-flex gap-2 flex-wrap">
-                <button class="btn btn-sm" style="background-color: var(--secondary-100)">
-                    Breakfast
-                </button>
-                <button class="btn btn-sm" style="background-color: var(--secondary-100)">
-                    Lunch
-                </button>
-                <button class="btn btn-sm" style="background-color: var(--secondary-100)">
-                    Dinner
-                </button>
-                <button class="btn btn-sm" style="background-color: var(--secondary-100)">
-                    Desert
-                </button>
-                <button class="btn btn-sm" style="background-color: var(--secondary-100)">
-                    Appetiser
-                </button>
-                <button class="btn btn-sm" style="background-color: var(--secondary-100)">
-                    Soup
-                </button>
+                <?php foreach($categories as $index => $category) : ?>
+                    <div class="btn btn-secondary btn-sm recipe-category" id="category-<?=$index?>" onclick="handleClick(this)">
+                        <?= $category ?>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
             <div class="row" style="flex: 0.7">
