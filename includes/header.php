@@ -35,13 +35,13 @@ if (str_contains($_SERVER['REQUEST_URI'], 'admin')) {
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"
     ></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/iconfont/tabler-icons.min.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./assets/css/main.css"/>
     <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.override.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/iconfont/tabler-icons.min.css">
 
 
     <?php
@@ -66,6 +66,9 @@ if (str_contains($_SERVER['REQUEST_URI'], 'admin')) {
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <?= $page === 'bookmarks' ? 'active' : null ?>" href="#">Bookmarks</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= $page === 'my_fridge' ? 'active' : null ?>" href="#">My Fridge</a>
                 </li>
             </ul>
             <div class="navbar-nav">

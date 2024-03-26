@@ -75,3 +75,12 @@
     --bs-tooltip-opacity: 1;
     font-family: 'Inter', Arial, sans-serif;
 }
+
+.badge {
+    background-color: var(--primary) !important;
+    color: var(--background) !important;
+}
+
+.text-primary {
+    color: var(--primary) !important;
+}
