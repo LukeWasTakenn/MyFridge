@@ -6,6 +6,7 @@
     --bs-secondary-color: var(--text);
     --bs-secondary-bg: var(--secondary);
     --bs-primary: var(--primary);
+
 }
 
 .btn-primary {
@@ -66,4 +67,11 @@
     &:focus-visible {
         box-shadow: var(--box-shadow-primary);
     }
+}
+
+.tooltip {
+    --bs-tooltip-color: var(--background);
+    --bs-tooltip-bg: var(--primary);
+    --bs-tooltip-opacity: 1;
+    font-family: 'Inter', Arial, sans-serif;
 }

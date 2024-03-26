@@ -23,6 +23,7 @@ if (str_contains($_SERVER['REQUEST_URI'], 'admin')) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>MyFridge</title>
 
+
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         rel="stylesheet"
@@ -40,6 +41,8 @@ if (str_contains($_SERVER['REQUEST_URI'], 'admin')) {
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./assets/css/main.css"/>
     <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.override.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/iconfont/tabler-icons.min.css">
+
 
     <?php
         if ($HEADER_LINKS && count($HEADER_LINKS) > 0) {

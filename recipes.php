@@ -14,16 +14,24 @@ $categories = ["Breakfast", "Lunch", "Dinner", "Desert", "Appetizer", "Soup"];
 
 <main class="container-fluid container-md min-vh-100 pt-4">
     <div class="d-flex flex-1 flex-column flex-lg-row gap-5">
-        <div class="shadow-sm d-flex gap-2 flex-column border p-4 rounded" style="height: fit-content; flex: 0.3;">
+        <div class="shadow-sm d-flex gap-4 flex-column border p-4 rounded" style="height: fit-content; flex: 0.3;">
             <h4>Filters</h4>
             <input class="form-control" placeholder="Search..."/>
-            <p class="m-0">Categories</p>
-            <div class="d-flex gap-2 flex-wrap">
-                <?php foreach($categories as $index => $category) : ?>
-                    <div class="btn btn-secondary btn-sm recipe-category" id="category-<?=$index?>" onclick="handleClick(this)">
-                        <?= $category ?>
-                    </div>
-                <?php endforeach; ?>
+            <div>
+                <p class="m-0">Categories</p>
+                <div class="d-flex gap-2 flex-wrap">
+                    <?php foreach($categories as $index => $category) : ?>
+                        <div class="btn btn-secondary btn-sm recipe-category" id="category-<?=$index?>" onclick="handleClick(this)">
+                            <?= $category ?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    My Fridge <span class="text-secondary" data-bs-toggle="tooltip" data-bs-title="Only displays recipes which match ingredients set in your My Fridge page."><i class="ti ti-help"></i></span>
+                </label>
             </div>
         </div>
             <div class="row" style="flex: 0.7">
