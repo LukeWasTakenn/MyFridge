@@ -68,3 +68,10 @@ CREATE TABLE `recipe_likes`
         FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`recipe_id`)
 );
 
+CREATE TABLE `fridge_ingredients`
+(
+    `account_id`    INT UNSIGNED NOT NULL,
+    `ingredient_id` INT UNSIGNED NOT NULL,
+    `amount`        DECIMAL      NOT NULL,
+    PRIMARY KEY (`account_id`, `ingredient_id`)
+);
