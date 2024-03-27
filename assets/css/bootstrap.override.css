@@ -84,3 +84,11 @@
 .text-primary {
     color: var(--primary) !important;
 }
+
+.navbar-toggler {
+    border-color: var(--bs-border-color);
+
+    &:focus {
+        box-shadow: var(--box-shadow-primary);
+    }
+}

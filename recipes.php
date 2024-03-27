@@ -33,7 +33,7 @@ $recipes = [
 ?>
 
 
-<main class="container-fluid container-md min-vh-100 pt-4">
+<main class="container-fluid container-md min-vh-100 pt-0 pt-md-4">
     <div class="d-flex flex-1 flex-column flex-lg-row gap-5">
         <div class="shadow-sm d-flex gap-4 flex-column border p-4 rounded" style="height: fit-content; flex: 0.3;">
             <h4>Filters</h4>
