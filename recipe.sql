@@ -2,11 +2,12 @@ CREATE TABLE `accounts`
 (
     `account_id`   INT UNSIGNED AUTO_INCREMENT
         PRIMARY KEY,
-    `first_name`   VARCHAR(50) NOT NULL,
-    `last_name`    VARCHAR(50) NOT NULL,
-    `email`        VARCHAR(60) NOT NULL,
-    `password`     VARCHAR(60) NOT NULL,
-    `phone_number` VARCHAR(10) NULL,
+    `first_name`   VARCHAR(50)                           NOT NULL,
+    `last_name`    VARCHAR(50)                           NOT NULL,
+    `email`        VARCHAR(60)                           NOT NULL,
+    `password`     VARCHAR(60)                           NOT NULL,
+    `phone_number` VARCHAR(10)                           NULL,
+    `role`         ENUM ('user', 'admin') DEFAULT 'user' NULL,
     CONSTRAINT `accounts_pk2`
         UNIQUE (`email`)
 );
