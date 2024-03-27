@@ -10,9 +10,23 @@ include_once 'includes/header.php';
             <p class="text-secondary fs-7 m-0">Create an account</p>
         </div>
         <form class="d-flex flex-column gap-3">
+            <div class="d-flex gap-2">
+                <div>
+                    <label for="firstname">First name</label>
+                    <input id="firstname" class="form-control"/>
+                </div>
+                <div>
+                    <label for="lastname">Last name</label>
+                    <input id="lastname" class="form-control"/>
+                </div>
+            </div>
             <div>
                 <label for="email">Email</label>
                 <input id="email" type="email" class="form-control"/>
+            </div>
+            <div>
+                <label for="phone-number">Phone number</label>
+                <input id="phone-number" class="form-control"/>
             </div>
             <div>
                 <label for="password">Password</label>
