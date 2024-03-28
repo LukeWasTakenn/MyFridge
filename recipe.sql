@@ -60,6 +60,18 @@ CREATE TABLE `recipes`
             ON DELETE SET NULL
 );
 
+CREATE TABLE `recipe_bookmarks`
+(
+    `recipe_id`     INT UNSIGNED           NOT NULL,
+    `account_id`    INT UNSIGNED           NOT NULL,
+    `bookmarked_at` DATE DEFAULT curdate() NULL,
+    PRIMARY KEY (`recipe_id`, `account_id`),
+    CONSTRAINT `recipe_bookmarks_accounts_account_id_fk`
+        FOREIGN KEY (`account_id`) REFERENCES `accounts` (`account_id`),
+    CONSTRAINT `recipe_bookmarks_recipes_recipe_id_fk`
+        FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`recipe_id`)
+);
+
 CREATE TABLE `recipe_ingredients`
 (
     `recipe_id`     INT UNSIGNED NOT NULL,
@@ -69,18 +81,6 @@ CREATE TABLE `recipe_ingredients`
     CONSTRAINT `recipe_ingredients_ingredients_ingredient_id_fk`
         FOREIGN KEY (`ingredient_id`) REFERENCES `ingredients` (`ingredient_id`),
     CONSTRAINT `recipe_ingredients_recipes_recipe_id_fk`
-        FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`recipe_id`)
-);
-
-CREATE TABLE `recipe_likes`
-(
-    `recipe_id`  INT UNSIGNED                     NOT NULL,
-    `account_id` INT UNSIGNED                     NOT NULL,
-    `liked_at`   DATE DEFAULT current_timestamp() NOT NULL,
-    PRIMARY KEY (`account_id`, `recipe_id`),
-    CONSTRAINT `recipe_likes_accounts_account_id_fk`
-        FOREIGN KEY (`account_id`) REFERENCES `accounts` (`account_id`),
-    CONSTRAINT `recipe_likes_recipes_recipe_id_fk`
         FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`recipe_id`)
 );
 
