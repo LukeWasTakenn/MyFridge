@@ -74,5 +74,9 @@ CREATE TABLE `fridge_ingredients`
     `account_id`    INT UNSIGNED NOT NULL,
     `ingredient_id` INT UNSIGNED NOT NULL,
     `amount`        DECIMAL      NOT NULL,
-    PRIMARY KEY (`account_id`, `ingredient_id`)
+    PRIMARY KEY (`account_id`, `ingredient_id`),
+    CONSTRAINT `fridge_ingredients_accounts_account_id_fk`
+        FOREIGN KEY (`account_id`) REFERENCES `accounts` (`account_id`),
+    CONSTRAINT `fridge_ingredients_ingredients_ingredient_id_fk`
+        FOREIGN KEY (`ingredient_id`) REFERENCES `ingredients` (`ingredient_id`)
 );
