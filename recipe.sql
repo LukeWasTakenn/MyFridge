@@ -64,7 +64,7 @@ CREATE TABLE `recipe_bookmarks`
 (
     `recipe_id`     INT UNSIGNED           NOT NULL,
     `account_id`    INT UNSIGNED           NOT NULL,
-    `bookmarked_at` DATE DEFAULT curdate() NULL,
+    `bookmarked_at` DATE DEFAULT NOW() NULL,
     PRIMARY KEY (`recipe_id`, `account_id`),
     CONSTRAINT `recipe_bookmarks_accounts_account_id_fk`
         FOREIGN KEY (`account_id`) REFERENCES `accounts` (`account_id`),
