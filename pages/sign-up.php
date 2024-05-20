@@ -1,6 +1,6 @@
 <?php
 
-include_once 'includes/header.php';
+require base_path('includes/header.php');
 ?>
 
 <main class="container-fluid container-md min-vh-100 d-flex align-items-center justify-content-center">
@@ -40,7 +40,7 @@ include_once 'includes/header.php';
                 Sign up
             </button>
         </form>
-        <div class="fs-7 text-align-center">Already have an account? <a class="primary-link" href="login.php"
+        <div class="fs-7 text-align-center">Already have an account? <a class="primary-link" href="<?=BASE_URL?>/login"
             >
                 Log in
             </a>
@@ -50,4 +50,4 @@ include_once 'includes/header.php';
 
 <?php
 
-include_once 'includes/footer.php';
+require base_path('includes/footer.php');

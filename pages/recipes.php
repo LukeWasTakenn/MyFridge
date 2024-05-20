@@ -1,10 +1,12 @@
 <?php
 
+$jsString = "<script src='" . BASE_URL .  "/assets/js/recipe.js'></script>";
+
 $HEADER_LINKS = [
-        "<script src='/assets/js/recipe.js'></script>"
+    "<script src='" . BASE_URL .  "/assets/js/recipe.js'></script>"
 ];
 
-include_once 'includes/header.php';
+require base_path('includes/header.php');
 
 // todo: move to db
 $categories = ["Breakfast", "Lunch", "Dinner", "Desert", "Appetizer", "Soup"];
@@ -83,4 +85,4 @@ $recipes = [
 
 <?php
 
-include_once 'includes/footer.php';
+require base_path('includes/footer.php');

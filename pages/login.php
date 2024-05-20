@@ -1,6 +1,6 @@
 <?php
 
-include_once 'includes/header.php';
+require base_path('includes/header.php');
 
 ?>
 
@@ -28,7 +28,7 @@ include_once 'includes/header.php';
                 Login
             </button>
         </form>
-        <div class="fs-7 text-align-center">Don't have an account? <a class="primary-link" href="sign-up.php"
+        <div class="fs-7 text-align-center">Don't have an account? <a class="primary-link" href="<?=BASE_URL?>/sign-up"
             >
                 Sign up
             </a>
@@ -38,4 +38,4 @@ include_once 'includes/header.php';
 
 <?php
 
-include_once 'includes/footer.php';
+require base_path('includes/footer.php');

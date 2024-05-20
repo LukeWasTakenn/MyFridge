@@ -7,12 +7,6 @@ $url = explode('.php', $url);
 
 $page = $url[0];
 
-$path = '';
-
-if (str_contains($_SERVER['REQUEST_URI'], 'admin')) {
-    $path = '../';
-}
-
 
 ?>
 
@@ -23,6 +17,15 @@ if (str_contains($_SERVER['REQUEST_URI'], 'admin')) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>MyFridge</title>
 
+    <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"
+    ></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -30,22 +33,14 @@ if (str_contains($_SERVER['REQUEST_URI'], 'admin')) {
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
         crossorigin="anonymous"
     />
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/iconfont/tabler-icons.min.css">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="./assets/css/main.css"/>
-    <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.override.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/iconfont/tabler-icons.min.css">
+    <link rel="stylesheet" type="text/css" href="<?=BASE_URL?>/assets/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="<?=BASE_URL?>/assets/css/bootstrap.override.css"/>
 
 
     <?php
-        if ($HEADER_LINKS && count($HEADER_LINKS) > 0) {
+        if ($HEADER_LINKS  && count($HEADER_LINKS) > 0) {
             foreach ($HEADER_LINKS as $link)
                 echo $link;
         }
@@ -54,7 +49,7 @@ if (str_contains($_SERVER['REQUEST_URI'], 'admin')) {
 <body>
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid container-md">
-        <a class="navbar-brand" href="<?= $path ?>index.php">MyFridge</a>
+        <a class="navbar-brand" href="<?=BASE_URL?>/">MyFridge</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -62,7 +57,7 @@ if (str_contains($_SERVER['REQUEST_URI'], 'admin')) {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link <?= $page === 'recipes' ? 'active' : null ?>" aria-current="page" href="<?= $path ?>recipes.php">Recipes</a>
+                    <a class="nav-link <?= $page === 'recipes' ? 'active' : null ?>" aria-current="page" href="<?=BASE_URL?>/recipes">Recipes</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <?= $page === 'bookmarks' ? 'active' : null ?>" href="#">Bookmarks</a>
@@ -72,7 +67,7 @@ if (str_contains($_SERVER['REQUEST_URI'], 'admin')) {
                 </li>
             </ul>
             <div class="navbar-nav">
-                <a class="nav-link p-0 m-0 <?= $page === 'login' ? 'active' : null ?>" href="<?= $path ?>login.php">Login</a>
+                <a class="p-0 m-0 nav-link <?= $page === 'login' ? 'active' : null ?>" href="<?=BASE_URL?>/login">Login</a>
             </div>
         </div>
     </div>

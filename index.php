@@ -1,31 +1,25 @@
 <?php
 
-include_once 'includes/header.php'
+const BASE_PATH = __DIR__ . DIRECTORY_SEPARATOR;
 
-?>
+require BASE_PATH . 'functions.php';
+require base_path("config.php");
 
-<main class="container-fluid container-md min-vh-100 d-flex justify-content-start justify-content-md-between align-items-center flex-column flex-lg-row gap-5">
-    <div class="d-flex align-items-start flex-column gap-2" style="flex: 0.5">
-        <h1>Find recipes from <span style="color:var(--primary);">your</span> fridge</h1>
-        <p>Stretch your grocery budget with MyFridge. Amazing meals made easy.</p>
-        <a class="btn btn-primary" href="recipes.php">
-            Browse recipes ->
-        </a>
-    </div>
-    <div class="d-flex flex-column flex-lg-row gap-2" style="flex: 0.5">
-        <div>
-            <img src="assets/images/hero-1.jpg" class="rounded img-fluid"/>
-        </div>
-        <div>
-            <img src="assets/images/hero-2.jpg" class="rounded img-fluid">
-        </div>
-        <div>
-            <img src="assets/images/hero-3.jpg" class="rounded img-fluid"/>
-        </div>
-    </div>
-</main>
+spl_autoload_register(function (string $class) {
+    $class = str_replace('\\', DIRECTORY_SEPARATOR, $class);
+
+    require_once base_path("classes" . DIRECTORY_SEPARATOR . "{$class}.php");
+});
 
 
-<?php
+$router = new Router();
 
-include_once 'includes/footer.php';
+$router->get('/', 'landing');
+$router->get('/login', 'login');
+$router->get('/sign-up', 'sign-up');
+$router->get('/recipes', 'recipes');
+
+$url = parse_url($_SERVER['REQUEST_URI'])['path'];
+$method = $_SERVER['REQUEST_METHOD'];
+
+$router->route($url, $method);
