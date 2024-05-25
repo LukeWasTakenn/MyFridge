@@ -1,14 +1,21 @@
 CREATE TABLE `accounts`
 (
-    `account_id`   INT UNSIGNED AUTO_INCREMENT
+    `account_id`                 INT UNSIGNED AUTO_INCREMENT
         PRIMARY KEY,
-    `first_name`   VARCHAR(50)                           NOT NULL,
-    `last_name`    VARCHAR(50)                           NOT NULL,
-    `email`        VARCHAR(60)                           NOT NULL,
-    `password`     VARCHAR(60)                           NOT NULL,
-    `phone_number` VARCHAR(10)                           NULL,
-    `role`         ENUM ('user', 'admin') DEFAULT 'user' NULL,
-    `is_banned`    TINYINT(1)             DEFAULT 0      NOT NULL,
+    `first_name`                 VARCHAR(50)                                                               NOT NULL,
+    `last_name`                  VARCHAR(50)                                                               NOT NULL,
+    `email`                      VARCHAR(60)                                                               NOT NULL,
+    `password`                   VARCHAR(60)                                                               NOT NULL,
+    `phone_number`               VARCHAR(10)                                                               NULL,
+    `role`                       ENUM ('user', 'admin') DEFAULT 'user'                                     NULL,
+    `registration_token`         CHAR(40)                                                                  NOT NULL,
+    `registration_expires`       DATETIME               DEFAULT (current_timestamp() + INTERVAL 15 MINUTE) NOT NULL,
+    `forgotten_password_token`   CHAR(40)                                                                  NOT NULL,
+    `forgotten_password_expires` DATETIME                                                                  NULL,
+    `is_verified`                TINYINT                DEFAULT 0                                          NULL,
+    `is_banned`                  TINYINT(1)             DEFAULT 0                                          NOT NULL,
+    CONSTRAINT `accounts_pk`
+        UNIQUE (`registration_token`),
     CONSTRAINT `accounts_pk2`
         UNIQUE (`email`)
 );
