@@ -1,7 +1,5 @@
 <?php
 
-global $HEADER_LINKS;
-
 $url = basename($_SERVER['REQUEST_URI'], '.php');
 $url = explode('.php', $url);
 
@@ -40,7 +38,7 @@ $page = $url[0];
 
 
     <?php
-        if ($HEADER_LINKS  && count($HEADER_LINKS) > 0) {
+        if (!empty($HEADER_LINKS)) {
             foreach ($HEADER_LINKS as $link)
                 echo $link;
         }
