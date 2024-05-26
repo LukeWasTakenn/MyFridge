@@ -29,6 +29,8 @@ class Router
     {
         foreach ($this->routes as $route) {
             if ($route['url'] === $url && $route['method'] === $method) {
+                if (str_contains($url, "api")) return require base_path("api/{$route['page']}");
+
                 return require base_path("pages/{$route['page']}");
             }
         }

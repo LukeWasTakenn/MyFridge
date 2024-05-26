@@ -1,5 +1,4 @@
 <?php
-
 require base_path('includes/header.php');
 ?>
 
@@ -9,34 +8,40 @@ require base_path('includes/header.php');
             <h2 class="mb-0">Sign up</h2>
             <p class="text-secondary fs-7 m-0">Create an account</p>
         </div>
-        <form class="d-flex flex-column gap-3">
+        <form class="d-flex flex-column gap-3" id="sign-up-form">
             <div class="d-flex gap-2">
                 <div>
                     <label for="firstname">First name</label>
-                    <input id="firstname" class="form-control"/>
+                    <input id="firstname" class="form-control" name="firstName"/>
+                    <p id="firstName-error" class="text-danger error"></p>
                 </div>
                 <div>
                     <label for="lastname">Last name</label>
-                    <input id="lastname" class="form-control"/>
+                    <input id="lastname" class="form-control" name="lastName"/>
+                    <p id="lastName-error" class="text-danger error"></p>
                 </div>
             </div>
             <div>
                 <label for="email">Email</label>
-                <input id="email" type="email" class="form-control"/>
+                <input id="email" class="form-control" name="email"/>
+                <p id="email-error" class="text-danger error"></p>
             </div>
             <div>
                 <label for="phone-number">Phone number</label>
-                <input id="phone-number" class="form-control"/>
+                <input id="phone-number" class="form-control" name="phoneNumber"/>
+                <p id="phoneNumber-error" class="text-danger error"></p>
             </div>
             <div>
                 <label for="password">Password</label>
-                <input id="password" type="password" class="form-control"/>
+                <input id="password" type="password" class="form-control" name="password"/>
+                <p id="password-error" class="text-danger error"></p>
             </div>
             <div>
                 <label for="confirm-password">Confirm password</label>
-                <input id="confirm-password" type="password" class="form-control"/>
+                <input id="confirm-password" type="password" class="form-control" name="confirmPassword"/>
+                <p id="confirmPassword-error" class="text-danger error"></p>
             </div>
-            <button class="btn btn-primary">
+            <button class="btn btn-primary" type="submit">
                 Sign up
             </button>
         </form>
@@ -47,6 +52,8 @@ require base_path('includes/header.php');
         </div>
     </div>
 </main>
+
+<script src="<?=BASE_URL . "/assets/js/sign-up.js"?>"></script>
 
 <?php
 

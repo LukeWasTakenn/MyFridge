@@ -15,10 +15,14 @@ spl_autoload_register(function (string $class) {
 
 $router = new Router();
 
+// page routes
 $router->get('/', 'landing');
 $router->get('/login', 'login');
 $router->get('/sign-up', 'sign-up');
 $router->get('/recipes', 'recipes');
+
+// API routes
+$router->post("/api/register-user", "register-user");
 
 $url = parse_url($_SERVER['REQUEST_URI'])['path'];
 $method = $_SERVER['REQUEST_METHOD'];

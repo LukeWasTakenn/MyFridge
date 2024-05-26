@@ -5,6 +5,10 @@ body {
     background-color: var(--background);
 }
 
+p {
+    margin: 0;
+}
+
 footer {
     background-color: var(--primary);
     color: var(--background);
@@ -21,4 +25,8 @@ footer {
     &:hover {
         text-decoration: underline;
     }
+}
+
+.error {
+    font-size: 14px;
 }
