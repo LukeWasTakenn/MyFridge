@@ -1,5 +1,4 @@
 <?php
-
 $url = basename($_SERVER['REQUEST_URI'], '.php');
 $url = explode('.php', $url);
 

@@ -44,8 +44,9 @@ require base_path('includes/header.php');
             <button class="btn btn-primary" type="submit">
                 Sign up
             </button>
+            <p id="form-error" class="text-danger error"></p>
         </form>
-        <div class="fs-7 text-align-center">Already have an account? <a class="primary-link" href="<?=BASE_URL?>/login"
+        <div id="existing-account" class="fs-7 text-align-center">Already have an account? <a class="primary-link" href="<?=BASE_URL?>/login"
             >
                 Log in
             </a>

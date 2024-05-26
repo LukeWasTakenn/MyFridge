@@ -59,8 +59,16 @@ form.addEventListener("submit", async (e) => {
 
     const data = await resp.json();
 
-    // if something wrong set some more errors
+    if (resp.status !== 200) {
+        if (data.field)
+            setError(`${data.field}-error`, data.error)
+        else
+            setError("form-error", data.error)
+        console.log(data);
+        return;
+    }
 
-    console.log(data)
+    form.outerHTML = "<p>Account successfully created. Please verify your email.</p>";
+    document.getElementById("existing-account").remove();
 
 })
