@@ -2,6 +2,14 @@
 
 declare(strict_types=1);
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+require base_path('classes/PHPMailer/src/Exception.php');
+require base_path('classes/PHPMailer/src/PHPMailer.php');
+require base_path('classes/PHPMailer/src/SMTP.php');
+
 global $pdo;
 
 $data = get_request_data();
@@ -29,14 +37,38 @@ try {
     $stmt = $pdo->prepare("INSERT INTO `accounts` (`first_name`, `last_name`, `email`, `password`, `phone_number`, `registration_token`) VALUES (?, ?, ?, ?, ?, ?)");
     $result = $stmt->execute([$firstName, $lastName, $email, $password, $phoneNumber, $token]);
 
-    //    TODO: send email
+    $mail = new PHPMailer(true);
+
+    try {
+        $mail->isSMTP();
+        $mail->Host = 'sandbox.smtp.mailtrap.io';
+        $mail->SMTPAuth = true;
+        $mail->Port = 2525;
+        $mail->Username = '7b824115aa42ea';
+        $mail->Password = 'abebc6ba1b5515';
+
+        $mail->setFrom('myfridge@oo.com', 'MyFridge');
+        $mail->addAddress("$email");
+
+        $mail->isHTML(true);
+        $mail->Subject = "Activate your account.";
+        $mail->Body = "You can activate your account by clicking <a href='https://oo.stud.vts.su.ac.rs/verify?token=" . $token . "'>here</a>.";
+        $mail->AltBody = "You can activate your account here: " . "https://oo.stud.vts.su.ac.rs/verify?token=" . $token;
+
+        $mail->send();
+
+//      TODO: Create verify.php to verify members
+    } catch (\Exception $e) {
+        send_response([
+            "error" => "There was an error sending the email."
+        ], 500);
+    }
+
     send_response([
         "success" => true
     ]);
 } catch (PDOException $exception) {
     send_response([
         "error" => "Something went wrong while creating the account.",
-        "code" => $exception->getCode(),
-        "message" => $exception->getMessage()
     ], 500);
 }

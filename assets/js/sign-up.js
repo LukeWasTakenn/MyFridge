@@ -49,6 +49,8 @@ form.addEventListener("submit", async (e) => {
 
     if (!shouldSubmit) return;
 
+    // todo: loading indicator?
+
     const resp = await fetch("api/register-user", {
         method: 'post',
         headers: {
