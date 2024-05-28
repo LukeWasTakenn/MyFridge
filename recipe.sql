@@ -9,7 +9,7 @@ CREATE TABLE `accounts`
     `phone_number`               VARCHAR(10)                                                               NULL,
     `role`                       ENUM ('user', 'admin') DEFAULT 'user'                                     NULL,
     `registration_token`         CHAR(40)                                                                  NOT NULL,
-    `registration_expires`       DATETIME               DEFAULT (current_timestamp() + INTERVAL 15 MINUTE) NOT NULL,
+    `registration_expires`       DATETIME               DEFAULT (current_timestamp() + INTERVAL 1 DAY) NULL,
     `forgotten_password_token`   CHAR(40)                                                                  NULL,
     `forgotten_password_expires` DATETIME                                                                  NULL,
     `is_verified`                TINYINT                DEFAULT 0                                          NULL,

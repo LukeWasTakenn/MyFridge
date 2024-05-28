@@ -9,3 +9,5 @@ const DB = [
     "username" => "root",
     "password" => ""
 ];
+
+const SITE = "http://localhost/MyFridge/";

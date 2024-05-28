@@ -20,6 +20,7 @@ $router->get('/', 'landing');
 $router->get('/login', 'login');
 $router->get('/sign-up', 'sign-up');
 $router->get('/recipes', 'recipes');
+$router->get('/verify', 'verify');
 
 // API routes
 $router->post("/api/register-user", "register-user");
