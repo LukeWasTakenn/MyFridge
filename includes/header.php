@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $url = basename($_SERVER['REQUEST_URI'], '.php');
 $url = explode('.php', $url);
 
@@ -64,7 +66,16 @@ $page = $url[0];
                 </li>
             </ul>
             <div class="navbar-nav">
-                <a class="p-0 m-0 nav-link <?= $page === 'login' ? 'active' : null ?>" href="<?=BASE_URL?>/login">Login</a>
+                <?php
+
+                if (isset($_SESSION['user'])) {
+                    $user = $_SESSION['user'];
+                    echo "<p>{$user->first_name} {$user->last_name}</p>";
+                } else {
+                    echo "<a class=\"p-0 m-0 nav-link <?= $page === 'login' ? 'active' : null ?>\" href=\"" . BASE_URL . "/login\">Login</a>";
+                }
+
+                ?>
             </div>
         </div>
     </div>

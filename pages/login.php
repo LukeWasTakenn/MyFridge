@@ -10,21 +10,23 @@ require base_path('includes/header.php');
             <h2 class="mb-0">Login</h2>
             <p class="text-secondary fs-7 m-0">Start exploring your favourite recipes today</p>
         </div>
-        <form class="d-flex flex-column gap-3">
+        <form id="login-form" class="d-flex flex-column gap-3">
             <div>
                 <label for="email">Email</label>
-                <input id="email" type="email" class="form-control"/>
+                <input id="email" name="email" class="form-control"/>
+                <p id="email-error" class="text-danger error"></p>
             </div>
             <div>
                 <label for="password">Password</label>
-                <input id="password" type="password" class="form-control"/>
+                <input id="password" name="password" type="password" class="form-control"/>
+                <p id="password-error" class="text-danger error"></p>
             </div>
             <a class="primary-link fs-7 text-align-right"
                href="#"
             >
                 Forgot password?
             </a>
-            <button class="btn btn-primary">
+            <button id="login-form-submit" class="btn btn-primary">
                 Login
             </button>
         </form>
@@ -35,6 +37,9 @@ require base_path('includes/header.php');
         </div>
     </div>
 </main>
+
+<script src="<?=BASE_URL . "/assets/js/utils.js"?>"></script>
+<script src="<?=BASE_URL . "/assets/js/login.js"?>"></script>
 
 <?php
 

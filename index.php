@@ -24,6 +24,7 @@ $router->get('/verify', 'verify');
 
 // API routes
 $router->post("/api/register-user", "register-user");
+$router->post("/api/login-user", "login-user");
 
 $url = parse_url($_SERVER['REQUEST_URI'])['path'];
 $method = $_SERVER['REQUEST_METHOD'];

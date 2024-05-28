@@ -15,13 +15,6 @@ function setError(target, message) {
     shouldSubmit = false
 }
 
-function resetErrors(fields) {
-    fields.forEach(field => {
-        const fieldElement = document.getElementById(`${field}-error`);
-        fieldElement.innerHTML = "";
-    })
-}
-
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -31,7 +24,7 @@ form.addEventListener("submit", async (e) => {
     const values = Object.fromEntries(formData.entries());
 
     const fields = Object.keys(values);
-    resetErrors(fields);
+    utils.resetErrors(fields);
 
     values.firstName = "dsadas";
     values.lastName = "dasdas";

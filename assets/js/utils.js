@@ -8,4 +8,17 @@ class Utils {
 
         element.disabled = true;
     }
+
+    cancelSpinner(element, text) {
+        element.innerHTML = text;
+        element.disabled = false;
+    }
+
+    resetErrors(fields) {
+        fields.forEach(field => {
+            const fieldElement = document.getElementById(`${field}-error`);
+            fieldElement.innerHTML = "";
+        })
+    }
+
 }
