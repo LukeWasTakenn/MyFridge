@@ -41,7 +41,7 @@ require base_path('includes/header.php');
                 <input id="confirm-password" type="password" class="form-control" name="confirmPassword"/>
                 <p id="confirmPassword-error" class="text-danger error"></p>
             </div>
-            <button class="btn btn-primary" type="submit">
+            <button class="btn btn-primary" id="sign-up-submit" type="submit">
                 Sign up
             </button>
             <p id="form-error" class="text-danger error"></p>
@@ -54,6 +54,7 @@ require base_path('includes/header.php');
     </div>
 </main>
 
+<script src="<?=BASE_URL . "/assets/js/utils.js"?>"></script>
 <script src="<?=BASE_URL . "/assets/js/sign-up.js"?>"></script>
 
 <?php

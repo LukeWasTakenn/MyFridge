@@ -1,5 +1,7 @@
 "use strict";
 
+const utils = new Utils();
+
 let shouldSubmit = true;
 
 const form = document.getElementById("sign-up-form");
@@ -49,7 +51,9 @@ form.addEventListener("submit", async (e) => {
 
     if (!shouldSubmit) return;
 
-    // todo: loading indicator?
+    const submitButton = document.getElementById("sign-up-submit")
+
+    utils.createSpinner(submitButton);
 
     const resp = await fetch("api/register-user", {
         method: 'post',

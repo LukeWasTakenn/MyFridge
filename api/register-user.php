@@ -56,8 +56,6 @@ try {
         $mail->AltBody = "You can activate your account here: " . SITE . "verify?token=" . $token . " The activation link expires in 1 day.";
 
         $mail->send();
-
-//      TODO: Create verify.php to verify members
     } catch (\Exception $e) {
         send_response([
             "error" => "There was an error sending the email."
