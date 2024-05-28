@@ -46,7 +46,7 @@ form.addEventListener("submit", async (e) => {
     utils.cancelSpinner(submitBtn, "Login");
 
     if (!data.error) {
-        // TODO: figure out redirect
+        window.location.href = './';
         return;
     }
 
