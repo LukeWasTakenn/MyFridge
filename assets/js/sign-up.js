@@ -17,21 +17,24 @@ function setError(target, message) {
 
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
+    const submitButton = document.getElementById("sign-up-submit")
 
     shouldSubmit = true;
 
     const formData = new FormData(e.target);
     const values = Object.fromEntries(formData.entries());
 
+
     const fields = Object.keys(values);
     utils.resetErrors(fields);
+    utils.cancelSpinner(submitButton, "Sign up");
 
-    values.firstName = "dsadas";
-    values.lastName = "dasdas";
-    values.email = "dsaodksoa@gmail.com";
-    values.phoneNumber = "321321123";
-    values.password = "password";
-    values.confirmPassword = "password";
+    // values.firstName = "dsadas";
+    // values.lastName = "dasdas";
+    // values.email = "dsaodksoa@gmail.com";
+    // values.phoneNumber = "321321123";
+    // values.password = "password";
+    // values.confirmPassword = "password";
 
     fields.forEach(field => {
         if (!values[field]) setError(`${field}-error`, "Field required.");
@@ -44,7 +47,6 @@ form.addEventListener("submit", async (e) => {
 
     if (!shouldSubmit) return;
 
-    const submitButton = document.getElementById("sign-up-submit")
 
     utils.createSpinner(submitButton);
 
