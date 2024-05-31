@@ -41,11 +41,11 @@ try {
 
     try {
         $mail->isSMTP();
-        $mail->Host = 'sandbox.smtp.mailtrap.io';
+        $mail->Host = EMAIL['host'];
         $mail->SMTPAuth = true;
         $mail->Port = 2525;
-        $mail->Username = '7b824115aa42ea';
-        $mail->Password = 'abebc6ba1b5515';
+        $mail->Username = EMAIL['username'];
+        $mail->Password = EMAIL['password'];
 
         $mail->setFrom('myfridge@oo.com', 'MyFridge');
         $mail->addAddress("$email");
