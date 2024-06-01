@@ -6,6 +6,8 @@ $url = explode('.php', $url);
 
 $page = $url[0];
 
+$user = $_SESSION['user'] ?? null;
+
 
 ?>
 
@@ -61,21 +63,24 @@ $page = $url[0];
                 <li class="nav-item">
                     <a class="nav-link <?= $page === 'bookmarks' ? 'active' : null ?>" href="#">Bookmarks</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link <?= $page === 'my_fridge' ? 'active' : null ?>" href="#">My Fridge</a>
-                </li>
             </ul>
             <div class="navbar-nav">
-                <?php
+                <?php if ($user) :?>
+                    <div class="dropdown ">
+                        <button data-bs-toggle="dropdown" class="user-avatar rounded-circle p-2">
+                            <i class="ti ti-user"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#"><i class="ti ti-fridge"></i> My Fridge</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="ti ti-book"></i> My Recipes</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="ti ti-settings"></i> Settings</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="ti ti-logout"></i> Log out</a></li>
+                        </ul>
+                    </div>
 
-                if (isset($_SESSION['user'])) {
-                    $user = $_SESSION['user'];
-                    echo "<p>{$user->first_name} {$user->last_name}</p>";
-                } else {
-                    echo "<a class=\"p-0 m-0 nav-link <?= $page === 'login' ? 'active' : null ?>\" href=\"" . BASE_URL . "/login\">Login</a>";
-                }
-
-                ?>
+                <?php else :?>
+                    <a class="p-0 m-0 nav-link <?= $page === 'login' ? 'active' : null ?>" href="<?=BASE_URL?>/login">Login</a>
+                <?php endif?>
             </div>
         </div>
     </div>

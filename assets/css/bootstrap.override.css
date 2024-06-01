@@ -92,3 +92,24 @@
         box-shadow: var(--box-shadow-primary);
     }
 }
+
+.dropdown-item {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-size: .875rem;
+    line-height: normal;
+
+    & > i {
+        font-size: 20px;
+    }
+
+    &:active {
+        background-color: var(--primary) !important;
+        color: var(--background) !important;
+    }
+    &:hover {
+        background-color: var(--background-100);
+    }
+}
+
