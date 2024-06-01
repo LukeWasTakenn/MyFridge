@@ -36,12 +36,14 @@ $recipes = [
 
 
 <main class="container-fluid container-md min-vh-100 pt-0 pt-md-4">
-    <div class="d-flex flex-1 flex-column flex-lg-row gap-5">
-        <div class="shadow-sm d-flex gap-4 flex-column border p-4 rounded" style="height: fit-content; flex: 0.3;">
-            <h4>Filters</h4>
-            <input class="form-control" placeholder="Search..."/>
+    <div class="mb-5">
+        <h2 class="m-0">Recipes</h2>
+        <p class="fs-7 text-secondary">Find the perfect recipe for any occasion.</p>
+    </div>
+    <div class="d-flex flex-1 flex-column gap-3">
+        <div class="d-flex flex-column-reverse flex-lg-row justify-content-between align-items-start align-items-lg-center gap-3">
             <div>
-                <p class="m-0">Categories</p>
+                <p>Categories</p>
                 <div class="d-flex gap-2 flex-wrap">
                     <?php foreach ($categories as $index => $category) : ?>
                         <div class="btn btn-secondary btn-sm recipe-category" id="category-<?=$index?>" onclick="handleClick(this)">
@@ -50,36 +52,39 @@ $recipes = [
                     <?php endforeach; ?>
                 </div>
             </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">
-                    My Fridge <span class="text-secondary" data-bs-toggle="tooltip" data-bs-title="Only displays recipes which closely match ingredients set in your My Fridge page."><i class="ti ti-help"></i></span>
-                </label>
-            </div>
+            <input class="form-control recipe-search" placeholder="Search..."/>
         </div>
-            <div class="row" style="flex: 0.7">
-                <?php foreach ($recipes as $recipe) :?>
-                    <div class="col-sm-6 col-md-4 mb-2 align-items-stretch">
-                        <div class="card border shadow-sm h-100">
-                            <div style="overflow: hidden; ">
-                                <img src="<?= $recipe['image'] ?>" class="card-img-top" style="width: 100%; height: 285px; object-fit: cover;" alt="...">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+                My Fridge <span class="text-secondary" data-bs-toggle="tooltip" data-bs-title="Only displays recipes which closely match ingredients set in your My Fridge page."><i class="ti ti-help"></i></span>
+            </label>
+        </div>
+        <div class="row" style="flex: 0.7">
+            <?php foreach ($recipes as $recipe) :?>
+                <div class="col-sm-6 col-md-4 mb-2 align-items-stretch">
+                    <div class="card border shadow-sm h-100">
+                        <div style="overflow: hidden; ">
+                            <img src="<?= $recipe['image'] ?>" class="card-img-top" style="width: 100%; height: 285px; object-fit: cover;" alt="...">
+                        </div>
+                        <div class="card-body d-flex flex-column justify-content-between gap-3">
+                            <div>
+                                <h5 class="card-title"><?= $recipe['name'] ?></h5>
+                                <div class="d-flex gap-3 flex-wrap-wrap">
+                                </div>
                             </div>
-                            <div class="card-body d-flex flex-column justify-content-between gap-3">
-                                <div>
-                                    <h5 class="card-title"><?= $recipe['name'] ?></h5>
-                                    <div class="d-flex gap-3 flex-wrap-wrap">
-                                        <span class="badge text-bg-primary"><?= $recipe['category'] ?></span>
-                                    </div>
-                                </div>
 
-                                <div class="d-flex align-items-center gap-2">
+                            <div class="d-flex justify-content-between align-items-center gap-2">
+                                <span>
                                     <i class="ti ti-clock text-primary"></i> <?= $recipe['time'] ?> min.
-                                </div>
+                                </span>
+                                <span class="badge text-bg-primary"><?= $recipe['category'] ?></span>
                             </div>
                         </div>
                     </div>
-                <?php endforeach; ?>
-            </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
         </div>
 </main>
 
