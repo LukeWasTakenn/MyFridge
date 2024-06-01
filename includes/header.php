@@ -51,36 +51,47 @@ $user = $_SESSION['user'] ?? null;
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid container-md">
         <a class="navbar-brand" href="<?=BASE_URL?>/">MyFridge</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button  class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link <?= $page === 'recipes' ? 'active' : null ?>" aria-current="page" href="<?=BASE_URL?>/recipes">Recipes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link <?= $page === 'bookmarks' ? 'active' : null ?>" href="#">Bookmarks</a>
-                </li>
-            </ul>
-            <div class="navbar-nav">
-                <?php if ($user) :?>
-                    <div class="dropdown ">
-                        <button data-bs-toggle="dropdown" class="user-avatar rounded-circle p-2">
-                            <i class="ti ti-user"></i>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#"><i class="ti ti-fridge"></i> My Fridge</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="ti ti-book"></i> My Recipes</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="ti ti-settings"></i> Settings</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="ti ti-logout"></i> Log out</a></li>
-                        </ul>
-                    </div>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Navigation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-start flex-grow-1 pe-3">
+                    <li class="nav-item">
+                        <a class="nav-link <?= $page === 'recipes' ? 'active' : null ?>" aria-current="page" href="<?=BASE_URL?>/recipes">Recipes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= $page === 'bookmarks' ? 'active' : null ?>" href="#">Bookmarks</a>
+                    </li>
+                </ul>
+                <div class="navbar-nav">
+                    <?php if ($user) :?>
+                        <div class="dropdown d-lg-flex d-xs-none">
+                            <button data-bs-toggle="dropdown" class="user-avatar rounded-circle p-2 d-none d-lg-flex">
+                                <i class="ti ti-user"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="#"><i class="ti ti-fridge"></i> My Fridge</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="ti ti-book"></i> My Recipes</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="ti ti-settings"></i> Settings</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="ti ti-logout"></i> Log out</a></li>
+                            </ul>
+                        </div>
 
-                <?php else :?>
-                    <a class="p-0 m-0 nav-link <?= $page === 'login' ? 'active' : null ?>" href="<?=BASE_URL?>/login">Login</a>
-                <?php endif?>
+                        <!-- Mobile navigation -->
+                        <h5 class="d-lg-none mt-4">Account</h5>
+                        <li class="nav-item d-lg-none"><a class="nav-link" href="#"><i class="ti ti-fridge"></i> My Fridge</a></li>
+                        <li class="nav-item d-lg-none"><a class="nav-link" href="#"><i class="ti ti-book"></i> My Recipes</a></li>
+                        <li class="nav-item d-lg-none"><a class="nav-link" href="#"><i class="ti ti-settings"></i> Settings</a></li>
+                        <li class="nav-item d-lg-none"><a class="nav-link" href="#"><i class="ti ti-logout"></i> Log out</a></li>
+                    <?php else :?>
+                        <a class="p-0 m-0 nav-link <?= $page === 'login' ? 'active' : null ?>" href="<?=BASE_URL?>/login">Login</a>
+                    <?php endif?>
+                </div>
             </div>
         </div>
     </div>
