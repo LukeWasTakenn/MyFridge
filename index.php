@@ -21,6 +21,7 @@ $router->get('/login', 'login');
 $router->get('/sign-up', 'sign-up');
 $router->get('/recipes', 'recipes');
 $router->get('/verify', 'verify');
+$router->get('/new-recipe', 'new-recipe');
 
 // API routes
 $router->post("/api/register-user", "register-user");

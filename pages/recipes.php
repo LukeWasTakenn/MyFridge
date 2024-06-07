@@ -36,9 +36,17 @@ $recipes = [
 
 
 <main class="container-fluid container-md min-vh-100 pt-0 pt-md-4">
-    <div class="mb-5">
-        <h2 class="m-0">Recipes</h2>
-        <p class="fs-7 text-secondary">Find the perfect recipe for any occasion.</p>
+    <div class="d-flex align-items-center justify-content-between mb-5">
+        <div>
+            <h2 class="m-0">Recipes</h2>
+            <p class="fs-7 text-secondary">Find the perfect recipe for any occasion.</p>
+        </div>
+        <div>
+            <a class="btn btn-secondary" href="<?=BASE_URL?>/new-recipe">
+                <i class="ti ti-plus"></i>
+                <span style="font-size: 14px;">Create a recipe</span>
+            </a>
+        </div>
     </div>
     <div class="d-flex flex-1 flex-column gap-3">
         <div class="d-flex flex-column-reverse flex-lg-row justify-content-between align-items-start align-items-lg-center gap-3">
