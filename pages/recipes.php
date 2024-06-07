@@ -42,7 +42,7 @@ $recipes = [
             <p class="fs-7 text-secondary">Find the perfect recipe for any occasion.</p>
         </div>
         <div>
-            <a class="btn btn-secondary" href="<?=BASE_URL?>/new-recipe">
+            <a class="btn btn-light" href="<?=BASE_URL?>/new-recipe">
                 <i class="ti ti-plus"></i>
                 <span style="font-size: 14px;">Create a recipe</span>
             </a>
@@ -70,7 +70,7 @@ $recipes = [
         </div>
         <div class="row" style="flex: 0.7">
             <?php foreach ($recipes as $recipe) :?>
-                <div class="col-sm-6 col-md-4 mb-2 align-items-stretch">
+                <div class="col-sm-6 col-md-4 mb-2 align-items-stretch recipe-card">
                     <div class="card border shadow-sm h-100">
                         <div style="overflow: hidden; ">
                             <img src="<?= $recipe['image'] ?>" class="card-img-top" style="width: 100%; height: 285px; object-fit: cover;" alt="...">

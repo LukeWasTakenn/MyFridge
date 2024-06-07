@@ -56,6 +56,15 @@ footer {
     }
 }
 
+.recipe-card {
+    transition: 100ms;
+}
+
+.recipe-card:hover {
+    scale: 1.025;
+    transform: translateY(-5px);
+}
+
 #editor, .ql-toolbar {
     border-color: var(--bs-border-color) !important;
     border-radius: var(--bs-border-radius);
