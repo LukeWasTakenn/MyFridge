@@ -1,0 +1,14 @@
+.recipe-search {
+    @media (min-width: 992px) {
+        width: 300px;
+    }
+}
+
+.recipe-card {
+    transition: 100ms;
+}
+
+.recipe-card:hover {
+    scale: 1.025;
+    transform: translateY(-5px);
+}

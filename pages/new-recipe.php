@@ -3,6 +3,7 @@
 $HEADER_LINKS = [
     '<link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />',
     '<script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>',
+    "<link href='" . BASE_URL .  "/assets/css/quill.override.css' rel='stylesheet'>",
 ];
 
 require base_path('includes/header.php');

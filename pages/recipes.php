@@ -3,7 +3,9 @@
 $jsString = "<script src='" . BASE_URL .  "/assets/js/recipe.js'></script>";
 
 $HEADER_LINKS = [
-    "<script src='" . BASE_URL .  "/assets/js/recipe.js'></script>"
+    "<script src='" . BASE_URL .  "/assets/js/recipe.js'></script>",
+    "<link href='" . BASE_URL .  "/assets/css/recipes.css' rel='stylesheet'>",
+
 ];
 
 require base_path('includes/header.php');
