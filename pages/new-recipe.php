@@ -26,7 +26,7 @@ require base_path('includes/header.php');
                 <p><br /></p>
             </div>
         </div>
-        <div style="flex: 1">
+        <form style="flex: 1" id="recipe-form">
             <div class="d-flex flex-column gap-4">
                 <div class="d-flex flex-column">
                     <label for="recipe-name">Recipe name</label>
@@ -36,26 +36,29 @@ require base_path('includes/header.php');
                     <label for="cook-time">Cook time (minutes)</label>
                     <input id="cook-time" class="form-control"/>
                 </div>
-                <div class="d-flex flex-column">
+                <div class="d-flex flex-column gap-2">
                     <label for="recipe-ingredients">Ingredients</label>
-                    <button class="btn btn-light">
+                    <div id="ingredients-fields" class="d-flex flex-column gap-2">
+
+                    </div>
+                    <button type="button" class="btn btn-light" onclick="handleAddIngredient();">
                         <i class="ti ti-plus"></i>
                         Add ingredient
                     </button>
                 </div>
                 <div class="d-flex flex-column">
                     <label for="recipe-images">Images</label>
-                    <button class="btn btn-light">
+                    <button type="button" class="btn btn-light" onclick="handleAddImage();">
                         <i class="ti ti-plus"></i>
                         Add image
                     </button>
                 </div>
-                <button class="btn btn-primary">
+                <button class="btn btn-primary" type="submit">
                     <i class="ti ti-send"></i>
                     Submit recipe
                 </button>
             </div>
-        </div>
+        </form>
     </div>
 </main>
 
@@ -65,6 +68,9 @@ require base_path('includes/header.php');
         bounds: document.getElementById("container")
     })
 </script>
+<script src="<?=BASE_URL . "/assets/js/utils.js"?>"></script>
+    <script src="<?=BASE_URL . "/assets/js/new-recipe.js"?>"></script>
+
 
 <?php
 

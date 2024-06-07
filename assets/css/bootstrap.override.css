@@ -69,13 +69,17 @@
 
 
 .form-control {
+    &::placeholder {
+        color: rgb(var(--bs-secondary-rgb));
+    }
+
     &:focus {
         border-color: var(--primary);
         box-shadow: none;
     }
 }
 
-.form-check-input {
+.form-check-input, .form-select {
     &:checked {
         background-color: var(--primary);
         border-color: var(--primary);
