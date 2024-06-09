@@ -1,3 +1,8 @@
+const quill = new Quill('#editor', {
+    theme: 'snow',
+    bounds: document.getElementById("container")
+})
+
 const recipeForm = document.getElementById("recipe-form");
 const ingredientFields = document.getElementById("ingredients-fields");
 
