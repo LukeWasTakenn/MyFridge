@@ -64,9 +64,6 @@ $user = $_SESSION['user'] ?? null;
                     <li class="nav-item">
                         <a class="nav-link <?= $page === 'recipes' ? 'active' : null ?>" aria-current="page" href="<?=BASE_URL?>/recipes">Recipes</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link <?= $page === 'bookmarks' ? 'active' : null ?>" href="#">Bookmarks</a>
-                    </li>
                 </ul>
                 <div class="navbar-nav">
                     <?php if ($user) :?>
@@ -77,6 +74,7 @@ $user = $_SESSION['user'] ?? null;
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li><a class="dropdown-item" href="#"><i class="ti ti-fridge"></i> My Fridge</a></li>
                                 <li><a class="dropdown-item" href="#"><i class="ti ti-book"></i> My Recipes</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="ti ti-bookmark"></i> Bookmarks</a></li>
                                 <li><a class="dropdown-item" href="#"><i class="ti ti-settings"></i> Settings</a></li>
                                 <li><a class="dropdown-item" href="#"><i class="ti ti-logout"></i> Log out</a></li>
                             </ul>
@@ -86,6 +84,7 @@ $user = $_SESSION['user'] ?? null;
                         <h5 class="d-lg-none mt-4">Account</h5>
                         <li class="nav-item d-lg-none"><a class="nav-link" href="#"><i class="ti ti-fridge"></i> My Fridge</a></li>
                         <li class="nav-item d-lg-none"><a class="nav-link" href="#"><i class="ti ti-book"></i> My Recipes</a></li>
+                        <li class="nav-item d-lg-none"><a class="nav-link" href="#"><i class="ti ti-bookmark"></i> Bookmarks</a></li>
                         <li class="nav-item d-lg-none"><a class="nav-link" href="#"><i class="ti ti-settings"></i> Settings</a></li>
                         <li class="nav-item d-lg-none"><a class="nav-link" href="#"><i class="ti ti-logout"></i> Log out</a></li>
                     <?php else :?>
