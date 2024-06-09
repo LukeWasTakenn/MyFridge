@@ -1,4 +1,4 @@
-<footer style="margin-top: 8px">
+<footer style="margin-top: 32px">
     <div class="container-fluid container-md py-3">
         &copy; 2024 MyFridge, All rights reserved
     </div>
