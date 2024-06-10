@@ -14,8 +14,8 @@ p {
 }
 
 footer {
-    background-color: var(--primary);
-    color: var(--background);
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
 }
 
 .fs-7 {
@@ -23,7 +23,7 @@ footer {
 }
 
 .primary-link {
-    color: var(--primary);
+    color: hsl(var(--primary));
     text-decoration: none;
     
     &:hover {
@@ -36,7 +36,7 @@ footer {
 }
 
 .user-avatar {
-    background-color: var(--primary-100);
+    background-color: hsl(var(--primary));
     width: 40px;
     height: 40px;
     display: flex;
@@ -45,7 +45,7 @@ footer {
     border: none;
 
     & > i {
-        color: var(--primary);
+        color: white;
         font-size: 20px;
     }
 }

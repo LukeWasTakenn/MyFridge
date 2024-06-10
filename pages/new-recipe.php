@@ -43,14 +43,14 @@ require base_path('includes/header.php');
                     <div id="ingredients-fields" class="d-flex flex-column gap-2">
 
                     </div>
-                    <button type="button" class="btn btn-light" onclick="handleAddIngredient();">
+                    <button type="button" class="btn btn-secondary" onclick="handleAddIngredient();">
                         <i class="ti ti-plus"></i>
                         Add ingredient
                     </button>
                 </div>
                 <div class="d-flex flex-column">
                     <label for="recipe-images">Images</label>
-                    <button type="button" class="btn btn-light" onclick="handleAddImage();">
+                    <button type="button" class="btn btn-secondary" onclick="handleAddImage();">
                         <i class="ti ti-plus"></i>
                         Add image
                     </button>

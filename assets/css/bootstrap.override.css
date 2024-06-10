@@ -1,12 +1,11 @@
 @import 'colors.css';
 
 :root {
-    --bs-body-bg: var(--background);
-    --bs-body-color: var(--text);
-    --bs-secondary-color: var(--text);
-    --bs-secondary-bg: var(--secondary);
-    --bs-primary: var(--primary);
-
+    --bs-body-bg: hsl(var(--background));
+    --bs-body-color: hsl(var(--foreground));
+    --bs-secondary-color: hsl(var(--secondary-foreground));
+    --bs-secondary-bg: hsl(var(--secondary));
+    --bs-primary: hsl(var(--primary));
 }
 
 .btn {
@@ -17,107 +16,90 @@
 }
 
 .btn-primary {
-    --bs-btn-color: var(--background);
-    --bs-btn-bg: var(--primary);
-    --bs-btn-border-color: var(--primary);
-    --bs-btn-hover-color: var(--background);
-    --bs-btn-hover-bg: var(--primary-500);
-    --bs-btn-hover-border-color: var(--primary);
-    --bs-btn-focus-shadow-rgb: 186, 87, 114;
-    --bs-btn-active-color: var(--background);
-    --bs-btn-active-bg: var(--primary);
-    --bs-btn-active-border-color: var(--primary);
+    --bs-btn-color: hsl(var(--background));
+    --bs-btn-bg: hsl(var(--primary));
+    --bs-btn-border-color: hsl(var(--primary));
+    --bs-btn-hover-color: hsl(var(--background));
+    --bs-btn-hover-bg: hsla(var(--primary), .9);
+    --bs-btn-hover-border-color: hsl(var(--primary));
+    --bs-btn-focus-shadow-rgb: unset;
+    --bs-btn-active-color: hsl(var(--background));
+    --bs-btn-active-bg: hsl(var(--primary));
+    --bs-btn-active-border-color: hsl(var(--primary));
     --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    --bs-btn-disabled-color: var(--background);
-    --bs-btn-disabled-bg: var(--primary);
-    --bs-btn-disabled-border-color: var(--primary);
+    --bs-btn-disabled-color: hsla(var(--background), .5);
+    --bs-btn-disabled-bg: hsla(var(--primary), .5);
+    --bs-btn-disabled-border-color: transparent;
 }
 
 .btn-secondary {
-    --bs-btn-color: var(--text);
-    --bs-btn-bg: var(--secondary-100);
-    --bs-btn-border-color: var(--secondary-100);
-    --bs-btn-hover-color: var(--text);
-    --bs-btn-hover-bg: var(--secondary-200);
-    --bs-btn-hover-border-color: var(--secondary-100);
+    --bs-btn-color: hsl(var(--secondary-foreground));
+    --bs-btn-bg: hsl(var(--secondary));
+    --bs-btn-border-color: hsl(var(--secondary));
+    --bs-btn-hover-color: hsl(var(--secondary-foreground));
+    --bs-btn-hover-bg: hsla(var(--secondary), .8);
+    --bs-btn-hover-border-color: hsla(var(--secondary), .8);
     --bs-btn-focus-shadow-rgb: none;
-    --bs-btn-active-color: var(--text);
-    --bs-btn-active-bg: var(--secondary-200);
-    --bs-btn-active-border-color: var(--secondary-200);
+    --bs-btn-active-color: hsl(var(--secondary-foreground));
+    --bs-btn-active-bg: hsl(var(--secondary));
+    --bs-btn-active-border-color: hsl(var(--secondary));
     --bs-btn-active-shadow: none;
-    --bs-btn-disabled-color: var(--text);
-    --bs-btn-disabled-bg: var(--secondary-100);
-    --bs-btn-disabled-border-color: var(--secondary-100);
-}
-
-.btn-light {
-    --bs-btn-color: var(--primary);
-    --bs-btn-bg: var(--primary-100);
-    --bs-btn-border-color: var(--primary-100);
-    --bs-btn-hover-color: var(--primary);
-    --bs-btn-hover-bg: var(--primary-200);
-    --bs-btn-hover-border-color: transparent;
-    --bs-btn-focus-shadow-rgb: 186, 87, 114;
-    --bs-btn-active-color: var(--primary);
-    --bs-btn-active-bg: var(--primary-200);
-    --bs-btn-active-border-color: transparent;
-    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    --bs-btn-disabled-color: var(--background);
-    --bs-btn-disabled-bg: var(--primary);
-    --bs-btn-disabled-border-color: var(--primary);
+    --bs-btn-disabled-color: hsla(var(--secondary-foreground), .5);
+    --bs-btn-disabled-bg: hsla(var(--secondary), .5);
+    --bs-btn-disabled-border-color: hsla(var(--secondary), .5);
 }
 
 
 .form-control {
     &::placeholder {
-        color: rgb(var(--bs-secondary-rgb));
+        color: hsl(var(--muted-foreground));
     }
 
     &:focus {
-        border-color: var(--primary);
+        border-color: hsl(var(--primary));
         box-shadow: none;
     }
 }
 
 .form-check-input, .form-select {
     &:checked {
-        background-color: var(--primary);
-        border-color: var(--primary);
+        background-color: hsl(var(--primary));
+        border-color: hsl(var(--primary));
     }
 
     &:focus {
         box-shadow: none;
-        border-color: var(--primary);
+        border-color: hsl(var(--primary));
     }
 }
 
 .nav-link {
     &:focus-visible {
-        box-shadow: var(--box-shadow-primary);
+        box-shadow: hsl(var(--primary), 0.4);
     }
 }
 
 .tooltip {
-    --bs-tooltip-color: var(--background);
-    --bs-tooltip-bg: var(--primary);
+    --bs-tooltip-color: hsl(var(--primary-foreground));
+    --bs-tooltip-bg: hsl(var(--primary));
     --bs-tooltip-opacity: 1;
     font-family: 'Inter', Arial, sans-serif;
 }
 
 .badge {
-    background-color: var(--primary) !important;
-    color: var(--background) !important;
+    background-color: hsl(var(--primary)) !important;
+    color: hsl(var(--primary-foreground)) !important;
 }
 
 .text-primary {
-    color: var(--primary) !important;
+    color: hsl(var(--primary)) !important;
 }
 
 .navbar-toggler {
-    border-color: var(--bs-border-color);
+    border-color: hsl(var(--border));
 
     &:focus {
-        box-shadow: var(--box-shadow-primary);
+        box-shadow: hsl(var(--primary), .4);
     }
 }
 
@@ -133,11 +115,11 @@
     }
 
     &:active {
-        background-color: var(--primary) !important;
-        color: var(--background) !important;
+        background-color: hsl(var(--primary)) !important;
+        color: hsl(var(--primary-foreground)) !important;
     }
     &:hover {
-        background-color: var(--background-100);
+        background-color: hsl(var(--secondary));
     }
 }
 

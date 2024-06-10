@@ -43,7 +43,7 @@ $recipes = [
             <p class="fs-7 text-secondary">Find the perfect recipe for any occasion.</p>
         </div>
         <div>
-            <a class="btn btn-light" href="<?=BASE_URL?>/new-recipe">
+            <a class="btn btn-secondary" href="<?=BASE_URL?>/new-recipe">
                 <i class="ti ti-plus"></i>
                 <span style="font-size: 14px;">Create a recipe</span>
             </a>

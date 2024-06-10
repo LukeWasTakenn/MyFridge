@@ -1,72 +1,22 @@
 :root {
-    /* https://www.realtimecolors.com/?colors=190f12-f8f2f3-ba5772-de9dae-d66180&fonts=Poppins-Poppins */
-    --text: #190f12;
-    --background: #f8f2f3;
-    --primary: #ba5772;
-    --secondary: #de9dae;
-    --accent: #d66180;
-
-    --box-shadow-primary: 0 0 0 0.25rem var(--primary-200);
-
-    --bs-border-color: var(--background-200);
-
-    --text-50: #f5eff1;
-    --text-100: #ecdfe3;
-    --text-200: #d9bfc7;
-    --text-300: #c69fab;
-    --text-400: #b3808f;
-    --text-500: #9f6073;
-    --text-600: #804d5c;
-    --text-700: #603945;
-    --text-800: #40262e;
-    --text-900: #201317;
-    --text-950: #100a0b;
-
-    --background-50: #f6eef0;
-    --background-100: #eddee0;
-    --background-200: #dbbdc2;
-    --background-300: #c99ca3;
-    --background-400: #b87a85;
-    --background-500: #a65966;
-    --background-600: #854752;
-    --background-700: #63363d;
-    --background-800: #422429;
-    --background-900: #211214;
-    --background-950: #11090a;
-
-    --primary-50: #f8edf0;
-    --primary-100: #f0dbe1;
-    --primary-200: #e1b7c2;
-    --primary-300: #d392a4;
-    --primary-400: #c46e85;
-    --primary-500: #b54a67;
-    --primary-600: #913b52;
-    --primary-700: #6d2c3e;
-    --primary-800: #481e29;
-    --primary-900: #240f15;
-    --primary-950: #12070a;
-
-    --secondary-50: #f9ecef;
-    --secondary-100: #f2d9e0;
-    --secondary-200: #e6b3c0;
-    --secondary-300: #d98ca1;
-    --secondary-400: #cc6681;
-    --secondary-500: #bf4062;
-    --secondary-600: #99334e;
-    --secondary-700: #73263b;
-    --secondary-800: #4d1927;
-    --secondary-900: #260d14;
-    --secondary-950: #13060a;
-
-    --accent-50: #faebef;
-    --accent-100: #f5d6de;
-    --accent-200: #eaaebe;
-    --accent-300: #e0859d;
-    --accent-400: #d55d7d;
-    --accent-500: #cb345c;
-    --accent-600: #a22a4a;
-    --accent-700: #7a1f37;
-    --accent-800: #511525;
-    --accent-900: #290a12;
-    --accent-950: #140509;
+    --background: 0, 0%, 100%;
+    --foreground: 240, 10%, 3.9%;
+    --card: 0, 0%, 100%;
+    --card-foreground: 240, 10%, 3.9%;
+    --popover: 0, 0%, 100%;
+    --popover-foreground: 240, 10%, 3.9%;
+    --primary: 346.8, 77.2%, 49.8%;
+    --primary-foreground: 355.7, 100%, 97.3%;
+    --secondary: 240, 4.8%, 95.9%;
+    --secondary-foreground: 240, 5.9%, 10%;
+    --muted: 240, 4.8%, 95.9%;
+    --muted-foreground: 240, 3.8%, 46.1%;
+    --accent: 240, 4.8%, 95.9%;
+    --accent-foreground: 240, 5.9%, 10%;
+    --destructive: 0, 84.2%, 60.2%;
+    --destructive-foreground: 0, 0%, 98%;
+    --border: 240, 5.9%, 90%;
+    --input: 240, 5.9%, 90%;
+    --ring: 346.8, 77.2%, 49.8%;
+    --radius: 0.5rem;
 }
