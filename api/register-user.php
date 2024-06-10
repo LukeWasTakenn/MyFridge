@@ -43,7 +43,7 @@ try {
         $mail->isSMTP();
         $mail->Host = EMAIL['host'];
         $mail->SMTPAuth = true;
-        $mail->Port = 2525;
+        $mail->Port = EMAIL['port'];
         $mail->Username = EMAIL['username'];
         $mail->Password = EMAIL['password'];
 
