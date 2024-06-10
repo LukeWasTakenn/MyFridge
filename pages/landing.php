@@ -5,9 +5,9 @@ require base_path('includes/header.php');
 ?>
 
     <main class="container-fluid container-md min-vh-100 d-flex justify-content-start justify-content-md-between align-items-center flex-column flex-lg-row gap-5">
-        <div class="d-flex align-items-start flex-column gap-2" style="flex: 0.5">
-            <h1>Find recipes from <span style="color:hsl(var(--primary));">your</span> fridge</h1>
-            <p>Stretch your grocery budget with MyFridge. Amazing meals made easy.</p>
+        <div class="d-flex align-items-start flex-column gap-4" style="flex: 0.5">
+            <h1 class="m-0">Find recipes from <span style="color:hsl(var(--primary));">your</span> fridge</h1>
+            <p class="text-secondary">Stretch your grocery budget with MyFridge. Amazing meals made easy.</p>
             <a class="btn btn-primary" href="<?=BASE_URL?>/recipes">
                 Browse recipes ->
             </a>

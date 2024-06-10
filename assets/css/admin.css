@@ -1,0 +1,36 @@
+.admin-nav-card {
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    padding: 8px;
+}
+
+.admin-nav-item {
+    justify-content: flex-start;
+    align-items: center;
+    border: none;
+    background-color: transparent;
+    display: flex;
+    gap: 8px;
+    padding: 12px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: hsl(var(--secondary-foreground));
+
+    &:hover {
+        background-color: hsl(var(--secondary));
+        cursor: pointer;
+    }
+
+    & > i {
+        font-size: 20px;
+    }
+}
+
+.admin-nav-item-active {
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+
+    &:hover {
+        background-color: hsl(var(--primary));
+    }
+}

@@ -72,6 +72,9 @@ $user = $_SESSION['user'] ?? null;
                                 <i class="ti ti-user"></i>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end">
+                                <?php if ($user->role === 'admin') :?>
+                                <li><a class="dropdown-item" href="<?=BASE_URL?>/admin"><i class="ti ti-shield"></i> Admin</a></li>
+                                <?php endif?>
                                 <li><a class="dropdown-item" href="#"><i class="ti ti-fridge"></i> My Fridge</a></li>
                                 <li><a class="dropdown-item" href="#"><i class="ti ti-book"></i> My Recipes</a></li>
                                 <li><a class="dropdown-item" href="#"><i class="ti ti-bookmark"></i> Bookmarks</a></li>
