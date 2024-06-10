@@ -91,7 +91,7 @@ $user = $_SESSION['user'] ?? null;
                         <li class="nav-item d-lg-none"><a class="nav-link" href="#"><i class="ti ti-settings"></i> Settings</a></li>
                         <li class="nav-item d-lg-none"><a class="nav-link" href="#"><i class="ti ti-logout"></i> Log out</a></li>
                     <?php else :?>
-                        <a class="p-0 m-0 nav-link <?= $page === 'login' ? 'active' : null ?>" href="<?=BASE_URL?>/login">Login</a>
+                        <a class="nav-link <?= $page === 'login' ? 'active' : null ?>" aria-current="page" href="<?=BASE_URL?>/login">Login</a>
                     <?php endif?>
                 </div>
             </div>
