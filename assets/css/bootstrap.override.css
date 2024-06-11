@@ -6,6 +6,7 @@
     --bs-secondary-color: hsl(var(--secondary-foreground));
     --bs-secondary-bg: hsl(var(--secondary));
     --bs-primary: hsl(var(--primary));
+    --bs-border-radius: var(--radius);
 }
 
 .btn {

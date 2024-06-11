@@ -26,7 +26,7 @@ $file = $page . ".php";
     <div class="d-flex flex-column flex-lg-row gap-4">
         <?php require_once base_path('includes/admin-nav.php')?>
 
-        <div>
+        <div style="flex: 1">
             <?php require_once $file?>
         </div>
     </div>
