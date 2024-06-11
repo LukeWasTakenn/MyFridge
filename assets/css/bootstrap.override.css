@@ -14,6 +14,7 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
+    min-height: 38px;
 }
 
 .btn-primary {
@@ -121,5 +122,17 @@
     }
     &:hover {
         background-color: hsl(var(--secondary));
+    }
+}
+
+/* Modal */
+
+.modal-header, .modal-footer {
+    border: none;
+}
+
+.btn-close {
+    &:focus {
+        box-shadow: none;
     }
 }
