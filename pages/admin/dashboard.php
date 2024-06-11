@@ -2,28 +2,27 @@
 
 global $pdo;
 
-// probably a better way of doing this?
+$stmtCounts = $pdo->prepare("
+    SELECT 
+        (SELECT COUNT(*) FROM recipes WHERE `is_pending` = 1) AS recipe_requests_count,
+        (SELECT COUNT(*) FROM recipes WHERE `is_pending` = 0) AS recipe_count,
+        (SELECT COUNT(*) FROM `categories`) AS categories_count,
+        (SELECT COUNT(*) FROM `ingredients`) AS ingredients_count,
+        (SELECT COUNT(*) FROM `accounts` WHERE `is_banned` = 0) AS accounts_count,
+        (SELECT COUNT(*) FROM `accounts` WHERE `is_banned` = 1) AS banned_accounts_count
+");
 
-$stmtRecipeRequestsCount = $pdo->prepare("SELECT COUNT(*) FROM recipes WHERE `is_pending` = 1");
-$stmtRecipeCount = $pdo->prepare("SELECT COUNT(*) FROM recipes WHERE `is_pending` = 0");
-$stmtCategoriesCount = $pdo->prepare("SELECT COUNT(*) FROM `categories`");
-$stmtIngredientsCount = $pdo->prepare("SELECT COUNT(*) FROM `ingredients`");
-$stmtAccountsCount = $pdo->prepare("SELECT COUNT(*) FROM `accounts` WHERE `is_banned` = 0");
-$stmtBannedAccountsCount = $pdo->prepare("SELECT COUNT(*) FROM `accounts` WHERE `is_banned` = 1");
+$stmtCounts->execute();
 
-$stmtRecipeRequestsCount->execute();
-$stmtRecipeCount->execute();
-$stmtCategoriesCount->execute();
-$stmtIngredientsCount->execute();
-$stmtAccountsCount->execute();
-$stmtBannedAccountsCount->execute();
+$counts = $stmtCounts->fetch(PDO::FETCH_ASSOC);
 
-$recipeRequestsCount = $stmtRecipeRequestsCount->fetchColumn(0);
-$recipeCount = $stmtRecipeCount->fetchColumn(0);
-$categoriesCount = $stmtCategoriesCount->fetchColumn(0);
-$ingredientsCount = $stmtIngredientsCount->fetchColumn(0);
-$accountsCount = $stmtAccountsCount->fetchColumn(0);
-$bannedAccountsCount = $stmtBannedAccountsCount->fetchColumn(0);
+$recipeRequestsCount = $counts['recipe_requests_count'];
+$recipeCount = $counts['recipe_count'];
+$categoriesCount = $counts['categories_count'];
+$ingredientsCount = $counts['ingredients_count'];
+$accountsCount = $counts['accounts_count'];
+$bannedAccountsCount = $counts['banned_accounts_count'];
+
 
 ?>
 
