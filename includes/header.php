@@ -79,7 +79,7 @@ $user = $_SESSION['user'] ?? null;
                                 <li><a class="dropdown-item" href="#"><i class="ti ti-book"></i> My Recipes</a></li>
                                 <li><a class="dropdown-item" href="#"><i class="ti ti-bookmark"></i> Bookmarks</a></li>
                                 <li><a class="dropdown-item" href="#"><i class="ti ti-settings"></i> Settings</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="ti ti-logout"></i> Log out</a></li>
+                                <li onclick="handleLogout();"><a class="dropdown-item" href="#"><i class="ti ti-logout"></i> Log out</a></li>
                             </ul>
                         </div>
 
@@ -97,4 +97,5 @@ $user = $_SESSION['user'] ?? null;
             </div>
         </div>
     </div>
+    <script src="<?=BASE_URL?>/assets/js/header.js"></script>
 </nav>

@@ -27,6 +27,8 @@ $router->get('/admin', 'admin/index');
 // API routes
 $router->post("/api/register-user", "register-user");
 $router->post("/api/login-user", "login-user");
+$router->post("/api/logout", "logout");
+
 $router->post("/api/categories/create", "categories/create");
 $router->post("/api/categories/remove", "categories/remove");
 $router->post("/api/categories/edit", "categories/edit");
