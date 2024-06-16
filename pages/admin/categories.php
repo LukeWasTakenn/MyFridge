@@ -26,7 +26,7 @@ $categories = $stmt->fetchAll(PDO::FETCH_OBJ);
                 <div id="category-<?=$category->category_id?>" class="category-card shadow-sm">
                     <p><?=$category->name?></p>
                     <div class="d-flex gap-2 align-items-center">
-                        <button class="btn btn-secondary btn-icon" data-bs-toggle="modal" data-bs-target="#editCategoryModal" data-bs-value="<?=$category->name?>">
+                        <button id="button-modal-<?=$category->category_id?>" class="btn btn-secondary btn-icon" data-bs-toggle="modal" data-bs-target="#editCategoryModal" data-bs-value="<?=$category->name?>" data-bs-id="<?=$category->category_id?>">
                             <i class="ti ti-edit"></i>
                         </button>
                         <button class="btn btn-danger btn-icon" onclick="handleDeleteCategory(<?=$category->category_id?>)">
@@ -49,10 +49,11 @@ $categories = $stmt->fetchAll(PDO::FETCH_OBJ);
                 <div class="modal-body">
                     <label for="modal-new-name">Category name</label>
                     <input id="modal-new-name" class="form-control"/>
+                    <span id="modal-new-name-error" class="text-danger error"></span>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Confirm</button>
+                    <button id="modal-confirm-edit" type="button" class="btn btn-primary" onclick="handleEditCategory()">Confirm</button>
                 </div>
             </div>
         </div>

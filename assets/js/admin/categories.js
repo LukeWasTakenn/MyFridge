@@ -6,13 +6,24 @@ const newCategoryModalElement = document.getElementById('newCategoryModal');
 let editCategoryModal;
 let newCategoryModal;
 
+let editId = 0;
+
 editCategoryModalElement.addEventListener('show.bs.modal', event => {
     const button = event.relatedTarget;
-    const recipient = button.getAttribute('data-bs-value');
+    const value = button.getAttribute('data-bs-value');
+    editId = button.getAttribute('data-bs-id');
 
     const modalBodyInput = editCategoryModalElement.querySelector('.modal-body input');
 
-    modalBodyInput.value = recipient;
+    utils.resetErrors([
+        "modal-new-name"
+    ])
+
+    utils.cancelSpinner(document.getElementById("modal-confirm-edit"), "Confirm");
+
+    modalBodyInput.value = value
+
+    editCategoryModal = bootstrap.Modal.getInstance(editCategoryModalElement);
 })
 
 newCategoryModalElement.addEventListener('show.bs.modal', e => {
@@ -60,15 +71,48 @@ async function handleCreateCategory() {
     error.innerHTML = data.error;
 }
 
-async function handleEditCategory(id) {
+async function handleEditCategory() {
+    const id = editId;
+    const newValue = document.getElementById("modal-new-name").value;
 
+    const confirmButton = document.getElementById('modal-confirm-edit');
+
+    utils.createSpinner(confirmButton);
+
+    const resp = await fetch('api/categories/edit', {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id, newValue })
+    })
+
+    if (resp.status !== 200) {
+        return;
+    }
+
+    const data = await resp.json();
+
+    if (data.error) {
+        const errorElement = document.getElementById('modal-new-name-error');
+        errorElement.innerHTML = data.error;
+        utils.cancelSpinner(confirmButton, "Confirm");
+
+        return;
+    }
+
+    const targetElement = document.querySelector(`#category-${id} > p`);
+    targetElement.innerHTML = newValue;
+
+    editCategoryModal.hide();
+    document.getElementById(`button-modal-${id}`).setAttribute('data-bs-value', newValue)
 }
 
 async function handleDeleteCategory(id) {
     const el = document.getElementById(`category-${id}`);
 
     const resp = await fetch('api/categories/remove', {
-        method: 'POST',
+        method: 'post',
         headers: {
             'Content-Type': 'application/json'
         },

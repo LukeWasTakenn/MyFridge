@@ -5,7 +5,7 @@ session_start();
 
 global $pdo;
 
-if (!isAdmin()) return;
+if (!isAdmin()) send_response(["error" => "Unauthorized"], 401);
 
 $data = get_request_data();
 
