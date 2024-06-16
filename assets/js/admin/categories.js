@@ -71,9 +71,9 @@ async function fetchCategories(search = "") {
     categories.forEach(category => {
         categoriesContainer.insertAdjacentHTML("beforeend", `
             <div id="category-${category.category_id}" class="category-card shadow-sm">
-                <p>${category.name}</p>
+                <p>${category.label}</p>
                 <div class="d-flex gap-2 align-items-center">
-                    <button id="button-modal-${category.category_id}" class="btn btn-secondary btn-icon" data-bs-toggle="modal" data-bs-target="#editCategoryModal" data-bs-value="${category.name}" data-bs-id="${category.category_id}">
+                    <button id="button-modal-${category.category_id}" class="btn btn-secondary btn-icon" data-bs-toggle="modal" data-bs-target="#editCategoryModal" data-bs-value="${category.label}" data-bs-id="${category.category_id}">
                         <i class="ti ti-edit"></i>
                     </button>
                     <button class="btn btn-danger btn-icon" onclick="handleDeleteCategory(${category.category_id})">

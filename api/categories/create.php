@@ -11,8 +11,8 @@ $data = get_request_data();
 
 $newCategory = $data['newCategory'];
 
-$stmt = $pdo->prepare("SELECT 1 FROM `categories` WHERE `name` = ?");
-$stmt->execute([$newCategory]);
+$stmt = $pdo->prepare("SELECT 1 FROM `categories` WHERE `value` = ?");
+$stmt->execute([strtolower($newCategory)]);
 
 if ($stmt->fetchColumn(0)) {
     send_response([
@@ -20,8 +20,8 @@ if ($stmt->fetchColumn(0)) {
     ]);
 }
 
-$stmt = $pdo->prepare("INSERT INTO `categories` (`name`) VALUES (?)");
-$success = $stmt->execute([$newCategory]);
+$stmt = $pdo->prepare("INSERT INTO `categories` (`label`, `value`) VALUES (?, ?)");
+$success = $stmt->execute([$newCategory, strtolower($newCategory)]);
 
 if (!$success) {
     send_response([

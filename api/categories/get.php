@@ -11,7 +11,7 @@ $data = get_request_data();
 
 $search = $data['search'];
 
-$stmt = $pdo->prepare('SELECT * FROM `categories` WHERE `name` LIKE ?');
+$stmt = $pdo->prepare('SELECT * FROM `categories` WHERE `label` LIKE ?');
 $stmt->execute(["%$search%"]);
 
 $categories = $stmt->fetchAll(PDO::FETCH_OBJ);
