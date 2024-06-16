@@ -33,3 +33,13 @@ function createToken(int $length): ?string
         return null;
     }
 }
+
+function isAdmin(): bool {
+    $user = $_SESSION['user'];
+
+    if (!$user || $user->role !== 'admin') {
+        return false;
+    }
+
+    return true;
+}

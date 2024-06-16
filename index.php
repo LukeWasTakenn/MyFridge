@@ -28,6 +28,7 @@ $router->get('/admin', 'admin/index');
 $router->post("/api/register-user", "register-user");
 $router->post("/api/login-user", "login-user");
 $router->post("/api/categories/create", "categories/create");
+$router->post("/api/categories/remove", "categories/remove");
 
 $url = parse_url($_SERVER['REQUEST_URI'])['path'];
 $method = $_SERVER['REQUEST_METHOD'];

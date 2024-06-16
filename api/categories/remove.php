@@ -1,0 +1,27 @@
+<?php
+
+declare(strict_types=1);
+session_start();
+
+global $pdo;
+
+if (!isAdmin()) return;
+
+$data = get_request_data();
+
+$id = $data['id'];
+
+$stmt = $pdo->prepare('DELETE FROM `categories` WHERE `category_id` = ?');
+
+$success = $stmt->execute([$id]);
+
+if (!$success) {
+    send_response([
+        "error" => "Something went wrong"
+    ], 500);
+}
+
+send_response([
+    "success" => true
+]);
+

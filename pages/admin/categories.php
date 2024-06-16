@@ -23,13 +23,13 @@ $categories = $stmt->fetchAll(PDO::FETCH_OBJ);
 
         <div class="d-flex flex-column gap-2" id="category-items" style="">
             <?php foreach ($categories as $category) : ?>
-                <div class="category-card shadow-sm">
+                <div id="category-<?=$category->category_id?>" class="category-card shadow-sm">
                     <p><?=$category->name?></p>
                     <div class="d-flex gap-2 align-items-center">
                         <button class="btn btn-secondary btn-icon" data-bs-toggle="modal" data-bs-target="#editCategoryModal" data-bs-value="<?=$category->name?>">
                             <i class="ti ti-edit"></i>
                         </button>
-                        <button class="btn btn-danger btn-icon">
+                        <button class="btn btn-danger btn-icon" onclick="handleDeleteCategory(<?=$category->category_id?>)">
                             <i class="ti ti-trash"></i>
                         </button>
                     </div>

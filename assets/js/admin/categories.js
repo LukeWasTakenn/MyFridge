@@ -59,3 +59,25 @@ async function handleCreateCategory() {
     utils.cancelSpinner(button, "Confirm");
     error.innerHTML = data.error;
 }
+
+async function handleEditCategory(id) {
+
+}
+
+async function handleDeleteCategory(id) {
+    const el = document.getElementById(`category-${id}`);
+
+    const resp = await fetch('api/categories/remove', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id })
+    })
+
+    if (resp.status !== 200) {
+        return;
+    }
+
+    el.remove();
+}
