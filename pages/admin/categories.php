@@ -28,9 +28,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <label for="modal-new-name">Category name</label>
-                    <input id="modal-new-name" class="form-control"/>
-                    <span id="modal-new-name-error" class="text-danger error"></span>
+                    <label for="modal-edit-name">Category name</label>
+                    <input id="modal-edit-name" class="form-control"/>
+                    <span id="modal-edit-name-error" class="text-danger error"></span>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -48,8 +48,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <label for="modal-edit-name">Category name</label>
-                    <input id="modal-edit-name" class="form-control"/>
+                    <label for="modal-new-name">Category name</label>
+                    <input id="modal-new-name" class="form-control"/>
                     <span id="category-error" class="text-danger error"></span>
                 </div>
                 <div class="modal-footer">

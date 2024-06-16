@@ -34,6 +34,11 @@ $router->post("/api/categories/remove", "categories/remove");
 $router->post("/api/categories/edit", "categories/edit");
 $router->post("/api/categories/get", "categories/get");
 
+$router->post("/api/ingredients/get", "ingredients/get");
+$router->post("/api/ingredients/create", "ingredients/create");
+$router->post("/api/ingredients/remove", "ingredients/remove");
+$router->post("/api/ingredients/edit", "ingredients/edit");
+
 $url = parse_url($_SERVER['REQUEST_URI'])['path'];
 $method = $_SERVER['REQUEST_METHOD'];
 

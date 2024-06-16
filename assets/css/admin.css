@@ -54,7 +54,7 @@
     }
 }
 
-.category-card {
+.category-card, .ingredient-card {
     padding: 16px;
     border: solid 1px hsl(var(--border));
     border-radius: var(--radius);

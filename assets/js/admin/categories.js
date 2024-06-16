@@ -60,8 +60,10 @@ async function fetchCategories(search = "") {
 
     utils.cancelSpinner(categoriesContainer, "");
 
-    if (!categories) {
-        categoriesContainer.innerHTML = '<p class="text-secondary">No categories found.</p>'
+    if (!categories || categories.length <= 0) {
+        categoriesContainer.innerHTML = '<p class="text-secondary">No categories found.</p>';
+
+        return;
     }
 
     categories.forEach(category => {
@@ -69,7 +71,7 @@ async function fetchCategories(search = "") {
             <div id="category-${category.category_id}" class="category-card shadow-sm">
                 <p>${category.name}</p>
                 <div class="d-flex gap-2 align-items-center">
-                    <button id="button-modal-<?=$category->category_id?>" class="btn btn-secondary btn-icon" data-bs-toggle="modal" data-bs-target="#editCategoryModal" data-bs-value="${category.name}" data-bs-id="${category.category_id}">
+                    <button id="button-modal-${category.category_id}" class="btn btn-secondary btn-icon" data-bs-toggle="modal" data-bs-target="#editCategoryModal" data-bs-value="${category.name}" data-bs-id="${category.category_id}">
                         <i class="ti ti-edit"></i>
                     </button>
                     <button class="btn btn-danger btn-icon" onclick="handleDeleteCategory(${category.category_id})">
@@ -82,7 +84,7 @@ async function fetchCategories(search = "") {
 }
 
 async function handleCreateCategory() {
-    const newCategory = document.getElementById("modal-edit-name").value;
+    const newCategory = document.getElementById("modal-new-name").value;
     const error = document.getElementById("category-error");
     const button = document.getElementById("new-category-confirm")
 
@@ -109,17 +111,19 @@ async function handleCreateCategory() {
 
     if (!data.error) {
         newCategoryModal.hide();
+        await fetchCategories();
+        utils.cancelSpinner(button, "Confirm");
+
+        return;
     }
 
     utils.cancelSpinner(button, "Confirm");
     error.innerHTML = data.error;
-
-    await fetchCategories();
 }
 
 async function handleEditCategory() {
     const id = editId;
-    const newValue = document.getElementById("modal-new-name").value;
+    const newValue = document.getElementById("modal-edit-name").value;
 
     const confirmButton = document.getElementById('modal-confirm-edit');
 
