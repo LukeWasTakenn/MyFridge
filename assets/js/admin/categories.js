@@ -37,6 +37,44 @@ newCategoryModalElement.addEventListener('show.bs.modal', e => {
     newCategoryModal = bootstrap.Modal.getInstance(newCategoryModalElement);
 })
 
+
+async function fetchCategories() {
+    const categoriesContainer = document.getElementById("category-items");
+
+    utils.createSpinner(categoriesContainer, true);
+
+    const resp = await fetch("api/categories/get", {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+
+    if  (resp.status !== 200) {
+        return;
+    }
+
+    const { categories } = await resp.json();
+
+    utils.cancelSpinner(categoriesContainer, "");
+
+    categories.forEach(category => {
+        categoriesContainer.insertAdjacentHTML("beforeend", `
+            <div id="category-${category.category_id}" class="category-card shadow-sm">
+                <p>${category.name}</p>
+                <div class="d-flex gap-2 align-items-center">
+                    <button id="button-modal-<?=$category->category_id?>" class="btn btn-secondary btn-icon" data-bs-toggle="modal" data-bs-target="#editCategoryModal" data-bs-value="${category.name}" data-bs-id="${category.category_id}">
+                        <i class="ti ti-edit"></i>
+                    </button>
+                    <button class="btn btn-danger btn-icon" onclick="handleDeleteCategory(${category.category_id})">
+                        <i class="ti ti-trash"></i>
+                    </button>
+                </div>
+            </div>
+        `)
+    })
+}
+
 async function handleCreateCategory() {
     const newCategory = document.getElementById("modal-edit-name").value;
     const error = document.getElementById("category-error");
@@ -69,6 +107,8 @@ async function handleCreateCategory() {
 
     utils.cancelSpinner(button, "Confirm");
     error.innerHTML = data.error;
+
+    await fetchCategories();
 }
 
 async function handleEditCategory() {
@@ -125,3 +165,5 @@ async function handleDeleteCategory(id) {
 
     el.remove();
 }
+
+fetchCategories().then();

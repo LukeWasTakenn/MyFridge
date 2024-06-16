@@ -1,7 +1,7 @@
 class Utils {
-    createSpinner(element) {
+    createSpinner(element, primary) {
         element.innerHTML = `
-        <div class="spinner-border spinner-border-sm" role="status">
+        <div class="spinner-border align-self-center ${primary ? 'text-primary' : null} ${primary ? 'spinner-border-md' : 'spinner-border-sm'}" role="status">
             <span class="visually-hidden">Loading...</span>
         </div>
         `

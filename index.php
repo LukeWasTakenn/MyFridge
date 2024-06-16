@@ -30,6 +30,7 @@ $router->post("/api/login-user", "login-user");
 $router->post("/api/categories/create", "categories/create");
 $router->post("/api/categories/remove", "categories/remove");
 $router->post("/api/categories/edit", "categories/edit");
+$router->post("/api/categories/get", "categories/get");
 
 $url = parse_url($_SERVER['REQUEST_URI'])['path'];
 $method = $_SERVER['REQUEST_METHOD'];
