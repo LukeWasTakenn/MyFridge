@@ -15,8 +15,10 @@ editCategoryModalElement.addEventListener('show.bs.modal', event => {
 
     const modalBodyInput = editCategoryModalElement.querySelector('.modal-body input');
 
+    console.log(modalBodyInput, value)
+
     utils.resetErrors([
-        "modal-new-name"
+        "modal-edit-name"
     ])
 
     utils.cancelSpinner(document.getElementById("modal-confirm-edit"), "Confirm");
@@ -83,7 +85,9 @@ async function fetchCategories(search = "") {
     })
 }
 
-async function handleCreateCategory() {
+async function handleCreateCategory(e) {
+    e.preventDefault();
+
     const newCategory = document.getElementById("modal-new-name").value;
     const error = document.getElementById("category-error");
     const button = document.getElementById("new-category-confirm")
@@ -121,7 +125,9 @@ async function handleCreateCategory() {
     error.innerHTML = data.error;
 }
 
-async function handleEditCategory() {
+async function handleEditCategory(e) {
+    e.preventDefault();
+
     const id = editId;
     const newValue = document.getElementById("modal-edit-name").value;
 
@@ -144,7 +150,7 @@ async function handleEditCategory() {
     const data = await resp.json();
 
     if (data.error) {
-        const errorElement = document.getElementById('modal-new-name-error');
+        const errorElement = document.getElementById('modal-edit-name-error');
         errorElement.innerHTML = data.error;
         utils.cancelSpinner(confirmButton, "Confirm");
 
@@ -175,5 +181,8 @@ async function handleDeleteCategory(id) {
 
     el.remove();
 }
+
+document.getElementById('edit-category-form').addEventListener('submit', handleEditCategory);
+document.getElementById('new-category-form').addEventListener('submit', handleCreateCategory);
 
 fetchCategories().then();

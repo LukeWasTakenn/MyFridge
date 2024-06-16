@@ -20,11 +20,11 @@
 
     </div>
 
-    <div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCateryModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+            <form id="edit-category-form" class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="editCateryModalLabel">Edit category</h1>
+                    <h1 class="modal-title fs-5" id="editCategoryModalLabel">Edit category</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -34,15 +34,15 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button id="modal-confirm-edit" type="button" class="btn btn-primary" onclick="handleEditCategory()">Confirm</button>
+                    <button id="modal-confirm-edit" type="submit" class="btn btn-primary">Confirm</button>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 
     <div class="modal fade" id="newCategoryModal" tabindex="-1" aria-labelledby="newCategoryModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+            <form id="new-category-form" class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="newCategoryModalLabel">New category</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -54,9 +54,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button id="new-category-confirm" type="button" class="btn btn-primary" onclick="handleCreateCategory();">Create</button>
+                    <button id="new-category-confirm" type="submit" class="btn btn-primary">Create</button>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>
