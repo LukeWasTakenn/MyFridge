@@ -9,14 +9,12 @@ CREATE TABLE `accounts`
     `phone_number`               VARCHAR(10)                                                               NULL,
     `role`                       ENUM ('user', 'admin') DEFAULT 'user'                                     NULL,
     `registration_token`         CHAR(40)                                                                  NOT NULL,
-    `registration_expires`       DATETIME               DEFAULT (current_timestamp() + INTERVAL 1 DAY) NULL,
+    `registration_expires`       DATETIME               DEFAULT (current_timestamp() + INTERVAL 15 MINUTE) NULL,
     `forgotten_password_token`   CHAR(40)                                                                  NULL,
     `forgotten_password_expires` DATETIME                                                                  NULL,
     `is_verified`                TINYINT                DEFAULT 0                                          NULL,
     `is_banned`                  TINYINT(1)             DEFAULT 0                                          NOT NULL,
     CONSTRAINT `accounts_pk`
-        UNIQUE (`registration_token`),
-    CONSTRAINT `accounts_pk2`
         UNIQUE (`email`)
 );
 
@@ -24,15 +22,16 @@ CREATE TABLE `categories`
 (
     `category_id` INT UNSIGNED AUTO_INCREMENT
         PRIMARY KEY,
-    `name`        VARCHAR(255) NULL
+    `label`       VARCHAR(255) NOT NULL,
+    `value`       VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE `ingredients`
 (
     `ingredient_id` INT UNSIGNED AUTO_INCREMENT
         PRIMARY KEY,
-    `name`          VARCHAR(50)               NOT NULL,
-    `unit`          ENUM ('count', 'ml', 'g') NOT NULL
+    `label`         VARCHAR(50) NOT NULL,
+    `value`         VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE `fridge_ingredients`
@@ -71,7 +70,7 @@ CREATE TABLE `recipe_bookmarks`
 (
     `recipe_id`     INT UNSIGNED           NOT NULL,
     `account_id`    INT UNSIGNED           NOT NULL,
-    `bookmarked_at` DATETIME DEFAULT CURRENT_TIMESTAMP() NULL,
+    `bookmarked_at` DATE DEFAULT curdate() NULL,
     PRIMARY KEY (`recipe_id`, `account_id`),
     CONSTRAINT `recipe_bookmarks_accounts_account_id_fk`
         FOREIGN KEY (`account_id`) REFERENCES `accounts` (`account_id`),
