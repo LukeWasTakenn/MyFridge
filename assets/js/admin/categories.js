@@ -37,8 +37,9 @@ newCategoryModalElement.addEventListener('show.bs.modal', e => {
     newCategoryModal = bootstrap.Modal.getInstance(newCategoryModalElement);
 })
 
+document.getElementById('categories-search').addEventListener('input', utils.debounce(e => fetchCategories(e.target.value)));
 
-async function fetchCategories() {
+async function fetchCategories(search = "") {
     const categoriesContainer = document.getElementById("category-items");
 
     utils.createSpinner(categoriesContainer, true);
@@ -48,6 +49,7 @@ async function fetchCategories() {
         headers: {
             'Content-Type': 'application/json'
         },
+        body: JSON.stringify({ search })
     })
 
     if  (resp.status !== 200) {
@@ -57,6 +59,10 @@ async function fetchCategories() {
     const { categories } = await resp.json();
 
     utils.cancelSpinner(categoriesContainer, "");
+
+    if (!categories) {
+        categoriesContainer.innerHTML = '<p class="text-secondary">No categories found.</p>'
+    }
 
     categories.forEach(category => {
         categoriesContainer.insertAdjacentHTML("beforeend", `

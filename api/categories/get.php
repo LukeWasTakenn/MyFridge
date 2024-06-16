@@ -7,8 +7,12 @@ global $pdo;
 
 if (!isAdmin()) send_response(["error" => "Unauthorized"], 401);
 
-$stmt = $pdo->prepare('SELECT * FROM `categories`');
-$stmt->execute();
+$data = get_request_data();
+
+$search = $data['search'];
+
+$stmt = $pdo->prepare('SELECT * FROM `categories` WHERE `name` LIKE ?');
+$stmt->execute(["%$search%"]);
 
 $categories = $stmt->fetchAll(PDO::FETCH_OBJ);
 

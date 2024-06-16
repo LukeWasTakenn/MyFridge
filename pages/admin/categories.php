@@ -7,7 +7,7 @@
 
     <div class="d-flex gap-4 flex-column">
         <div class="d-flex flex-column flex-lg-row justify-content-lg-between gap-2 align-items-lg-center">
-            <input class="form-control" placeholder="Search..." style="flex: 0.3"/>
+            <input id="categories-search" class="form-control" placeholder="Search..." style="flex: 0.3"/>
             <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#newCategoryModal">
                 <i class="ti ti-plus"></i>
                 New category
