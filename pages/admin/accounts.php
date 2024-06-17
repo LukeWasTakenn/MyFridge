@@ -1,18 +1,6 @@
 <?php
 
-global $pdo;
-
 $tab = $_GET['tab'] ?? "";
-
-
-
-$stmt = $pdo->prepare("SELECT * FROM `accounts` WHERE `is_banned` = ?");
-$stmt->execute([$tab === "" ? 0 : 1]);
-
-$accounts = $stmt->fetchAll(PDO::FETCH_OBJ);
-
-$user = $_SESSION['user'];
-
 
 ?>
 
@@ -21,11 +9,11 @@ $user = $_SESSION['user'];
 
     <div class="d-flex gap-4 flex-column">
         <div class="d-flex flex-column-reverse flex-lg-row justify-content-lg-between gap-2 align-items-lg-center">
-            <input id="categories-search" class="form-control" placeholder="Search..." style="flex: 0.3"/>
+            <input id="accounts-search" class="form-control" placeholder="Search..." style="flex: 0.3"/>
             <div class="d-flex align-items-center border rounded">
                 <a href="./admin?page=accounts" class="btn flex-fill <?=$tab === '' ? 'btn-primary' : ''?>" style="border-top-right-radius: 0; border-bottom-right-radius: 0">
                     <i class="ti ti-users"></i>
-                    All accounts
+                    Accounts
                 </a>
                 <a href="./admin?page=accounts&tab=banned" class="btn flex-fill <?=$tab === 'banned' ? 'btn-primary' : ''?>" style="border-top-left-radius: 0; border-bottom-left-radius: 0">
                     <i class="ti ti-ban"></i>
@@ -45,26 +33,8 @@ $user = $_SESSION['user'];
                         <th></th>
                     </tr>
                 </thead>
-                <tbody>
-                    <?php foreach($accounts as $account) :?>
-                        <tr>
-                            <td><?=$account->first_name?> <?=$account->last_name?></td>
-                            <td><?=$account->email?></td>
-                            <td><?=$account->phone_number?></td>
-                            <td><?=$account->role?></td>
-                            <td>
-                                <?php if ($tab === "") : ?>
-                                    <button class="btn btn-danger btn-icon" <?=($user->id === $account->account_id || $account->role === 'admin') ? 'disabled=\'true\'' : ''?> data-bs-toggle="modal" data-bs-target="#ban-user-modal" data-bs-accountId="<?=$account->account_id?>">
-                                        <i class="ti ti-ban"></i>
-                                    </button>
-                                <?php else :?>
-                                    <button class="btn btn-secondary btn-icon" onclick="handleUnbanUser(<?=$account->account_id?>);">
-                                        <i class="ti ti-eraser"></i>
-                                    </button>
-                                <?php endif;?>
-                            </td>
-                        </tr>
-                    <?php endforeach;?>
+                <tbody id="accounts-table">
+
                 </tbody>
             </table>
         </div>

@@ -13,7 +13,54 @@ banUserModalElement.addEventListener('show.bs.modal', e => {
     banUserModal = bootstrap.Modal.getInstance(banUserModalElement);
 })
 
-function handlePromoteUser(userId) {
+document.getElementById('accounts-search').addEventListener('input', utils.debounce(e => fetchAccounts(e.target.value)));
+
+async function fetchAccounts(search) {
+    const params = new URLSearchParams(window.location.search);
+    const tab = params.get('tab');
+    const isBannedAccounts = tab === 'banned';
+    const accountsTableElement = document.getElementById('accounts-table');
+
+    accountsTableElement.innerHTML = "";
+
+    const resp =  await fetch('api/accounts/get', {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ search, isBannedAccounts })
+    })
+
+    if (resp.status !== 200) {
+        return;
+    }
+
+    const { accounts } = await resp.json();
+
+    accounts.forEach(account => {
+        const actionButton = isBannedAccounts ? `
+            <button class="btn btn-secondary btn-icon" onclick="handleUnbanUser(${account.account_id});">
+                <i class="ti ti-eraser"></i>
+            </button>
+        ` : `
+            <button class="btn btn-danger btn-icon" data-bs-toggle="modal" data-bs-target="#ban-user-modal" data-bs-accountId="${account.account_id}">
+                <i class="ti ti-ban"></i>
+            </button>
+        `
+
+        accountsTableElement.insertAdjacentHTML('beforeend', `
+            <tr>
+                <td>${account.first_name} ${account.last_name}</td>
+                <td>${account.email}</td>
+                <td>${account.phone_number}</td>
+                <td>${account.role}</td>
+                <td>
+                    ${actionButton}
+                </td>
+            </tr>
+        `)
+    });
+
 
 }
 
@@ -56,3 +103,5 @@ async function handleUnbanUser(accountId) {
 
     location.reload();
 }
+
+fetchAccounts().then();
