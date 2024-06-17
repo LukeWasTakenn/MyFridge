@@ -62,3 +62,12 @@
     align-items: center;
     justify-content: space-between;
 }
+
+.account-card {
+    padding: 16px;
+    border: solid 1px hsl(var(--border));
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

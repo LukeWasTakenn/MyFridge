@@ -15,8 +15,6 @@ editCategoryModalElement.addEventListener('show.bs.modal', event => {
 
     const modalBodyInput = editCategoryModalElement.querySelector('.modal-body input');
 
-    console.log(modalBodyInput, value)
-
     utils.resetErrors([
         "modal-edit-name"
     ])
