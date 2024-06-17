@@ -22,7 +22,7 @@ require base_path('includes/header.php');
                 <p id="password-error" class="text-danger error"></p>
             </div>
             <a class="primary-link fs-7 text-align-right"
-               href="#"
+               href="<?=BASE_URL?>/forgot-password"
             >
                 Forgot password?
             </a>

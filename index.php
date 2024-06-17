@@ -22,12 +22,16 @@ $router->get('/sign-up', 'sign-up');
 $router->get('/recipes', 'recipes');
 $router->get('/verify', 'verify');
 $router->get('/new-recipe', 'new-recipe');
+$router->get('/forgot-password', 'forgot-password');
+$router->get('/reset', 'reset');
 $router->get('/admin', 'admin/index');
 
 // API routes
 $router->post("/api/register-user", "register-user");
 $router->post("/api/login-user", "login-user");
 $router->post("/api/logout", "logout");
+$router->post("/api/forgot-password", "forgot-password");
+$router->post("/api/reset", "reset");
 
 $router->post("/api/categories/create", "categories/create");
 $router->post("/api/categories/remove", "categories/remove");
