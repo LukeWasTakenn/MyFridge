@@ -85,6 +85,9 @@ $user = $_SESSION['user'] ?? null;
 
                         <!-- Mobile navigation -->
                         <h5 class="d-lg-none mt-4">Account</h5>
+                        <?php if ($user->role === 'admin') :?>
+                            <li class="nav-item d-lg-none"><a class="nav-link" href="<?=BASE_URL?>/admin"><i class="ti ti-shield"></i> Admin</a></li>
+                        <?php endif?>
                         <li class="nav-item d-lg-none"><a class="nav-link" href="#"><i class="ti ti-fridge"></i> My Fridge</a></li>
                         <li class="nav-item d-lg-none"><a class="nav-link" href="#"><i class="ti ti-book"></i> My Recipes</a></li>
                         <li class="nav-item d-lg-none"><a class="nav-link" href="#"><i class="ti ti-bookmark"></i> Bookmarks</a></li>

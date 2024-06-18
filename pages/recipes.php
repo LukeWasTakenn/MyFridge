@@ -36,7 +36,7 @@ $recipes = [
 ?>
 
 
-<main class="container-fluid container-md min-vh-100 pt-0 pt-md-4">
+<main class="container-fluid container-md min-vh-100 pt-4">
     <div class="d-flex flex-wrap gap-2 align-items-center justify-content-between mb-5">
         <div>
             <h2 class="m-0">Recipes</h2>
