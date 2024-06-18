@@ -37,16 +37,24 @@ $user = $_SESSION['user'];
             <h4>Account</h4>
             <div class="d-flex flex-column gap-4">
                 <div class="d-flex flex-column justify-content-between">
+                    <label for="current-password">Current password</label>
+                    <input id="current-password" type="password" name="currentPassword" class="form-control"/>
+                    <span id="currentPassword-error" class="text-danger error"></span>
+                </div>
+                <div class="d-flex flex-column justify-content-between">
                     <label for="new-password">New password</label>
-                    <input id="new-password" name="password" class="form-control"/>
+                    <input id="new-password" type="password" name="password" class="form-control"/>
+                    <span id="password-error" class="text-danger error"></span>
                 </div>
                 <div class="d-flex flex-column justify-content-between">
                     <label for="confirm-new-password">Confirm password</label>
-                    <input id="confirm-new-password" name="confirmPassword" class="form-control"/>
+                    <input id="confirm-new-password" type="password" name="confirmPassword" class="form-control"/>
+                    <span id="confirmPassword-error" class="text-danger error"></span>
                 </div>
-                <button class="btn btn-primary" style="width: fit-content">
+                <button id="account-form-submit" class="btn btn-primary" style="width: fit-content">
                     Update password
                 </button>
+                <span id="account-form-error"></span>
             </div>
         </form>
 

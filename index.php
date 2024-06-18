@@ -35,6 +35,7 @@ $router->post("/api/forgot-password", "forgot-password");
 $router->post("/api/reset", "reset");
 
 $router->post("/api/settings/update-profile", "settings/update-profile");
+$router->post("/api/settings/update-password", "settings/update-password");
 
 
 $router->post("/api/categories/create", "categories/create");
