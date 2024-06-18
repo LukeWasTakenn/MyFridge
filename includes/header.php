@@ -78,7 +78,7 @@ $user = $_SESSION['user'] ?? null;
                                 <li><a class="dropdown-item" href="#"><i class="ti ti-fridge"></i> My Fridge</a></li>
                                 <li><a class="dropdown-item" href="#"><i class="ti ti-book"></i> My Recipes</a></li>
                                 <li><a class="dropdown-item" href="#"><i class="ti ti-bookmark"></i> Bookmarks</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="ti ti-settings"></i> Settings</a></li>
+                                <li><a class="dropdown-item" href="<?=BASE_URL?>/settings"><i class="ti ti-settings"></i> Settings</a></li>
                                 <li onclick="handleLogout();"><a class="dropdown-item" href="#"><i class="ti ti-logout"></i> Log out</a></li>
                             </ul>
                         </div>
@@ -88,8 +88,8 @@ $user = $_SESSION['user'] ?? null;
                         <li class="nav-item d-lg-none"><a class="nav-link" href="#"><i class="ti ti-fridge"></i> My Fridge</a></li>
                         <li class="nav-item d-lg-none"><a class="nav-link" href="#"><i class="ti ti-book"></i> My Recipes</a></li>
                         <li class="nav-item d-lg-none"><a class="nav-link" href="#"><i class="ti ti-bookmark"></i> Bookmarks</a></li>
-                        <li class="nav-item d-lg-none"><a class="nav-link" href="#"><i class="ti ti-settings"></i> Settings</a></li>
-                        <li class="nav-item d-lg-none"><a class="nav-link" href="#"><i class="ti ti-logout"></i> Log out</a></li>
+                        <li class="nav-item d-lg-none"><a class="nav-link" href="<?=BASE_URL?>/settings"><i class="ti ti-settings"></i> Settings</a></li>
+                        <li onclick="handleLogout();" class="nav-item d-lg-none"><a class="nav-link" href="#"><i class="ti ti-logout"></i> Log out</a></li>
                     <?php else :?>
                         <a class="nav-link <?= $page === 'login' ? 'active' : null ?>" aria-current="page" href="<?=BASE_URL?>/login">Login</a>
                     <?php endif?>

@@ -10,7 +10,7 @@ $data = get_request_data();
 $email = $data['email'];
 $password = $data['password'];
 
-$stmt = $pdo->prepare('SELECT `account_id`, `first_name`, `last_name`, `email`, `role`, `password`, `is_verified`, `is_banned` FROM `accounts` WHERE `email` = ?');
+$stmt = $pdo->prepare('SELECT `account_id`, `first_name`, `last_name`, `email`, `role`, `phone_number`, `password`, `is_verified`, `is_banned` FROM `accounts` WHERE `email` = ?');
 $stmt->execute([$email]);
 
 $user = $stmt->fetch(PDO::FETCH_OBJ);
@@ -36,6 +36,7 @@ $_SESSION['user'] = new User(
     $user->last_name,
     $user->email,
     $user->role,
+    $user->phone_number,
     (boolean) $user->is_verified,
     (boolean) $user->is_banned
 );

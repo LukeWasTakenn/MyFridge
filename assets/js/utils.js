@@ -31,4 +31,9 @@ class Utils {
             }, delay);
         };
     }
+
+    setError(target, message) {
+        const element = document.getElementById(target);
+        element.innerHTML = message;
+    }
 }
