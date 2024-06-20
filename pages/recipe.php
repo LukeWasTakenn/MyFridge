@@ -24,6 +24,8 @@ $stmt->execute([$recipeId]);
 
 $recipe->ingredients = $stmt->fetchAll(PDO::FETCH_OBJ);
 
+$user = $_SESSION['user'] ?? "";
+
 ?>
 
 
@@ -32,7 +34,15 @@ $recipe->ingredients = $stmt->fetchAll(PDO::FETCH_OBJ);
         die("No such recipe found.");
     ?>
 
-    <h2 class="mb-5"><?=$recipe->title?></h2>
+    <div class="d-flex align-items-center flex-wrap justify-content-between mb-5">
+        <h2><?=$recipe->title?></h2>
+        <?php if ($user) : ?>
+            <button class="btn btn-primary">
+                <i class="ti ti-bookmark"></i>
+                Bookmark
+            </button>
+        <?php endif;?>
+    </div>
 
     <div class="d-flex flex-column flex-lg-row justify-content-between gap-2 gap-lg-5" style="flex: 1">
         <div class="d-flex flex-column" style="flex: 1; overflow: hidden">
