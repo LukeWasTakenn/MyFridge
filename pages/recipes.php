@@ -56,7 +56,7 @@ $recipes = $stmt->fetchAll(PDO::FETCH_OBJ);
         </div>
         <div class="row" style="flex: 0.7">
             <?php foreach ($recipes as $recipe) :?>
-                <div class="col-sm-6 col-md-4 mb-2 align-items-stretch recipe-card" onclick="handleRecipeClick(<?=$recipe->recipe_id?>);">
+                <div class="col-sm-6 col-md-4 align-items-stretch recipe-card" onclick="handleRecipeClick(<?=$recipe->recipe_id?>);" style="margin-bottom: 24px">
                     <div class="card border shadow-sm h-100">
                         <div style="overflow: hidden; height: 285px; ">
                             <img src="" class="card-img-top" style="width: 100%; height: 285px; object-fit: cover;" alt="...">
