@@ -37,6 +37,21 @@ $recipe = $stmt->fetch(PDO::FETCH_OBJ);
         </div>
 
         <div style="flex: 1" class="d-flex flex-column gap-3">
+            <?php if ($recipe->is_pending || $recipe->is_denied) : ?>
+                <div class="card">
+                    <div class="d-flex align-items-center justify-content-between text-secondary">
+                        <p>Status</p>
+                        <i class="ti ti-activity"></i>
+                    </div>
+                    <h2>
+                        <?php if ($recipe->is_pending && !$recipe->is_denied) : ?>
+                            Pending
+                        <?php else : ?>
+                            Denied
+                        <?php endif;?>
+                    </h2>
+                </div>
+            <?php endif;?>
             <div class="card">
                 <div class="d-flex align-items-center justify-content-between text-secondary">
                     <p>Author</p>
