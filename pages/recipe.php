@@ -19,6 +19,11 @@ $stmt->execute([$recipeId]);
 
 $recipe = $stmt->fetch(PDO::FETCH_OBJ);
 
+$stmt = $pdo->prepare('SELECT i.label, ri.unit, ri.amount FROM `ingredients` i LEFT JOIN `recipe_ingredients` ri ON ri.`ingredient_id` = i.`ingredient_id` WHERE ri.recipe_id = ?');
+$stmt->execute([$recipeId]);
+
+$recipe->ingredients = $stmt->fetchAll(PDO::FETCH_OBJ);
+
 ?>
 
 
@@ -85,9 +90,9 @@ $recipe = $stmt->fetch(PDO::FETCH_OBJ);
                     <p>Ingredients</p>
                     <i class="ti ti-lemon-2"></i>
                 </div>
-                <p>- Tomato (3x count)</p>
-                <p>- Tomato (3x count)</p>
-                <p>- Tomato (3x count)</p>
+                <?php foreach ($recipe->ingredients as $ingredient) : ?>
+                    <p>- <?=$ingredient->label?> (<?=$ingredient->amount?>x <?=$ingredient->unit?>)</p>
+                <?php endforeach;?>
             </div>
             <div class="card">
                 <div class="d-flex align-items-center justify-content-between text-secondary">
