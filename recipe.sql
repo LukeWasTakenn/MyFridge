@@ -54,7 +54,6 @@ CREATE TABLE `recipes`
     `category_id`    INT UNSIGNED         NULL,
     `title`          VARCHAR(50)          NOT NULL,
     `description`    LONGTEXT             NOT NULL,
-    `image`          VARCHAR(255)         NOT NULL,
     `estimate_price` INT(6)               NOT NULL,
     `estimate_time`  INT(5)               NOT NULL,
     `is_pending`     TINYINT(1) DEFAULT 1 NOT NULL,
@@ -80,12 +79,14 @@ CREATE TABLE `recipe_bookmarks`
 
 CREATE TABLE `recipe_ingredients`
 (
-    `recipe_id`     INT UNSIGNED NOT NULL,
-    `ingredient_id` INT UNSIGNED NOT NULL,
-    `amount`        DECIMAL      NOT NULL,
+    `recipe_id`     INT UNSIGNED                                NOT NULL,
+    `ingredient_id` INT UNSIGNED                                NOT NULL,
+    `amount`        DECIMAL                                     NOT NULL,
+    `unit`          ENUM ('count', 'liter', 'kilogram', 'gram') NOT NULL,
     PRIMARY KEY (`ingredient_id`, `recipe_id`),
     CONSTRAINT `recipe_ingredients_ingredients_ingredient_id_fk`
-        FOREIGN KEY (`ingredient_id`) REFERENCES `ingredients` (`ingredient_id`),
+        FOREIGN KEY (`ingredient_id`) REFERENCES `ingredients` (`ingredient_id`)
+            ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT `recipe_ingredients_recipes_recipe_id_fk`
         FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`recipe_id`)
 );
