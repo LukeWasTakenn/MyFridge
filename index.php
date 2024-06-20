@@ -26,6 +26,7 @@ $router->get('/forgot-password', 'forgot-password');
 $router->get('/reset', 'reset');
 $router->get('/admin', 'admin/index');
 $router->get('/settings', 'settings');
+$router->get('/recipe', 'recipe');
 
 // API routes
 $router->post("/api/register-user", "register-user");

@@ -1,0 +1,26 @@
+.card {
+    border-radius: var(--radius);
+    box-shadow: var(--bs-box-shadow-sm);
+    padding: 16px;
+    border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    & > h2 {
+        margin: 0;
+    }
+
+    & > ul {
+        margin: 0;
+    }
+
+    & > div > i {
+        font-size: 20px;
+    }
+}
+
+#editor {
+    border-top-left-radius: var(--radius);
+    border-top-right-radius: var(--radius);
+}

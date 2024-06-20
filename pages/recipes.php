@@ -1,37 +1,22 @@
 <?php
 
-$jsString = "<script src='" . BASE_URL .  "/assets/js/recipe.js'></script>";
+global $pdo;
 
 $HEADER_LINKS = [
-    "<script src='" . BASE_URL .  "/assets/js/recipe.js'></script>",
     "<link href='" . BASE_URL .  "/assets/css/recipes.css' rel='stylesheet'>",
 ];
 
 require base_path('includes/header.php');
 
-// todo: move to db
-$categories = ["Breakfast", "Lunch", "Dinner", "Desert", "Appetizer", "Soup"];
+$stmt = $pdo->prepare('SELECT `label` FROM `categories`');
+$stmt->execute();
 
-$recipes = [
-    [
-        "name" => "Canadian style pancakes",
-        "category" => "Desert",
-        "image" => "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?q=80&w=1980&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        "time" => 25
-    ],
-    [
-        "name" => "Pineapple Pizza",
-        "category" => "Lunch",
-        "image" => "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=1981&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        "time" => 40
-    ],
-    [
-        "name" => "Sandwich with boiled egg",
-        "category" => "Breakfast",
-        "image" => "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=2020&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        "time" => 10
-    ]
-];
+$categories = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+$stmt = $pdo->prepare('SELECT r.*, c.label AS `category` FROM `recipes` r LEFT JOIN `categories` c ON r.`category_id` = c.`category_id`');
+$stmt->execute();
+
+$recipes = $stmt->fetchAll(PDO::FETCH_OBJ);
 
 ?>
 
@@ -56,7 +41,7 @@ $recipes = [
                 <div class="d-flex gap-2 flex-wrap">
                     <?php foreach ($categories as $index => $category) : ?>
                         <div class="btn btn-secondary btn-sm recipe-category" id="category-<?=$index?>" onclick="handleClick(this)">
-                            <?= $category ?>
+                            <?= $category->label ?>
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -71,23 +56,23 @@ $recipes = [
         </div>
         <div class="row" style="flex: 0.7">
             <?php foreach ($recipes as $recipe) :?>
-                <div class="col-sm-6 col-md-4 mb-2 align-items-stretch recipe-card">
+                <div class="col-sm-6 col-md-4 mb-2 align-items-stretch recipe-card" onclick="handleRecipeClick(<?=$recipe->recipe_id?>);">
                     <div class="card border shadow-sm h-100">
-                        <div style="overflow: hidden; ">
-                            <img src="<?= $recipe['image'] ?>" class="card-img-top" style="width: 100%; height: 285px; object-fit: cover;" alt="...">
+                        <div style="overflow: hidden; height: 285px; ">
+                            <img src="" class="card-img-top" style="width: 100%; height: 285px; object-fit: cover;" alt="...">
                         </div>
                         <div class="card-body d-flex flex-column justify-content-between gap-3">
                             <div>
-                                <h5 class="card-title"><?= $recipe['name'] ?></h5>
+                                <h5 class="card-title"><?= $recipe->title ?></h5>
                                 <div class="d-flex gap-3 flex-wrap-wrap">
                                 </div>
                             </div>
 
                             <div class="d-flex justify-content-between align-items-center gap-2">
                                 <span>
-                                    <i class="ti ti-clock text-primary"></i> <?= $recipe['time'] ?> min.
+                                    <i class="ti ti-clock text-primary"></i> <?= $recipe->estimate_time ?> min.
                                 </span>
-                                <span class="badge text-bg-primary"><?= $recipe['category'] ?></span>
+                                <span class="badge text-bg-primary"><?= $recipe->category ?></span>
                             </div>
                         </div>
                     </div>
@@ -96,6 +81,9 @@ $recipes = [
         </div>
         </div>
 </main>
+
+<script src="<?=BASE_URL?>/assets/js/recipes.js"></script>
+
 
 <?php
 
