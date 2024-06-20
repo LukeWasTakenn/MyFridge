@@ -55,3 +55,21 @@ footer {
     height: 40px;
     font-size: 20px;
 }
+
+.autocomplete-container {
+    position: absolute;
+    width: 100%;
+    top: 40px;
+    left: 0;
+    background-color: hsl(var(--background));
+}
+
+.autocomplete-item {
+    background-color: hsl(var(--background));
+    border: none;
+    justify-content: flex-start !important;
+
+    &:hover {
+        background-color: hsl(var(--secondary));
+    }
+}

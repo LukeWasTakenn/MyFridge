@@ -1,0 +1,44 @@
+<?php
+
+declare(strict_types=1);
+session_start();
+
+global $pdo;
+
+$user = $_SESSION['user'];
+
+if (!$user) send_response(["error" => "unauthorized"], 401);
+
+$data = get_request_data();
+
+$recipeData = $data['recipe'];
+
+$stmt = $pdo->prepare('SELECT `category_id` FROM `categories` WHERE `value` = ?');
+$stmt->execute([$recipeData['category'] ?? ""]);
+
+$category_id = $stmt->fetchColumn(0);
+
+if (!isset($category_id)) send_response(["error" => "No such category"], 500);
+
+$recipe = new Recipe(
+    $user->id,
+    $category_id,
+    $recipeData['name'],
+    json_encode($recipeData['description']),
+    (int) $recipeData['cookTime'],
+    (int) $recipeData['costEstimate'],
+    $recipeData['ingredients'],
+    $recipeData['images']
+);
+
+if (!$recipe->validate()) send_response(["error" => "There was an error validating the request."]);
+
+$success = $recipe->create();
+
+if (!$success) {
+    send_response(["error" => "Something went wrong creating the recipe"]);
+}
+
+send_response([
+    "success" => true
+]);

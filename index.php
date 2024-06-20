@@ -52,6 +52,8 @@ $router->post("/api/accounts/ban", "accounts/ban");
 $router->post("/api/accounts/unban", "accounts/unban");
 $router->post("/api/accounts/get", "accounts/get");
 
+$router->post("/api/recipe/create", "recipe/create");
+
 
 $url = parse_url($_SERVER['REQUEST_URI'])['path'];
 $method = $_SERVER['REQUEST_METHOD'];

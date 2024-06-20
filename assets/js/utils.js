@@ -36,4 +36,49 @@ class Utils {
         const element = document.getElementById(target);
         element.innerHTML = message;
     }
+
+    createAutocomplete(inputElementId, autocompleteElementId, dataset) {
+        const input = document.getElementById(inputElementId);
+        const autocomplete = document.getElementById(autocompleteElementId);
+
+        autocomplete.style.display = 'none';
+
+        autocomplete.addEventListener('click', e => {
+            if (!e.target.classList.value.includes('autocomplete-item')) return;
+
+            input.value = e.target.innerText;
+            autocomplete.style.display = 'none';
+        })
+
+        input.addEventListener('input', (e) => {
+            if (e.target.value.length <= 1) {
+                autocomplete.style.display = 'none';
+                return;
+            }
+
+            const inputValue = e.target.value.toLowerCase();
+
+            const suggestions = dataset.filter(value => value.toLowerCase().includes(inputValue) && value.toLowerCase() !== inputValue);
+
+            autocomplete.innerHTML = "";
+
+            if (suggestions.length < 1) {
+                autocomplete.style.display = 'none';
+                return;
+            }
+
+            suggestions.forEach(suggestion => {
+                autocomplete.insertAdjacentHTML('beforeend', `
+                    <button type="button" class="btn autocomplete-item">${suggestion}</button>
+                `)
+            })
+
+            autocomplete.style.display = 'flex';
+
+        })
+    }
+
+    firstToUpper(str) {
+        return str[0].toUpperCase() + str.slice(1);
+    }
 }
