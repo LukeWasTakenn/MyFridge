@@ -116,8 +116,9 @@ $categories = $stmt->fetchAll(PDO::FETCH_OBJ);
                         <select name="ingredientUnit" id="modal-ingredient-unit" class="form-control">
                             <option selected value="-1">- Select a unit - </option>
                             <option value="count">Count</option>
-                            <option value="gram">Gram</option>
                             <option value="liter">Liter</option>
+                            <option value="gram">Gram</option>
+                            <option value="kilogram">Kilogram</option>
                         </select>
                         <span id="ingredientUnit-error" class="text-danger error"></span>
                     </div>

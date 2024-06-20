@@ -39,6 +39,31 @@ class Recipe
         $stmt = $pdo->prepare("INSERT INTO `recipes` (`creator_id`, `category_id`, `title`, `description`, `estimate_price`, `estimate_time`, `is_pending`) VALUES (?, ?, ?, ?, ?, ?, ?)");
         $success = $stmt->execute([$this->creator_id, $this->category_id, $this->title, $this->description, $this->estimate_price, $this->estimate_time, 1]);
 
-        return $success;
+        if (!$success) return false;
+
+        $ingredients = $this->ingredients;
+
+        $id = $pdo->lastInsertId();
+
+        $stmtGetIngredientId = $pdo->prepare('SELECT `ingredient_id` FROM `ingredients` WHERE `value` = ?');
+        $stmtRecipeIngredient = $pdo->prepare('INSERT INTO `recipe_ingredients` (`recipe_id`, `ingredient_id`, `amount`, `unit`) VALUES (?, ?, ?, ?)');
+
+
+        foreach ($ingredients as $ingredient) {
+            $stmtGetIngredientId->execute([strtolower($ingredient['ingredient'])]);
+
+            $ingredientId = $stmtGetIngredientId->fetchColumn(0);
+
+            if (!$ingredientId) {
+                $stmt = $pdo->prepare('INSERT INTO `ingredients` (`label`, `value`) VALUES (?, ?)');
+                $stmt->execute([ucfirst($ingredient['ingredient']), strtolower($ingredient['ingredient'])]);
+
+                $ingredientId = $pdo->lastInsertId();
+            }
+
+            $stmtRecipeIngredient->execute([$id, $ingredientId, $ingredient['amount'], $ingredient['unit']]);
+        }
+
+        return true;
     }
 }

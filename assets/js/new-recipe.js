@@ -16,14 +16,11 @@ let ingredientId = 0;
 
 const autocomplete = document.getElementById('autocomplete')
 
-const dataset = [
-    "Potato",
-    "Tomato",
-    "Carrot"
-]
-
-utils.createAutocomplete("modal-ingredient-name", "autocomplete", dataset, () => console.log('click!!!!'))
-
+fetchIngredients().then(resp => {
+    const { ingredients } = resp;
+    const dataset = ingredients.map(ingredient => ingredient.label);
+    utils.createAutocomplete("modal-ingredient-name", "autocomplete", dataset);
+});
 
 document.getElementById('add-ingredient-form').addEventListener('submit', e => {
     e.preventDefault();
@@ -208,3 +205,17 @@ recipeForm.addEventListener('submit', async e => {
 
     return;
 })
+
+async function fetchIngredients() {
+    const resp = await fetch('api/ingredients/get', {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ search: "" })
+    })
+
+    if (resp.status !== 200) return;
+
+    return await resp.json();
+}
