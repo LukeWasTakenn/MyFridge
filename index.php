@@ -38,7 +38,6 @@ $router->post("/api/reset", "reset");
 $router->post("/api/settings/update-profile", "settings/update-profile");
 $router->post("/api/settings/update-password", "settings/update-password");
 
-
 $router->post("/api/categories/create", "categories/create");
 $router->post("/api/categories/remove", "categories/remove");
 $router->post("/api/categories/edit", "categories/edit");
@@ -56,6 +55,7 @@ $router->post("/api/accounts/get", "accounts/get");
 $router->post("/api/recipe/create", "recipe/create");
 $router->post("/api/recipe/get-description", "recipe/get-description");
 $router->post("/api/recipe/approve-recipe", "recipe/approve-recipe");
+$router->post("/api/recipe/deny-recipe", "recipe/deny-recipe");
 
 
 $url = parse_url($_SERVER['REQUEST_URI'])['path'];

@@ -31,7 +31,7 @@ $recipes = $stmt->fetchAll(PDO::FETCH_OBJ);
                                 <i class="ti ti-eye"></i>
                             </a>
                             <div class="d-flex gap-2 align-items-center">
-                                <button class="btn btn-secondary btn-icon" onclick="handleDenyRecipe(<?=$recipe->recipe_id?>);">
+                                <button class="btn btn-secondary btn-icon" data-bs-toggle="modal" data-bs-target="#denyRecipeModal" data-bs-recipeId="<?=$recipe->recipe_id?>">
                                     <i class="ti ti-x"></i>
                                 </button>
                                 <button class="btn btn-primary btn-icon" onclick="handleAcceptRecipe(<?=$recipe->recipe_id?>);">
@@ -43,6 +43,26 @@ $recipes = $stmt->fetchAll(PDO::FETCH_OBJ);
                 </div>
             </div>
         <?php endforeach; ?>
+    </div>
+
+    <div class="modal fade" id="denyRecipeModal" tabindex="-1" aria-labelledby="denyRecipeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="denyRecipeModalLabel">Deny recipe</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex flex-column">
+                    <label for="input-reason">Reason</label>
+                    <input id="input-reason" class="form-control"/>
+                    <span id="reason-error" class="text-danger error"></span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="submit-button" onclick="handleDenyRecipe()">Confirm</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
