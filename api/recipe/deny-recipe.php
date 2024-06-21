@@ -46,7 +46,7 @@ try {
     $mail->addAddress("$result->email");
 
     $mail->isHTML(true);
-    $mail->Subject = "Recipe denied.";
+    $mail->Subject = "Recipe denied";
     $mail->Body = "The administrator has denied your recipe \"" . $result->title . "\", reason: " . $reason;
     $mail->AltBody = "The administrator has denied your recipe \"" . $result->title . "\", reason: " . $reason;;
 

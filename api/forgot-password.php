@@ -50,7 +50,7 @@ try {
     $mail->addAddress("$email");
 
     $mail->isHTML(true);
-    $mail->Subject = "Reset your password.";
+    $mail->Subject = "Reset your password";
     $mail->Body = "You can reset your password by clicking <a href='" . SITE . "reset?token=" . $token . "'>here</a>.<br/>The reset link expires in 1 day.";
     $mail->AltBody = "You can reset your password here: " . SITE . "reset?token=" . $token . " The reset link expires in 1 day.";
 

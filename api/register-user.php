@@ -51,7 +51,7 @@ try {
         $mail->addAddress("$email");
 
         $mail->isHTML(true);
-        $mail->Subject = "Activate your account.";
+        $mail->Subject = "Activate your account";
         $mail->Body = "You can activate your account by clicking <a href='" . SITE . "verify?token=" . $token . "'>here</a>.<br/>The activation link expires in 1 day.";
         $mail->AltBody = "You can activate your account here: " . SITE . "verify?token=" . $token . " The activation link expires in 1 day.";
 
