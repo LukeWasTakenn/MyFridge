@@ -33,12 +33,12 @@ $recipe = new Recipe(
 
 if (!$recipe->validate()) send_response(["error" => "There was an error validating the request."]);
 
-$success = $recipe->create();
+$id = $recipe->create();
 
-if (!$success) {
+if (!$id) {
     send_response(["error" => "Something went wrong creating the recipe"]);
 }
 
 send_response([
-    "success" => true
+    "id" => $id
 ]);

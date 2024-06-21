@@ -35,6 +35,7 @@ document.getElementById('image-input').addEventListener('change', e => {
     reader.onload = () => {
         const image = new Image(200, 200);
         image.src = reader.result;
+        image.classList.add('rounded');
 
         document.getElementById('recipe-images-list').insertAdjacentElement('afterbegin', image);
         images.push({
@@ -133,11 +134,6 @@ function handleRemoveIngredient(id) {
     recipeIngredients = recipeIngredients.filter(ing => ing.ingredientId !== id);
 }
 
-
-function handleAddImage() {
-
-}
-
 recipeForm.addEventListener('submit', async e => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -229,11 +225,7 @@ recipeForm.addEventListener('submit', async e => {
         return;
     }
 
-    // window.location.href = ...
-
-    console.log('Ok!')
-
-    return;
+    window.location.href = `./recipe?id=${data.id}`;
 })
 
 async function fetchIngredients() {

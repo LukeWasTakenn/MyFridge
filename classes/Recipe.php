@@ -33,7 +33,7 @@ class Recipe
         return true;
     }
 
-    public function create(): bool {
+    public function create(): int | bool {
         global $pdo;
 
         $stmt = $pdo->prepare("INSERT INTO `recipes` (`creator_id`, `category_id`, `title`, `description`, `estimate_price`, `estimate_time`, `is_pending`) VALUES (?, ?, ?, ?, ?, ?, ?)");
@@ -50,7 +50,7 @@ class Recipe
 
         $images = $this->images;
 
-        if (count($images) <= 0) send_response(["error" => "Images required"], 500);
+        if (count($images) <= 0) return false;
 
         $imageCount = 0;
         foreach ($images as $image) {
@@ -66,7 +66,7 @@ class Recipe
 
             $extension = $mime_split[1];
 
-            if ($extension !== 'jpg' && $extension !== 'png' && $extension !== 'jpeg') send_response(["error" => "invalid image"], 500);
+            if ($extension !== 'jpg' && $extension !== 'png' && $extension !== 'jpeg') return false;
 
             $decoded = base64_decode($img_data);
 
@@ -101,6 +101,6 @@ class Recipe
 
 
 
-        return true;
+        return (int) $id;
     }
 }
