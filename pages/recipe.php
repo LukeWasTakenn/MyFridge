@@ -111,9 +111,11 @@ $images = getAllRecipeImageNames($recipeId);
                     <p>Images</p>
                     <i class="ti ti-photo"></i>
                 </div>
-                <div class="d-flex gap-2 flex-wrap">
+                <div class="row">
                     <?php foreach ($images as $image) : ?>
-                        <img width="150px" height="150px" src="<?=BASE_URL?>/images/<?=$recipeId?>/<?=$image?>" alt="<?=$image?>"/>
+                    <div class="col-sm-6 col-md-6 align-items-stretch" style="margin-bottom: 24px;">
+                        <img class="w-100 h-100" src="<?=BASE_URL?>/images/<?=$recipeId?>/<?=$image?>" alt="<?=$image?>" style="border-radius: var(--radius) !important;"/>
+                    </div>
                     <?php endforeach;?>
                 </div>
             </div>

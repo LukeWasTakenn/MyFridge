@@ -13,6 +13,12 @@ $data = get_request_data();
 
 $recipeData = $data['recipe'];
 
+$ingredients = $recipeData['ingredients'];
+$images = $recipeData['images'];
+
+if (count($ingredients) < 1) send_response(["error" => "Must have at least 1 ingredient."]);
+if (count($images) < 1) send_response(["error" => "Must have at least 1 image."]);
+
 $stmt = $pdo->prepare('SELECT `category_id` FROM `categories` WHERE `value` = ?');
 $stmt->execute([$recipeData['category'] ?? ""]);
 
