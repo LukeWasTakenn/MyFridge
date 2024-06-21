@@ -55,6 +55,7 @@ $router->post("/api/accounts/get", "accounts/get");
 
 $router->post("/api/recipe/create", "recipe/create");
 $router->post("/api/recipe/get-description", "recipe/get-description");
+$router->post("/api/recipe/approve-recipe", "recipe/approve-recipe");
 
 
 $url = parse_url($_SERVER['REQUEST_URI'])['path'];

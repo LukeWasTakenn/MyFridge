@@ -13,7 +13,7 @@ $stmt->execute();
 
 $categories = $stmt->fetchAll(PDO::FETCH_OBJ);
 
-$stmt = $pdo->prepare('SELECT r.*, c.label AS `category` FROM `recipes` r LEFT JOIN `categories` c ON r.`category_id` = c.`category_id` ORDER BY r.`recipe_id` DESC');
+$stmt = $pdo->prepare('SELECT r.*, c.label AS `category` FROM `recipes` r LEFT JOIN `categories` c ON r.`category_id` = c.`category_id` WHERE `is_pending` = 0 AND `is_denied` = 0 ORDER BY r.`recipe_id` DESC');
 $stmt->execute();
 
 $recipes = $stmt->fetchAll(PDO::FETCH_OBJ);
