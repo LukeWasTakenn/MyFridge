@@ -28,7 +28,7 @@ if (count($stmt->fetchAll()) > 0)
     send_response([
         "error" => "Email is already in use.",
         "field" => "email"
-    ], 500);
+    ]);
 
 $password = password_hash($password, PASSWORD_BCRYPT);
 $token = createToken(20);
@@ -59,7 +59,7 @@ try {
     } catch (\Exception $e) {
         send_response([
             "error" => "There was an error sending the email."
-        ], 500);
+        ]);
     }
 
     send_response([
@@ -68,5 +68,5 @@ try {
 } catch (PDOException $exception) {
     send_response([
         "error" => "Something went wrong while creating the account.",
-    ], 500);
+    ]);
 }
