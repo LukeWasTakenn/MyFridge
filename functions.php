@@ -44,21 +44,20 @@ function isAdmin(): bool {
     return true;
 }
 
-// https://stackoverflow.com/questions/15153776/convert-base64-string-to-an-image-file
-function base64_to_jpeg($base64_string, $output_file) {
-    // open the output file for writing
-    $ifp = fopen( $output_file, 'wb' );
 
-    // split the string on commas
-    // $data[ 0 ] == "data:image/png;base64"
-    // $data[ 1 ] == <actual base64 string>
-    $data = explode( ',', $base64_string );
+function getRecipeImageName($recipeId): ?string {
+    $files = scandir(base_path("images/$recipeId"));
+    $images = [];
 
-    // we could add validation here with ensuring count( $data ) > 1
-    fwrite( $ifp, base64_decode( $data[ 1 ] ) );
+    if (!$files || count($files) <= 0) return null;
 
-    // clean up the file resource
-    fclose( $ifp );
+    foreach ($files as $file) {
+        if (!str_contains($file, ".jpeg") && !str_contains($file, ".png") && !str_contains($file, ".jpg")) continue;
 
-    return $output_file;
-}
+        $images[] = $file;
+    }
+
+    if (count($images) <= 0) return null;
+
+    return $images[0];
+};
