@@ -36,6 +36,14 @@ $images = getAllRecipeImageNames($recipeId);
         die("No such recipe found.");
     ?>
 
+    <?php if ($recipe->is_pending && !$user)
+        die("No such recipe found.");
+    ?>
+
+    <?php if ($user && $recipe->is_pending && (!isAdmin() || $recipe->creator_id !== $user->id))
+        die("No such recipe found.");
+    ?>
+
     <div class="d-flex align-items-center flex-wrap justify-content-between mb-5">
         <h2><?=$recipe->title?></h2>
         <?php if ($user) : ?>
