@@ -26,6 +26,8 @@ $recipe->ingredients = $stmt->fetchAll(PDO::FETCH_OBJ);
 
 $user = $_SESSION['user'] ?? "";
 
+$images = getAllRecipeImageNames($recipeId);
+
 ?>
 
 
@@ -109,7 +111,11 @@ $user = $_SESSION['user'] ?? "";
                     <p>Images</p>
                     <i class="ti ti-photo"></i>
                 </div>
-                ...
+                <div class="d-flex gap-2 flex-wrap">
+                    <?php foreach ($images as $image) : ?>
+                        <img width="150px" height="150px" src="<?=BASE_URL?>/images/<?=$recipeId?>/<?=$image?>" alt="<?=$image?>"/>
+                    <?php endforeach;?>
+                </div>
             </div>
         </div>
     </div>

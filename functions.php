@@ -45,7 +45,8 @@ function isAdmin(): bool {
 }
 
 
-function getRecipeImageName($recipeId): ?string {
+
+function getAllRecipeImageNames($recipeId): ?array {
     $files = scandir(base_path("images/$recipeId"));
     $images = [];
 
@@ -58,6 +59,14 @@ function getRecipeImageName($recipeId): ?string {
     }
 
     if (count($images) <= 0) return null;
+
+    return $images;
+}
+
+function getRecipeImageName($recipeId): ?string {
+    $images = getAllRecipeImageNames($recipeId);
+
+    if (!$images || count($images) <= 0) return null;
 
     return $images[0];
 };
