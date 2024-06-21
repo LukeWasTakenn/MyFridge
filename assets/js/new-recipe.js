@@ -27,21 +27,26 @@ fetchIngredients().then(resp => {
 });
 
 document.getElementById('image-input').addEventListener('change', e => {
-    console.log(e.target.value);
-
     const reader = new FileReader();
     let fileName = "";
 
     reader.onload = () => {
-        const image = new Image(200, 200);
-        image.src = reader.result;
-        image.classList.add('rounded');
+        const el = `
+            <div id="image-${fileName}" style="position: relative;">
+                <img src="${reader.result}" width="200px" height="200px" alt="${fileName}" class="rounded"/>
+                <button type="button" onclick="removeImage('${fileName}')" class="btn btn-danger btn-icon shadow" style="position: absolute; top: 10px; right: 10px;">
+                    <i class="ti ti-trash"></i>
+                </button>
+            </div>
+        `
 
-        document.getElementById('recipe-images-list').insertAdjacentElement('afterbegin', image);
+        document.getElementById('recipe-images-list').insertAdjacentHTML('beforeend', el);
         images.push({
             src: reader.result,
             fileName
         })
+
+        e.target.value = null;
     }
 
     const file = e.target.files[0];
@@ -165,7 +170,6 @@ recipeForm.addEventListener('submit', async e => {
         shouldSubmit = false;
     }
 
-    console.log(ingredients.length)
     if (ingredients.length <= 0) {
         utils.setError("ingredients-error", "Ingredients must be added.");
         shouldSubmit = false;
@@ -178,6 +182,11 @@ recipeForm.addEventListener('submit', async e => {
 
     if (!+values.cookTime) {
         utils.setError("cookTime-error", "Cook time must be a number.");
+        shouldSubmit = false;
+    }
+
+    if (images.length < 1) {
+        utils.setError("images-error", "At least 1 image is required.");
         shouldSubmit = false;
     }
 
@@ -227,6 +236,12 @@ recipeForm.addEventListener('submit', async e => {
 
     window.location.href = `./recipe?id=${data.id}`;
 })
+
+function removeImage(fileName) {
+    images = images.filter(image => image.fileName !== fileName);
+    console.log(images);
+    document.getElementById(`image-${fileName}`).remove();
+}
 
 async function fetchIngredients() {
     const resp = await fetch('api/ingredients/get', {

@@ -45,7 +45,6 @@ function isAdmin(): bool {
 }
 
 
-
 function getAllRecipeImageNames($recipeId): ?array {
     $files = scandir(base_path("images/$recipeId"));
     $images = [];

@@ -80,7 +80,7 @@ $categories = $stmt->fetchAll(PDO::FETCH_OBJ);
                     </div>
                     <input type="file" id="image-input" style="visibility: hidden">
                     <p class="text-secondary fs-7">First image will be used as the thumbnail</p>
-                    <span id="ingredients-error" class="text-danger error"></span>
+                    <span id="images-error" class="text-danger error"></span>
                 </div>
                 <button id="recipe-submit" class="btn btn-primary" type="submit">
                     <i class="ti ti-send"></i>
