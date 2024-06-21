@@ -48,6 +48,41 @@ class Recipe
         $stmtGetIngredientId = $pdo->prepare('SELECT `ingredient_id` FROM `ingredients` WHERE `value` = ?');
         $stmtRecipeIngredient = $pdo->prepare('INSERT INTO `recipe_ingredients` (`recipe_id`, `ingredient_id`, `amount`, `unit`) VALUES (?, ?, ?, ?)');
 
+        $images = $this->images;
+
+        if (count($images) <= 0) send_response(["error" => "Images required"], 500);
+
+        $imageCount = 0;
+        foreach ($images as $image) {
+            $name = $image['fileName'];
+
+            // https://gist.github.com/anthonycoffey/59bc8114d735c32870a21670bc0f9c15
+            $base64_img = $image['src'];
+            $split = explode(',', substr($base64_img, 5), 2);
+            $mime = $split[0];
+            $img_data = $split[1];
+            $mime_split_without_base64 = explode(';', $mime, 2);
+            $mime_split = explode('/', $mime_split_without_base64[0], 2);
+
+            $extension = $mime_split[1];
+
+            if ($extension !== 'jpg' && $extension !== 'png' && $extension !== 'jpeg') send_response(["error" => "invalid image"], 500);
+
+            $decoded = base64_decode($img_data);
+
+            $imageCount++;
+            $newName = $imageCount . "-" . Date("YmdHis") . "-$name";
+
+            if (!is_dir(base_path("images"))) {
+                mkdir(base_path("images"));
+            }
+
+            if (!is_dir(base_path("images/$id"))) {
+                mkdir(base_path("images/$id"));
+            }
+
+            file_put_contents(base_path("images/$id/$newName"), $decoded);
+        }
 
         foreach ($ingredients as $ingredient) {
             $stmtGetIngredientId->execute([strtolower($ingredient['ingredient'])]);
@@ -63,6 +98,8 @@ class Recipe
 
             $stmtRecipeIngredient->execute([$id, $ingredientId, $ingredient['amount'], $ingredient['unit']]);
         }
+
+
 
         return true;
     }

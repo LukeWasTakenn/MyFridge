@@ -72,10 +72,13 @@ $categories = $stmt->fetchAll(PDO::FETCH_OBJ);
                 </div>
                 <div class="d-flex flex-column">
                     <label for="recipe-images">Images</label>
-                    <button type="button" class="btn btn-secondary" onclick="handleAddImage();">
-                        <i class="ti ti-plus"></i>
-                        Add image
-                    </button>
+                    <div id="recipe-images-list" class="d-flex gap-2 flex-wrap">
+
+                        <label for="image-input" class="btn btn-secondary" style="width: 200px; height: 200px">
+                            <i class="ti ti-plus"></i>
+                        </label>
+                    </div>
+                    <input type="file" id="image-input" style="visibility: hidden">
                     <p class="text-secondary fs-7">First image will be used as the thumbnail</p>
                     <span id="ingredients-error" class="text-danger error"></span>
                 </div>

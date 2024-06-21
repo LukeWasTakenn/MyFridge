@@ -8,6 +8,10 @@ const quill = new Quill('#editor', {
 const recipeForm = document.getElementById("recipe-form");
 const ingredientFields = document.getElementById("ingredients-fields");
 
+let images = [
+
+]
+
 let recipeIngredients = [
 
 ]
@@ -21,6 +25,32 @@ fetchIngredients().then(resp => {
     const dataset = ingredients.map(ingredient => ingredient.label);
     utils.createAutocomplete("modal-ingredient-name", "autocomplete", dataset);
 });
+
+document.getElementById('image-input').addEventListener('change', e => {
+    console.log(e.target.value);
+
+    const reader = new FileReader();
+    let fileName = "";
+
+    reader.onload = () => {
+        const image = new Image(200, 200);
+        image.src = reader.result;
+
+        document.getElementById('recipe-images-list').insertAdjacentElement('afterbegin', image);
+        images.push({
+            src: reader.result,
+            fileName
+        })
+    }
+
+    const file = e.target.files[0];
+
+    if (!file.type.includes('image')) return;
+
+    fileName = file.name;
+
+    reader.readAsDataURL(file);
+})
 
 document.getElementById('add-ingredient-form').addEventListener('submit', e => {
     e.preventDefault();
@@ -163,7 +193,7 @@ recipeForm.addEventListener('submit', async e => {
         cookTime: values.cookTime,
         costEstimate: values.costEstimate,
         description: quill.getContents(),
-        images: [],
+        images,
         ingredients
     }
 
