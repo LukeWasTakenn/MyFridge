@@ -24,9 +24,10 @@ $router->get('/verify', 'verify');
 $router->get('/new-recipe', 'new-recipe');
 $router->get('/forgot-password', 'forgot-password');
 $router->get('/reset', 'reset');
-$router->get('/admin', 'admin/index');
-$router->get('/settings', 'settings');
 $router->get('/recipe', 'recipe');
+$router->get('/admin', 'admin/index');
+$router->get('/settings', 'account/settings');
+$router->get('/my-fridge', 'account/my-fridge');
 
 // API routes
 $router->post("/api/register-user", "register-user");
@@ -56,6 +57,9 @@ $router->post("/api/recipe/create", "recipe/create");
 $router->post("/api/recipe/get-description", "recipe/get-description");
 $router->post("/api/recipe/approve-recipe", "recipe/approve-recipe");
 $router->post("/api/recipe/deny-recipe", "recipe/deny-recipe");
+
+$router->post("/api/my-fridge/get-ingredients", "my-fridge/get-ingredients");
+$router->post("/api/my-fridge/insert-ingredient", "my-fridge/insert-ingredient");
 
 
 $url = parse_url($_SERVER['REQUEST_URI'])['path'];

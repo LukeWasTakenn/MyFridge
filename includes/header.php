@@ -75,7 +75,7 @@ $user = $_SESSION['user'] ?? null;
                                 <?php if ($user->role === 'admin') :?>
                                 <li><a class="dropdown-item" href="<?=BASE_URL?>/admin"><i class="ti ti-shield"></i> Admin</a></li>
                                 <?php endif?>
-                                <li><a class="dropdown-item" href="#"><i class="ti ti-fridge"></i> My Fridge</a></li>
+                                <li><a class="dropdown-item" href="<?=BASE_URL?>/my-fridge"><i class="ti ti-fridge"></i> My Fridge</a></li>
                                 <li><a class="dropdown-item" href="#"><i class="ti ti-book"></i> My Recipes</a></li>
                                 <li><a class="dropdown-item" href="#"><i class="ti ti-bookmark"></i> Bookmarks</a></li>
                                 <li><a class="dropdown-item" href="<?=BASE_URL?>/settings"><i class="ti ti-settings"></i> Settings</a></li>
@@ -88,7 +88,7 @@ $user = $_SESSION['user'] ?? null;
                         <?php if ($user->role === 'admin') :?>
                             <li class="nav-item d-lg-none"><a class="nav-link" href="<?=BASE_URL?>/admin"><i class="ti ti-shield"></i> Admin</a></li>
                         <?php endif?>
-                        <li class="nav-item d-lg-none"><a class="nav-link" href="#"><i class="ti ti-fridge"></i> My Fridge</a></li>
+                        <li class="nav-item d-lg-none"><a class="nav-link" href="<?=BASE_URL?>/my-fridge"><i class="ti ti-fridge"></i> My Fridge</a></li>
                         <li class="nav-item d-lg-none"><a class="nav-link" href="#"><i class="ti ti-book"></i> My Recipes</a></li>
                         <li class="nav-item d-lg-none"><a class="nav-link" href="#"><i class="ti ti-bookmark"></i> Bookmarks</a></li>
                         <li class="nav-item d-lg-none"><a class="nav-link" href="<?=BASE_URL?>/settings"><i class="ti ti-settings"></i> Settings</a></li>
