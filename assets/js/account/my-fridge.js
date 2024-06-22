@@ -29,7 +29,7 @@ fetchFridgeIngredients().then(resp => {
                     <p class="text-secondary fs-7">Unit</p>
                     <p>${utils.firstToUpper(ingredient.unit)}</p>
                 </div>
-                <button class="btn btn-danger align-self-end">
+                <button class="btn btn-danger align-self-end" onclick="handleRemoveIngredient(${ingredient.ingredient_id})">
                     <i class="ti ti-trash"></i>
                 </button>
             </div>
@@ -76,7 +76,6 @@ document.getElementById('add-ingredient-form').addEventListener('submit', async 
         unit: values.ingredientUnit
     }
 
-    console.log(ingredient);
     const resp = await fetch('api/my-fridge/insert-ingredient', {
         method: 'post',
         headers: {
@@ -102,7 +101,7 @@ document.getElementById('add-ingredient-form').addEventListener('submit', async 
         <div id="ingredient-${ingredientId}" class="col-12 col-sm-3 d-flex flex-column gap-2 border p-3 shadow-sm rounded">
             <div>
                 <p class="text-secondary fs-7">Ingredient</p>
-                <p>${ingredient.label}</p>
+                <p>${ingredient.name}</p>
             </div>
             <div>
                 <p class="text-secondary fs-7">Amount</p>
@@ -112,7 +111,7 @@ document.getElementById('add-ingredient-form').addEventListener('submit', async 
                 <p class="text-secondary fs-7">Unit</p>
                 <p>${utils.firstToUpper(ingredient.unit)}</p>
             </div>
-            <button class="btn btn-danger align-self-end">
+            <button class="btn btn-danger align-self-end" onclick="handleRemoveIngredient(${ingredientId})">
                 <i class="ti ti-trash"></i>
             </button>
         </div>
@@ -126,9 +125,16 @@ document.getElementById('add-ingredient-form').addEventListener('submit', async 
     modal.hide();
 })
 
-function handleRemoveIngredient(id) {
+async function handleRemoveIngredient(id) {
     const ingredient = document.getElementById(`ingredient-${id}`);
     ingredient.remove();
+    await fetch('api/my-fridge/remove-ingredient', {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id })
+    })
 }
 
 async function fetchFridgeIngredients() {
