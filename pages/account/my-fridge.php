@@ -15,7 +15,7 @@ require base_path('includes/header.php');
 
     <div class="d-flex gap-2 flex-column">
         <h4>Ingredients</h4>
-        <div id="ingredient-cards" class="row m-0 gap-2">
+        <div id="ingredient-cards" class="row" style="flex: 0.7">
 
         </div>
     </div>

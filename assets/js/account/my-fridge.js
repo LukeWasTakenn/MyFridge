@@ -16,22 +16,24 @@ fetchFridgeIngredients().then(resp => {
 
     ingredients.forEach(ingredient => {
         ingredientCards.insertAdjacentHTML("beforeend", `
-            <div id="ingredient-${ingredient.ingredient_id}" class="col-12 col-sm-3 d-flex flex-column gap-2 border p-3 shadow-sm rounded">
-                <div>
-                    <p class="text-secondary fs-7">Ingredient</p>
-                    <p>${ingredient.label}</p>
+            <div id="ingredient-${ingredient.ingredient_id}" class="col-sm-6 col-md-4 align-items-stretch" style="margin-bottom: 24px">
+                <div class="card border shadow-sm p-3 h-100">
+                    <div>
+                        <p class="text-secondary fs-7">Ingredient</p>
+                        <p>${ingredient.label}</p>
+                    </div>
+                    <div>
+                        <p class="text-secondary fs-7">Amount</p>
+                        <p>${ingredient.amount}</p>
+                    </div>
+                    <div>
+                        <p class="text-secondary fs-7">Unit</p>
+                        <p>${utils.firstToUpper(ingredient.unit)}</p>
+                    </div>
+                    <button class="btn btn-danger align-self-end" onclick="handleRemoveIngredient(${ingredient.ingredient_id})">
+                        <i class="ti ti-trash"></i>
+                    </button>
                 </div>
-                <div>
-                    <p class="text-secondary fs-7">Amount</p>
-                    <p>${ingredient.amount}</p>
-                </div>
-                <div>
-                    <p class="text-secondary fs-7">Unit</p>
-                    <p>${utils.firstToUpper(ingredient.unit)}</p>
-                </div>
-                <button class="btn btn-danger align-self-end" onclick="handleRemoveIngredient(${ingredient.ingredient_id})">
-                    <i class="ti ti-trash"></i>
-                </button>
             </div>
         `)
     })
@@ -98,22 +100,24 @@ document.getElementById('add-ingredient-form').addEventListener('submit', async 
     const ingredientId = data.id;
 
     ingredientCards.insertAdjacentHTML('beforeend', `
-        <div id="ingredient-${ingredientId}" class="col-12 col-sm-3 d-flex flex-column gap-2 border p-3 shadow-sm rounded">
-            <div>
-                <p class="text-secondary fs-7">Ingredient</p>
-                <p>${ingredient.name}</p>
+        <div id="ingredient-${ingredientId}" class="col-sm-6 col-md-4 align-items-stretch" style="margin-bottom: 24px">
+            <div class="card border shadow-sm p-3 h-100">
+                <div>
+                    <p class="text-secondary fs-7">Ingredient</p>
+                    <p>${ingredient.name}</p>
+                </div>
+                <div>
+                    <p class="text-secondary fs-7">Amount</p>
+                    <p>${ingredient.amount}</p>
+                </div>
+                <div>
+                    <p class="text-secondary fs-7">Unit</p>
+                    <p>${utils.firstToUpper(ingredient.unit)}</p>
+                </div>
+                <button class="btn btn-danger align-self-end" onclick="handleRemoveIngredient(${ingredient.ingredient_id})">
+                    <i class="ti ti-trash"></i>
+                </button>
             </div>
-            <div>
-                <p class="text-secondary fs-7">Amount</p>
-                <p>${ingredient.amount}</p>
-            </div>
-            <div>
-                <p class="text-secondary fs-7">Unit</p>
-                <p>${utils.firstToUpper(ingredient.unit)}</p>
-            </div>
-            <button class="btn btn-danger align-self-end" onclick="handleRemoveIngredient(${ingredientId})">
-                <i class="ti ti-trash"></i>
-            </button>
         </div>
     `)
 
