@@ -85,16 +85,7 @@ class Recipe
         }
 
         foreach ($ingredients as $ingredient) {
-            $stmtGetIngredientId->execute([strtolower($ingredient['ingredient'])]);
-
-            $ingredientId = $stmtGetIngredientId->fetchColumn(0);
-
-            if (!$ingredientId) {
-                $stmt = $pdo->prepare('INSERT INTO `ingredients` (`label`, `value`) VALUES (?, ?)');
-                $stmt->execute([ucfirst($ingredient['ingredient']), strtolower($ingredient['ingredient'])]);
-
-                $ingredientId = $pdo->lastInsertId();
-            }
+            $ingredientId = createIngredientIfNotExists($ingredient['ingredient']);
 
             $stmtRecipeIngredient->execute([$id, $ingredientId, $ingredient['amount'], $ingredient['unit']]);
         }

@@ -21,12 +21,7 @@ $unit = $ingredient["unit"] ?? "";
 
 if (!$name || !$amount || !$unit) send_response(["error" => "invalid inputs"], 500);
 
-$stmt = $pdo->prepare('SELECT `ingredient_id` FROM `ingredients` WHERE `value` = ?');
-$stmt->execute([strtolower($name)]);
-
-$ingredientId = $stmt->fetchColumn(0);
-
-if (!$ingredientId) send_response(["error" => "No such ingredient"]);
+$ingredientId = createIngredientIfNotExists($name);
 
 $stmt = $pdo->prepare("SELECT 1 FROM `fridge_ingredients` WHERE `account_id` = ? AND `ingredient_id` = ?");
 $stmt->execute([$user->id, $ingredientId]);
@@ -41,5 +36,5 @@ $success = $stmt->execute([$user->id, $ingredientId, $amount, $unit]);
 if (!$success) send_response(["error" => "Something went wrong"]);
 
 send_response([
-    "id" => $pdo->lastInsertId()
+    "id" => $ingredientId
 ]);

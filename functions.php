@@ -44,7 +44,6 @@ function isAdmin(): bool {
     return true;
 }
 
-
 function getAllRecipeImageNames($recipeId): ?array {
     $files = scandir(base_path("images/$recipeId"));
     $images = [];
@@ -69,3 +68,24 @@ function getRecipeImageName($recipeId): ?string {
 
     return $images[0];
 };
+
+function createIngredientIfNotExists(string $label): int {
+    global $pdo;
+
+    $label = ucfirst($label);
+    $value = strtolower($label);
+
+    $stmt = $pdo->prepare('SELECT `ingredient_id` FROM `ingredients` WHERE `value` = ?');
+    $stmt->execute([$value]);
+
+    $id = $stmt->fetchColumn(0);
+
+    if (!$id) {
+        $stmt = $pdo->prepare('INSERT INTO `ingredients` (`label`, `value`) VALUES (?, ?)');
+        $stmt->execute([$label, $value]);
+
+        $id = $pdo->lastInsertId();
+    }
+
+    return (int) $id;
+}

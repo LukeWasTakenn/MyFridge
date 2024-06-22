@@ -114,7 +114,7 @@ document.getElementById('add-ingredient-form').addEventListener('submit', async 
                     <p class="text-secondary fs-7">Unit</p>
                     <p>${utils.firstToUpper(ingredient.unit)}</p>
                 </div>
-                <button class="btn btn-danger align-self-end" onclick="handleRemoveIngredient(${ingredient.ingredient_id})">
+                <button class="btn btn-danger align-self-end" onclick="handleRemoveIngredient(${ingredientId})">
                     <i class="ti ti-trash"></i>
                 </button>
             </div>
