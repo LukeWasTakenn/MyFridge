@@ -62,12 +62,11 @@ $categories = $stmt->fetchAll(PDO::FETCH_OBJ);
                 <div class="d-flex flex-column gap-2">
                     <label for="recipe-ingredients">Ingredients</label>
                     <div id="ingredients-fields" class="d-flex flex-column gap-2">
-
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addIngredientModal">
+                            <i class="ti ti-plus"></i>
+                            Add ingredient
+                        </button>
                     </div>
-                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addIngredientModal">
-                        <i class="ti ti-plus"></i>
-                        Add ingredient
-                    </button>
                     <span id="ingredients-error" class="text-danger error"></span>
                 </div>
                 <div class="d-flex flex-column">

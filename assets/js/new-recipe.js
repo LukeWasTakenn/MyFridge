@@ -86,6 +86,11 @@ document.getElementById('add-ingredient-form').addEventListener('submit', e => {
         utils.setError("ingredientAmount-error", "Amount must be a number.");
     }
 
+    if (recipeIngredients.find(ing => ing.ingredient.toLowerCase() === values.ingredientName.toLowerCase())) {
+        shouldSubmit = false;
+        utils.setError("ingredientName-error", "This ingredient is already added.")
+    }
+
     if (!shouldSubmit) return;
 
     recipeIngredients.push({
