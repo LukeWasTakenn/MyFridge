@@ -10,7 +10,7 @@ require base_path('includes/header.php');
 
 $user = $_SESSION['user'] ?? '';
 
-$stmt = $pdo->prepare('SELECT `label` FROM `categories`');
+$stmt = $pdo->prepare('SELECT `label`, `category_id` FROM `categories`');
 $stmt->execute();
 
 $categories = $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -44,7 +44,7 @@ $recipes = $stmt->fetchAll(PDO::FETCH_OBJ);
                 <p>Categories</p>
                 <div class="d-flex gap-2 flex-wrap">
                     <?php foreach ($categories as $index => $category) : ?>
-                        <div class="btn btn-secondary btn-sm recipe-category" id="category-<?=$index?>" onclick="handleClick(this)">
+                        <div class="btn btn-secondary btn-sm recipe-category" id="category-<?=$index?>" onclick="handleClick(this)" data-categoryId="<?=$category->category_id?>">
                             <?= $category->label ?>
                         </div>
                     <?php endforeach; ?>
@@ -60,34 +60,13 @@ $recipes = $stmt->fetchAll(PDO::FETCH_OBJ);
                 </label>
             </div>
         <?php endif;?>
-        <div class="row" style="flex: 0.7">
-            <?php foreach ($recipes as $recipe) :?>
-                <div class="col-sm-6 col-md-4 align-items-stretch recipe-card" onclick="handleRecipeClick(<?=$recipe->recipe_id?>);" style="margin-bottom: 24px">
-                    <div class="card border shadow-sm h-100">
-                        <div style="overflow: hidden; height: 285px;">
-                            <img src="<?=BASE_URL?>/images/<?=$recipe->recipe_id?>/<?=getRecipeImageName($recipe->recipe_id)?>" class="card-img-top" style="width: 100%; height: 285px; object-fit: cover;" alt="...">
-                        </div>
-                        <div class="card-body d-flex flex-column justify-content-between gap-3">
-                            <div>
-                                <h5 class="card-title"><?= $recipe->title ?></h5>
-                                <div class="d-flex gap-3 flex-wrap-wrap">
-                                </div>
-                            </div>
+        <div id="recipes-container" class="row" style="flex: 0.7">
 
-                            <div class="d-flex justify-content-between align-items-center gap-2">
-                                <span>
-                                    <i class="ti ti-clock text-primary"></i> <?= $recipe->estimate_time ?> min.
-                                </span>
-                                <span class="badge text-bg-primary"><?= $recipe->category ?></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <?php endforeach; ?>
         </div>
         </div>
 </main>
 
+<script src="<?=BASE_URL?>/assets/js/utils.js"></script>
 <script src="<?=BASE_URL?>/assets/js/recipes.js"></script>
 
 

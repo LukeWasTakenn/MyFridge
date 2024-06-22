@@ -9,7 +9,7 @@ body {
     background-color: var(--background);
 }
 
-p {
+p, h2 {
     margin: 0;
 }
 

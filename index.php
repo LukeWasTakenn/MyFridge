@@ -60,7 +60,8 @@ $router->post("/api/recipe/deny-recipe", "recipe/deny-recipe");
 
 $router->post("/api/my-fridge/get-ingredients", "my-fridge/get-ingredients");
 $router->post("/api/my-fridge/insert-ingredient", "my-fridge/insert-ingredient");
-$router->post("/api/my-fridge/remove-ingredient", "my-fridge/remove-ingredient");
+
+$router->post("/api/get-recipes", "get-recipes");
 
 
 $url = parse_url($_SERVER['REQUEST_URI'])['path'];
