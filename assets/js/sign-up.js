@@ -59,7 +59,6 @@ form.addEventListener("submit", async (e) => {
     })
 
     if (resp.status !== 200) {
-
         utils.cancelSpinner(submitButton, "Sign up")
         return;
     }
