@@ -8,6 +8,8 @@ $HEADER_LINKS = [
 
 require base_path('includes/header.php');
 
+$user = $_SESSION['user'] ?? '';
+
 $stmt = $pdo->prepare('SELECT `label` FROM `categories`');
 $stmt->execute();
 
@@ -27,12 +29,14 @@ $recipes = $stmt->fetchAll(PDO::FETCH_OBJ);
             <h2 class="m-0">Recipes</h2>
             <p class="fs-7 text-secondary">Find the perfect recipe for any occasion.</p>
         </div>
-        <div>
-            <a class="btn btn-secondary" href="<?=BASE_URL?>/new-recipe">
-                <i class="ti ti-plus"></i>
-                <span style="font-size: 14px;">Create a recipe</span>
-            </a>
-        </div>
+        <?php if ($user) : ?>
+            <div>
+                <a class="btn btn-secondary" href="<?=BASE_URL?>/new-recipe">
+                    <i class="ti ti-plus"></i>
+                    <span style="font-size: 14px;">Create a recipe</span>
+                </a>
+            </div>
+        <?php endif;?>
     </div>
     <div class="d-flex flex-1 flex-column gap-3">
         <div class="d-flex flex-column-reverse flex-lg-row justify-content-between align-items-start align-items-lg-center gap-3">
@@ -48,12 +52,14 @@ $recipes = $stmt->fetchAll(PDO::FETCH_OBJ);
             </div>
             <input class="form-control recipe-search" placeholder="Search..."/>
         </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
-                My Fridge <span class="text-secondary" data-bs-toggle="tooltip" data-bs-title="Only displays recipes which closely match ingredients set in your My Fridge page."><i class="ti ti-help"></i></span>
-            </label>
-        </div>
+        <?php if ($user) : ?>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    My Fridge <span class="text-secondary" data-bs-toggle="tooltip" data-bs-title="Only displays recipes which closely match ingredients set in your My Fridge page."><i class="ti ti-help"></i></span>
+                </label>
+            </div>
+        <?php endif;?>
         <div class="row" style="flex: 0.7">
             <?php foreach ($recipes as $recipe) :?>
                 <div class="col-sm-6 col-md-4 align-items-stretch recipe-card" onclick="handleRecipeClick(<?=$recipe->recipe_id?>);" style="margin-bottom: 24px">

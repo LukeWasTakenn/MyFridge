@@ -26,7 +26,7 @@ class Recipe
             return false;
         }
 
-        if (count($this->ingredients) <= 0) {
+        if (count($this->ingredients) <= 0 || count($this->images) <= 0) {
             return false;
         }
 
