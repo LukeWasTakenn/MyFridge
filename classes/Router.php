@@ -36,6 +36,6 @@ class Router
         }
 
         http_response_code(404);
-        die("404");
+        return require base_path("pages/404.php");
     }
 }
