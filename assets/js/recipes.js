@@ -1,12 +1,18 @@
 const utils = new Utils();
 
-const query = {
+let query = {
     category: null,
     search: "",
     myFridge: false
 }
 
 fetchRecipes().then();
+
+document.getElementById('recipe-search').addEventListener('input', utils.debounce((e) => {
+    console.log('search', e.target.value)
+    query = { ...query, search: e.target.value };
+    fetchRecipes().then();
+}))
 
 function handleClick(target) {
     const elements = document.querySelectorAll('.recipe-category');
@@ -16,8 +22,21 @@ function handleClick(target) {
         element.classList.add('btn-secondary');
     })
 
+    const categoryId = target.getAttribute('data-categoryid');
+
+    if (categoryId === query.category) {
+        query = { ...query, category: null };
+        fetchRecipes().then();
+
+        return;
+    }
+
     target.classList.remove('btn-secondary');
     target.classList.add('btn-primary');
+
+    console.log('search', categoryId)
+    query = { ...query, category: categoryId }
+    fetchRecipes().then();
 }
 
 window.addEventListener('load', () => {

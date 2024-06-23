@@ -50,7 +50,7 @@ $recipes = $stmt->fetchAll(PDO::FETCH_OBJ);
                     <?php endforeach; ?>
                 </div>
             </div>
-            <input class="form-control recipe-search" placeholder="Search..."/>
+            <input id="recipe-search" class="form-control recipe-search" placeholder="Search..."/>
         </div>
         <?php if ($user) : ?>
             <div class="form-check">
