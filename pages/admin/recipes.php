@@ -35,9 +35,9 @@ $recipes = $stmt->fetchAll(PDO::FETCH_OBJ);
                                 <button class="btn btn-danger btn-icon" onclick="handleDeleteRecipe(<?=$recipe->recipe_id?>)">
                                     <i class="ti ti-trash"></i>
                                 </button>
-                                <button class="btn btn-secondary btn-icon">
+                                <a href="./edit-recipe?id=<?=$recipe->recipe_id?>" class="btn btn-secondary btn-icon">
                                     <i class="ti ti-edit"></i>
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>

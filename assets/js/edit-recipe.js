@@ -8,6 +8,9 @@ const quill = new Quill('#editor', {
 const recipeForm = document.getElementById("recipe-form");
 const ingredientFields = document.getElementById("ingredients-fields");
 
+let recipeId;
+
+
 let images = [
 
 ]
@@ -16,7 +19,7 @@ let recipeIngredients = [
 
 ]
 
-let ingredientId = 0;
+let ingredientId = 999;
 
 const autocomplete = document.getElementById('autocomplete')
 
@@ -26,37 +29,7 @@ fetchIngredients().then(resp => {
     utils.createAutocomplete("modal-ingredient-name", "autocomplete", dataset);
 });
 
-document.getElementById('image-input').addEventListener('change', e => {
-    const reader = new FileReader();
-    let fileName = "";
-
-    reader.onload = () => {
-        const el = `
-            <div id="image-${fileName}" style="position: relative;">
-                <img src="${reader.result}" width="200px" height="200px" alt="${fileName}" class="rounded"/>
-                <button type="button" onclick="removeImage('${fileName}')" class="btn btn-danger btn-icon shadow" style="position: absolute; top: 10px; right: 10px;">
-                    <i class="ti ti-trash"></i>
-                </button>
-            </div>
-        `
-
-        document.getElementById('recipe-images-list').insertAdjacentHTML('beforeend', el);
-        images.push({
-            src: reader.result,
-            fileName
-        })
-
-        e.target.value = null;
-    }
-
-    const file = e.target.files[0];
-
-    if (!file.type.includes('image')) return;
-
-    fileName = file.name;
-
-    reader.readAsDataURL(file);
-})
+fetchRecipe().then();
 
 document.getElementById('add-ingredient-form').addEventListener('submit', e => {
     e.preventDefault();
@@ -121,7 +94,7 @@ document.getElementById('add-ingredient-form').addEventListener('submit', e => {
             </div>
         <div>
     `)
-    ingredientId++;
+    ingredientId--;
 
 
     const modalEl = document.getElementById("addIngredientModal");
@@ -132,12 +105,37 @@ document.getElementById('add-ingredient-form').addEventListener('submit', e => {
     modal.hide();
 })
 
-function handleRemoveIngredient(id) {
-    const ingredient = document.getElementById(`ingredient-${id}`);
-    ingredient.remove();
+document.getElementById('image-input').addEventListener('change', e => {
+    const reader = new FileReader();
+    let fileName = "";
 
-    recipeIngredients = recipeIngredients.filter(ing => ing.ingredientId !== id);
-}
+    reader.onload = () => {
+        const el = `
+            <div id="image-${fileName}" style="position: relative;">
+                <img src="${reader.result}" width="200px" height="200px" alt="${fileName}" class="rounded"/>
+                <button type="button" onclick="removeImage('${fileName}')" class="btn btn-danger btn-icon shadow" style="position: absolute; top: 10px; right: 10px;">
+                    <i class="ti ti-trash"></i>
+                </button>
+            </div>
+        `
+
+        document.getElementById('recipe-images-list').insertAdjacentHTML('beforeend', el);
+        images.push({
+            src: reader.result,
+            fileName
+        })
+
+        e.target.value = null;
+    }
+
+    const file = e.target.files[0];
+
+    if (!file.type.includes('image')) return;
+
+    fileName = file.name;
+
+    reader.readAsDataURL(file);
+})
 
 recipeForm.addEventListener('submit', async e => {
     e.preventDefault();
@@ -193,11 +191,12 @@ recipeForm.addEventListener('submit', async e => {
     if (!shouldSubmit) return;
 
     const recipe = {
+        id: recipeId,
         name: values.recipeName,
         category: values.recipeCategory,
         cookTime: values.cookTime,
         costEstimate: values.costEstimate,
-        description: quill.getContents(),
+        description: JSON.stringify(quill.getContents()),
         images,
         ingredients
     }
@@ -206,7 +205,7 @@ recipeForm.addEventListener('submit', async e => {
 
     utils.createSpinner(submitButton);
 
-    const resp = await fetch('api/recipe/create', {
+    const resp = await fetch('api/recipe/edit', {
         method: 'post',
         headers: {
             'Content-Type': 'application/json'
@@ -216,8 +215,8 @@ recipeForm.addEventListener('submit', async e => {
 
     if (resp.status !== 200) {
         utils.cancelSpinner(submitButton, `
-            <i class="ti ti-send"></i>
-            Submit recipe
+            <i class="ti ti-edit"></i>
+            Edit recipe
         `)
         return;
     }
@@ -227,19 +226,111 @@ recipeForm.addEventListener('submit', async e => {
     if (data.error) {
         utils.setError("recipe-form-error", data.error);
         utils.cancelSpinner(submitButton, `
-            <i class="ti ti-send"></i>
-            Submit recipe
+            <i class="ti ti-edit"></i>
+            Edit recipe
         `)
 
         return;
     }
 
-    window.location.href = `./recipe?id=${data.id}`;
+    window.location.href = `./recipe?id=${recipeId}`;
 })
+
+async function fetchRecipe() {
+    const params= new URLSearchParams(window.location.search);
+    const id = params.get('id');
+
+    if (!id) return;
+
+    recipeId = id;
+
+    const resp = await fetch('api/recipe/get', {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id })
+    })
+
+    if (resp.status !== 200) {
+        return;
+    }
+
+    const data = await resp.json();
+
+    if (data.error) return;
+
+    const recipe = data.recipe;
+
+    quill.setContents(JSON.parse(recipe.description));
+
+    document.getElementById('recipe-name').value = recipe.title;
+    document.getElementById('cook-time').value = recipe.estimate_time;
+    document.getElementById('cost-estimate').value = recipe.estimate_price;
+
+    const options = document.querySelectorAll('#recipe-category > option');
+
+    options.forEach(option => {
+        if (option.value === recipe.category) {
+            option.selected = true;
+        }
+    })
+
+    images = recipe.images;
+
+    recipeIngredients = recipe.ingredients.map(ingredient => ({
+        ingredientId: ingredient.ingredient_id,
+        ingredient: ingredient.label,
+        amount: ingredient.amount,
+        unit: ingredient.unit
+    }))
+
+    recipeIngredients.forEach(ingredient => {
+        ingredientFields.insertAdjacentHTML('beforeend', `
+            <div id="ingredient-${ingredient.ingredientId}" class="d-flex p-3 border shadow-sm flex-column rounded gap-2">
+                <div class="d-flex flex-column">
+                    <p class="fs-7 text-secondary">Ingredient</p>
+                    <p>${utils.firstToUpper(ingredient.ingredient)}</p>
+                </div>
+                <div class="d-flex flex-column">
+                    <p class="fs-7 text-secondary">Amount</p>
+                    <p>${ingredient.amount}</p>
+                </div>
+                <div class="d-flex flex-column">
+                    <p class="fs-7 text-secondary">Unit</p>
+                    <p>${utils.firstToUpper(ingredient.unit)}</p>
+                </div>
+                <div class="d-flex align-self-end gap-2">
+                    <button type="button" class="btn btn-danger btn-icon" onclick="handleRemoveIngredient(${ingredient.ingredientId});">
+                        <i class="ti ti-trash"></i>
+                    </button>
+                </div>
+            <div>
+        `)
+    })
+
+    images.forEach(image => {
+        const el = `
+            <div id="image-${image.fileName}" style="position: relative;">
+                <img src="${image.src}" width="200px" height="200px" alt="${image.fileName}" class="rounded"/>
+                <button type="button" onclick="removeImage('${image.fileName}')" class="btn btn-danger btn-icon shadow" style="position: absolute; top: 10px; right: 10px;">
+                    <i class="ti ti-trash"></i>
+                </button>
+            </div>
+        `
+
+        document.getElementById('recipe-images-list').insertAdjacentHTML('beforeend', el);
+    })
+}
+
+function handleRemoveIngredient(id) {
+    const ingredient = document.getElementById(`ingredient-${id}`);
+    ingredient.remove();
+    recipeIngredients = recipeIngredients.filter(ing => ing.ingredientId !== id);
+}
 
 function removeImage(fileName) {
     images = images.filter(image => image.fileName !== fileName);
-    console.log(images);
     document.getElementById(`image-${fileName}`).remove();
 }
 
