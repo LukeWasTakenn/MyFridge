@@ -47,7 +47,7 @@ if ($user) {
         die("No such recipe found.");
     ?>
 
-    <?php if ($user && $recipe->is_pending && (!isAdmin() || $recipe->creator_id !== $user->id))
+    <?php if ($user && $recipe->is_pending && !(isAdmin() || $recipe->creator_id === $user->id))
         die("No such recipe found.");
     ?>
 
