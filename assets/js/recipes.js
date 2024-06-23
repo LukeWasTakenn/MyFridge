@@ -13,10 +13,14 @@ document.getElementById('recipe-search').addEventListener('input', utils.debounc
     fetchRecipes().then();
 }))
 
-document.getElementById('myfridge-check').addEventListener('change', e => {
-    query = { ...query, myFridge: e.target.checked };
-    fetchRecipes().then();
-})
+const fridgeCheckElement = document.getElementById('myfridge-check');
+
+if (fridgeCheckElement) {
+    fridgeCheckElement.addEventListener('change', e => {
+        query = { ...query, myFridge: e.target.checked };
+        fetchRecipes().then();
+    })
+}
 
 function handleClick(target) {
     const elements = document.querySelectorAll('.recipe-category');
