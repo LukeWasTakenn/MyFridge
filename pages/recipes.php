@@ -63,7 +63,7 @@ $recipes = $stmt->fetchAll(PDO::FETCH_OBJ);
         <div id="recipes-container" class="row" style="flex: 0.7">
 
         </div>
-        </div>
+    </div>
 </main>
 
 <script src="<?=BASE_URL?>/assets/js/utils.js"></script>

@@ -29,6 +29,7 @@ $router->get('/recipe', 'recipe');
 $router->get('/admin', 'admin/index');
 $router->get('/settings', 'account/settings');
 $router->get('/my-fridge', 'account/my-fridge');
+$router->get('/my-recipes', 'account/my-recipes');
 
 // API routes
 $router->post("/api/register-user", "register-user");
