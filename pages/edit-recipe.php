@@ -91,7 +91,7 @@ $creatorId = $stmt->fetchColumn(0);
                             <i class="ti ti-plus"></i>
                         </label>
                     </div>
-                    <input type="file" id="image-input" style="visibility: hidden">
+                    <input type="file" accept="image/png, image/jpeg, image/jpg" id="image-input" style="visibility: hidden">
                     <p class="text-secondary fs-7">First image will be used as the thumbnail</p>
                     <span id="images-error" class="text-danger error"></span>
                 </div>
