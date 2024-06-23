@@ -30,6 +30,7 @@ $router->get('/admin', 'admin/index');
 $router->get('/settings', 'account/settings');
 $router->get('/my-fridge', 'account/my-fridge');
 $router->get('/my-recipes', 'account/my-recipes');
+$router->get('/bookmarks', 'account/bookmarks');
 
 // API routes
 $router->post("/api/register-user", "register-user");
@@ -68,6 +69,10 @@ $router->post("/api/my-fridge/insert-ingredient", "my-fridge/insert-ingredient")
 $router->post("/api/my-fridge/remove-ingredient", "my-fridge/remove-ingredient");
 
 $router->post("/api/get-recipes", "get-recipes");
+
+$router->post("/api/bookmark/create", "bookmark/create");
+$router->post("/api/bookmark/delete", "bookmark/delete");
+
 
 
 $url = parse_url($_SERVER['REQUEST_URI'])['path'];

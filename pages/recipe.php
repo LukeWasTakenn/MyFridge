@@ -28,6 +28,13 @@ $user = $_SESSION['user'] ?? "";
 
 $images = getAllRecipeImageNames($recipeId);
 
+if ($user) {
+    $stmt = $pdo->prepare('SELECT 1 FROM `recipe_bookmarks` WHERE `recipe_id` = ? AND `account_id` = ?');
+    $stmt->execute([$recipeId, $user->id]);
+
+    $isBookmarked = $stmt->fetchColumn(0);
+}
+
 ?>
 
 
@@ -47,10 +54,17 @@ $images = getAllRecipeImageNames($recipeId);
     <div class="d-flex align-items-center flex-wrap justify-content-between mb-5">
         <h2><?=$recipe->title?></h2>
         <?php if ($user) : ?>
-            <button class="btn btn-primary">
-                <i class="ti ti-bookmark"></i>
-                Bookmark
-            </button>
+            <?php if ($isBookmarked) : ?>
+                <button id="bookmark-btn" class="btn btn-primary" onclick="handleUnBookmark();">
+                    <i class="ti ti-check"></i>
+                    Bookmarked
+                </button>
+            <?php else : ?>
+                <button id="bookmark-btn" class="btn btn-primary" onclick="handleBookmark();">
+                    <i class="ti ti-bookmark"></i>
+                    Bookmark
+                </button>
+            <?php endif;?>
         <?php endif;?>
     </div>
 
