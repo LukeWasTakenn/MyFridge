@@ -41,18 +41,18 @@ class Utils {
         const input = document.getElementById(inputElementId);
         const autocomplete = document.getElementById(autocompleteElementId);
 
-        autocomplete.style.visibility = 'hidden';
+        autocomplete.style.display = 'none';
 
         autocomplete.addEventListener('click', e => {
             if (!e.target.classList.value.includes('autocomplete-item')) return;
 
             input.value = e.target.innerText;
-            autocomplete.style.visibility = 'visible';
+            autocomplete.style.display = 'none';
         })
 
         input.addEventListener('input', (e) => {
             if (e.target.value.length <= 1) {
-                autocomplete.style.visibility = 'hidden';
+                autocomplete.style.display = 'none';
                 return;
             }
 
@@ -63,7 +63,7 @@ class Utils {
             autocomplete.innerHTML = "";
 
             if (suggestions.length < 1) {
-                autocomplete.style.visibility = 'hidden';
+                autocomplete.style.display = 'none';
                 return;
             }
 
@@ -73,7 +73,7 @@ class Utils {
                 `)
             })
 
-            autocomplete.style.visibility = 'visible';
+            autocomplete.style.display = 'flex';
 
         })
     }
