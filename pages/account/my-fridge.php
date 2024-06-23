@@ -50,6 +50,7 @@ $user = $_SESSION['user'] ?? "";
                         <select name="ingredientUnit" id="modal-ingredient-unit" class="form-control">
                             <option selected value="-1">- Select a unit - </option>
                             <option value="count">Count</option>
+                            <option value="milliliter">Milliliter</option>
                             <option value="liter">Liter</option>
                             <option value="gram">Gram</option>
                             <option value="kilogram">Kilogram</option>
