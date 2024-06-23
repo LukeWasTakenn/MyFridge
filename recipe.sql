@@ -36,10 +36,10 @@ CREATE TABLE IF NOT EXISTS `ingredients`
 
 CREATE TABLE IF NOT EXISTS `fridge_ingredients`
 (
-    `account_id`    INT UNSIGNED                                NOT NULL,
-    `ingredient_id` INT UNSIGNED                                NOT NULL,
-    `amount`        DECIMAL                                     NOT NULL,
-    `unit`          ENUM ('count', 'liter', 'kilogram', 'gram') NOT NULL,
+    `account_id`    INT UNSIGNED                                              NOT NULL,
+    `ingredient_id` INT UNSIGNED                                              NOT NULL,
+    `amount`        DECIMAL                                                   NOT NULL,
+    `unit`          ENUM ('count', 'liter', 'milliliter', 'kilogram', 'gram') NOT NULL,
     PRIMARY KEY (`account_id`, `ingredient_id`),
     CONSTRAINT `fridge_ingredients_accounts_account_id_fk`
         FOREIGN KEY (`account_id`) REFERENCES `accounts` (`account_id`),
@@ -80,10 +80,10 @@ CREATE TABLE IF NOT EXISTS `recipe_bookmarks`
 
 CREATE TABLE IF NOT EXISTS `recipe_ingredients`
 (
-    `recipe_id`     INT UNSIGNED                                NOT NULL,
-    `ingredient_id` INT UNSIGNED                                NOT NULL,
-    `amount`        DECIMAL                                     NOT NULL,
-    `unit`          ENUM ('count', 'liter', 'kilogram', 'gram') NOT NULL,
+    `recipe_id`     INT UNSIGNED                                              NOT NULL,
+    `ingredient_id` INT UNSIGNED                                              NOT NULL,
+    `amount`        DECIMAL                                                   NOT NULL,
+    `unit`          ENUM ('count', 'liter', 'milliliter', 'kilogram', 'gram') NOT NULL,
     PRIMARY KEY (`ingredient_id`, `recipe_id`),
     CONSTRAINT `recipe_ingredients_ingredients_ingredient_id_fk`
         FOREIGN KEY (`ingredient_id`) REFERENCES `ingredients` (`ingredient_id`)
