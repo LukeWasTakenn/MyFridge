@@ -25,8 +25,8 @@ if ($password !== $confirmPassword)
         "error" => "Passwords do not match"
     ]);
 
-$stmt = $pdo->prepare('UPDATE `accounts` SET `password` = ?, `forgotten_password_token` = ?, `forgotten_password_expires` = ?');
-$success = $stmt->execute([password_hash($password, PASSWORD_BCRYPT), null, null]);
+$stmt = $pdo->prepare('UPDATE `accounts` SET `password` = ?, `forgotten_password_token` = ?, `forgotten_password_expires` = ? WHERE `forgotten_password_token` = ?');
+$success = $stmt->execute([password_hash($password, PASSWORD_BCRYPT), null, null, $token]);
 
 if (!$success) {
     send_response([
