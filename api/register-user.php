@@ -47,7 +47,7 @@ try {
         $mail->Username = EMAIL['username'];
         $mail->Password = EMAIL['password'];
 
-        $mail->setFrom('myfridge@oo.com', 'MyFridge');
+        $mail->setFrom(EMAIL['from'], 'MyFridge');
         $mail->addAddress("$email");
 
         $mail->isHTML(true);

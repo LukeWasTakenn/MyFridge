@@ -14,6 +14,7 @@ const SITE = "http://localhost/MyFridge/";
 
 const EMAIL = [
     "host" => "sandbox.smtp.mailtrap.io",
+    "from" => "myfridge@oo.com",
     "username" => "7b824115aa42ea",
     "password" => "abebc6ba1b5515",
     // 2525 - mailtrap, 587 - server
