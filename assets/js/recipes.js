@@ -9,10 +9,14 @@ let query = {
 fetchRecipes().then();
 
 document.getElementById('recipe-search').addEventListener('input', utils.debounce((e) => {
-    console.log('search', e.target.value)
     query = { ...query, search: e.target.value };
     fetchRecipes().then();
 }))
+
+document.getElementById('myfridge-check').addEventListener('change', e => {
+    query = { ...query, myFridge: e.target.checked };
+    fetchRecipes().then();
+})
 
 function handleClick(target) {
     const elements = document.querySelectorAll('.recipe-category');
@@ -46,7 +50,6 @@ window.addEventListener('load', () => {
 
 const handleRecipeClick = (id) => window.location.href = `./recipe?id=${id}`;
 
-
 async function fetchRecipes() {
     const recipesContainer = document.getElementById("recipes-container");
 
@@ -69,6 +72,16 @@ async function fetchRecipes() {
     const { recipes } = data;
 
     recipes.forEach(recipe => {
+        let missingEl = "";
+
+        if (recipe.missing) {
+            const ingredients = recipe.missing.join(', ')
+
+            missingEl = `
+                <p>Missing: ${ingredients}</p>
+            `
+        }
+
         recipesContainer.insertAdjacentHTML('beforeend', `
             <div class="col-sm-6 col-md-4 align-items-stretch recipe-card" onclick="handleRecipeClick(${recipe.recipe_id});" style="margin-bottom: 24px">
                 <div class="card border shadow-sm h-100">
@@ -81,6 +94,8 @@ async function fetchRecipes() {
                             <div class="d-flex gap-3 flex-wrap-wrap">
                             </div>
                         </div>
+                        
+                        ${missingEl}
 
                         <div class="d-flex justify-content-between align-items-center gap-2">
                             <span>

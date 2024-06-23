@@ -54,8 +54,8 @@ $recipes = $stmt->fetchAll(PDO::FETCH_OBJ);
         </div>
         <?php if ($user) : ?>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">
+                <input id="myfridge-check" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="myfridge-check">
                     My Fridge <span class="text-secondary" data-bs-toggle="tooltip" data-bs-title="Only displays recipes which closely match ingredients set in your My Fridge page."><i class="ti ti-help"></i></span>
                 </label>
             </div>

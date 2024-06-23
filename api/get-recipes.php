@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 global $pdo;
 
 $data = get_request_data();
@@ -33,6 +35,67 @@ for ($i = 0; $i < count($recipes); $i++) {
     $recipes[$i]->image = BASE_URL . "/images/{$recipes[$i]->recipe_id}/$image";
 }
 
+if (!$myFridge) send_response(["recipes" => $recipes]);
+
+$user = $_SESSION['user'] ?? '';
+
+if (!$user) send_response(["error" => "unauthorized"], 401);
+
+$stmt = $pdo->prepare('SELECT fi.`amount`, fi.`unit`, fi.`ingredient_id` FROM `fridge_ingredients` fi LEFT JOIN `ingredients` i ON fi.`ingredient_id` = i.`ingredient_id` WHERE fi.`account_id` = ?');
+$stmt->execute([$user->id]);
+
+$ingredients = $stmt->fetchAll(PDO::FETCH_OBJ);
+$fridgeIngredients = [];
+
+foreach ($ingredients as $ingredient) {
+    $fridgeIngredients["$ingredient->ingredient_id"] = [
+        "amount" => $ingredient->amount,
+        "unit" => $ingredient->unit
+    ];
+}
+
+$filteredRecipes = [];
+$stmt = $pdo->prepare('SELECT ri.`amount`, ri.`unit`, i.label, i.`ingredient_id` FROM recipes r LEFT JOIN `recipe_ingredients` ri ON r.`recipe_id` = ri.`recipe_id` LEFT JOIN `ingredients` i ON ri.`ingredient_id` = i.`ingredient_id` WHERE r.`recipe_id` = ?');
+foreach ($recipes as $recipe) {
+    $stmt->execute([$recipe->recipe_id]);
+
+    $ingredients = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+    $missingCount = 0;
+    $missingIngredients = [];
+    foreach ($ingredients as $ingredient) {
+        if ($missingCount > 2) break;
+
+        if (!isset($fridgeIngredients[$ingredient->ingredient_id])) {
+            $missingCount++;
+            $missingIngredients[] = $ingredient->label;
+            continue;
+        }
+
+        $fridgeIngredient = $fridgeIngredients[$ingredient->ingredient_id];
+
+        if ($ingredient->unit !== $fridgeIngredient['unit']) {
+            $missingCount++;
+            $missingIngredients[] = $ingredient->label;
+            continue;
+        }
+
+        if ($ingredient->amount > $fridgeIngredient['amount']) {
+            $missingCount++;
+            $missingIngredients[] = $ingredient->label;
+        }
+    }
+
+    if ($missingCount > 2) continue;
+
+    if (count($missingIngredients) > 0) {
+        $recipe->missing = $missingIngredients;
+    }
+
+
+    $filteredRecipes[] = $recipe;
+}
+
 send_response([
-    "recipes" => $recipes
+    "recipes" => $filteredRecipes
 ]);
