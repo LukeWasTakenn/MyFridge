@@ -45,7 +45,6 @@ class Recipe
 
         $id = $pdo->lastInsertId();
 
-        $stmtGetIngredientId = $pdo->prepare('SELECT `ingredient_id` FROM `ingredients` WHERE `value` = ?');
         $stmtRecipeIngredient = $pdo->prepare('INSERT INTO `recipe_ingredients` (`recipe_id`, `ingredient_id`, `amount`, `unit`) VALUES (?, ?, ?, ?)');
 
         $images = $this->images;
@@ -54,7 +53,7 @@ class Recipe
 
         $imageCount = 0;
         foreach ($images as $image) {
-            $name = $image['fileName'];
+            $name = htmlspecialchars($image['fileName']);
 
             // https://gist.github.com/anthonycoffey/59bc8114d735c32870a21670bc0f9c15
             $base64_img = $image['src'];

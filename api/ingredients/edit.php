@@ -12,6 +12,8 @@ $data = get_request_data();
 $id = $data['id'];
 $newValue = $data['newValue'];
 
+$newValue = htmlspecialchars($newValue);
+
 $stmt = $pdo->prepare('SELECT 1 FROM `ingredients` WHERE `value` = ?');
 $stmt->execute([strtolower($newValue)]);
 $result = $stmt->fetchColumn(0);

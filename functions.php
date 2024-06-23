@@ -72,7 +72,7 @@ function getRecipeImageName($recipeId): ?string {
 function createIngredientIfNotExists(string $label): int {
     global $pdo;
 
-    $label = ucfirst($label);
+    $label = htmlspecialchars(ucfirst($label));
     $value = strtolower($label);
 
     $stmt = $pdo->prepare('SELECT `ingredient_id` FROM `ingredients` WHERE `value` = ?');

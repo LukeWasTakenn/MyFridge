@@ -9,7 +9,9 @@ if (!isAdmin()) send_response(["error" => "Unauthorized"], 401);
 
 $data = get_request_data();
 
-$newIngredient = $data['newIngredient'];
+$newIngredient = $data['newIngredient'] ?? "";
+
+$newIngredient = htmlspecialchars($newIngredient);
 
 $stmt = $pdo->prepare("SELECT 1 FROM `ingredients` WHERE `label` = ?");
 $stmt->execute([$newIngredient]);

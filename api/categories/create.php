@@ -10,6 +10,7 @@ if (!isAdmin()) send_response(["error" => "Unauthorized"], 401);
 $data = get_request_data();
 
 $newCategory = $data['newCategory'];
+$newCategory = htmlspecialchars($newCategory);
 
 $stmt = $pdo->prepare("SELECT 1 FROM `categories` WHERE `value` = ?");
 $stmt->execute([strtolower($newCategory)]);

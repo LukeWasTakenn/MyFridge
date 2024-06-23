@@ -32,11 +32,11 @@ if (!$categoryId) send_response(["error" => "invalid category"], 500);
 
 $stmt = $pdo->prepare('UPDATE `recipes` SET `title` = ?, `category_id` = ?, `description` = ?, `estimate_price` = ?, `estimate_time` = ? WHERE `recipe_id` = ?');
 $stmt->execute([
-    $recipe['name'],
+    htmlspecialchars($recipe['name']),
     $categoryId,
     $recipe['description'],
-    $recipe['costEstimate'],
-    $recipe['cookTime'],
+    (int) $recipe['costEstimate'],
+    (int) $recipe['cookTime'],
     $recipe['id']
 ]);
 
@@ -62,7 +62,7 @@ foreach ($recipeImageNames as $image) {
 $id = $recipe['id'];
 
 foreach ($recipe['images'] as $image) {
-    $name = $image['fileName'];
+    $name = htmlspecialchars($image['fileName']);
 
     if (str_contains($image['src'], "data")) {
         // https://gist.github.com/anthonycoffey/59bc8114d735c32870a21670bc0f9c15

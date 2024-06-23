@@ -15,12 +15,15 @@ $firstName = $data['firstName'] ?? "";
 $lastName = $data['lastName'] ?? "";
 $phoneNumber = $data['phoneNumber'] ?? "";
 
-
 if (!$firstName || !$lastName || !$phoneNumber) {
     send_response(
         ["error" => "invalid inputs"],
     500);
 }
+
+$firstName = htmlspecialchars($firstName);
+$lastName = htmlspecialchars($lastName);
+$phoneNumber = htmlspecialchars($phoneNumber);
 
 $stmt = $pdo->prepare('UPDATE `accounts` SET `first_name` = ?, `last_name` = ?, `phone_number` = ? WHERE `account_id` = ?');
 $success = $stmt->execute([$firstName, $lastName, $phoneNumber, $user->id]);
