@@ -74,13 +74,29 @@ foreach ($recipes as $recipe) {
 
         $fridgeIngredient = $fridgeIngredients[$ingredient->ingredient_id];
 
-        if ($ingredient->unit !== $fridgeIngredient['unit']) {
-            $missingCount++;
-            $missingIngredients[] = $ingredient->label;
-            continue;
+        if (($ingredient->unit === 'kilogram' || $ingredient->unit === 'gram') && ($fridgeIngredient['unit'] === 'kilogram' || $fridgeIngredient['unit'] === 'gram')) {
+            $requiredAmount = $ingredient->unit === 'kilogram' ? $ingredient->amount * 1000 : $ingredient->amount;
+            $currentAmount = $fridgeIngredient['unit'] === 'kilogram' ? $fridgeIngredient['amount'] * 1000 : $fridgeIngredient['amount'];
+
+            if ($currentAmount < $requiredAmount) {
+                $missingCount++;
+                $missingIngredients[] = $ingredient->label;
+                continue;
+            }
         }
 
-        if ($ingredient->amount > $fridgeIngredient['amount']) {
+        if (($ingredient->unit === 'liter' || $ingredient->unit === 'milliliter') && ($fridgeIngredient['unit'] === 'liter' || $fridgeIngredient['unit'] === 'milliliter')) {
+            $requiredAmount = $ingredient->unit === 'liter' ? $ingredient->amount * 1000 : $ingredient->amount;
+            $currentAmount = $fridgeIngredient['unit'] === 'liter' ? $fridgeIngredient['amount'] * 1000 : $fridgeIngredient['amount'];
+
+            if ($currentAmount < $requiredAmount) {
+                $missingCount++;
+                $missingIngredients[] = $ingredient->label;
+                continue;
+            }
+        }
+
+        if ($ingredient->unit === 'count' && $ingredient->amount > $fridgeIngredient['amount']) {
             $missingCount++;
             $missingIngredients[] = $ingredient->label;
         }
