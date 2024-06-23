@@ -20,7 +20,7 @@ $stmt->execute([$id]);
 
 $creatorId = $stmt->fetchColumn(0);
 
-if (!isAdmin() || $creatorId !== $user->id) send_response(["error" => "unauthorized"], 401);
+if (!isAdmin() && $creatorId !== $user->id) send_response(["error" => "unauthorized"], 401);
 
 $stmt = $pdo->prepare('UPDATE `recipes` SET `is_denied` = 1 WHERE `recipe_id` = ?');
 $stmt->execute([$id]);

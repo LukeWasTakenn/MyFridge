@@ -19,7 +19,7 @@ $stmt->execute([$id]);
 
 $recipe = $stmt->fetch(PDO::FETCH_OBJ);
 
-if (!isAdmin() || $recipe->creator_id !== $user->id) send_response(["error" => "unauthorized"], 401);
+if (!isAdmin() && $recipe->creator_id !== $user->id) send_response(["error" => "unauthorized"], 401);
 
 $stmt = $pdo->prepare('SELECT ri.`unit`, ri.`amount`, i.`label`, i.`ingredient_id` from `recipe_ingredients` ri LEFT JOIN `ingredients` i ON ri.`ingredient_id` = i.`ingredient_id` WHERE ri.`recipe_id` = ?');
 $stmt->execute([$id]);

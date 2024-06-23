@@ -30,7 +30,7 @@ $creatorId = $stmt->fetchColumn(0);
 
     <?php if (!$user) die("Unauthorized")?>
 
-    <?php if ($user->id !== $creatorId || !isAdmin()) die("Unauthorized") ?>
+    <?php if ($user->id !== $creatorId && !isAdmin()) die("Unauthorized") ?>
 
     <div class="d-flex align-items-center justify-content-between mb-5">
         <div>

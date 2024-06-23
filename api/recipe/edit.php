@@ -21,7 +21,7 @@ $creatorId = $stmt->fetchColumn(0);
 
 if (!$creatorId) send_response(["error" => "invalid recipe id"], 500);
 
-if ($creatorId !== $user->id || !isAdmin()) send_response(["error" => "No permission"]);
+if ($creatorId !== $user->id && !isAdmin()) send_response(["error" => "No permission"]);
 
 $stmt = $pdo->prepare('SELECT `category_id` FROM `categories` WHERE `value` = ?');
 $stmt->execute([strtolower($recipe['category'])]);
