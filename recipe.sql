@@ -36,9 +36,10 @@ CREATE TABLE `ingredients`
 
 CREATE TABLE `fridge_ingredients`
 (
-    `account_id`    INT UNSIGNED NOT NULL,
-    `ingredient_id` INT UNSIGNED NOT NULL,
-    `amount`        DECIMAL      NOT NULL,
+    `account_id`    INT UNSIGNED                                NOT NULL,
+    `ingredient_id` INT UNSIGNED                                NOT NULL,
+    `amount`        DECIMAL                                     NOT NULL,
+    `unit`          ENUM ('count', 'liter', 'kilogram', 'gram') NOT NULL,
     PRIMARY KEY (`account_id`, `ingredient_id`),
     CONSTRAINT `fridge_ingredients_accounts_account_id_fk`
         FOREIGN KEY (`account_id`) REFERENCES `accounts` (`account_id`),
@@ -89,5 +90,6 @@ CREATE TABLE `recipe_ingredients`
             ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT `recipe_ingredients_recipes_recipe_id_fk`
         FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`recipe_id`)
+            ON DELETE CASCADE
 );
 
