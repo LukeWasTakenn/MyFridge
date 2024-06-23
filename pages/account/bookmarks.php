@@ -15,6 +15,8 @@ if ($user) {
 ?>
 
 <main id="container" class="container-fluid container-md min-vh-100 pt-4 d-flex flex-column">
+    <?php if (!$user) die("Unauthorized");?>
+    
     <h2 class="mb-5">Bookmarks</h2>
 
     <div id="recipes-container" class="row">

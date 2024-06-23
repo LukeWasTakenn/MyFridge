@@ -2,11 +2,12 @@
 
 require base_path('includes/header.php');
 
-$user = $_SESSION['user'];
+$user = $_SESSION['user'] ?? "";
 
 ?>
 
 <main id="container" class="container-fluid container-md min-vh-100 pt-4 d-flex flex-column">
+    <?php if (!$user) die("Unauthorized");?>
     <h2 class="mb-5">Settings</h2>
 
     <div class="d-flex flex-column gap-4">

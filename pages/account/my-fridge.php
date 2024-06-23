@@ -2,9 +2,11 @@
 
 require base_path('includes/header.php');
 
+$user = $_SESSION['user'] ?? "";
 ?>
 
 <main id="container" class="container-fluid container-md min-vh-100 pt-4 d-flex flex-column">
+    <?php if (!$user) die("Unauthorized");?>
     <div class="d-flex align-items-center justify-content-between flex-wrap mb-5">
         <h2>My Fridge</h2>
         <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addIngredientModal">

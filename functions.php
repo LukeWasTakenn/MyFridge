@@ -35,7 +35,7 @@ function createToken(int $length): ?string
 }
 
 function isAdmin(): bool {
-    $user = $_SESSION['user'];
+    $user = $_SESSION['user'] ?? "";
 
     if (!$user || $user->role !== 'admin') {
         return false;

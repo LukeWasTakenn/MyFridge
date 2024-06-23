@@ -16,6 +16,8 @@ if ($user) {
 ?>
 
 <main id="container" class="container-fluid container-md min-vh-100 pt-4 d-flex flex-column">
+    <?php if (!$user) die("Unauthorized");?>
+    
     <div class="d-flex align-items-center justify-content-between flex-wrap mb-5">
         <h2>My Recipes</h2>
         <a href="./new-recipe" class="btn btn-secondary">

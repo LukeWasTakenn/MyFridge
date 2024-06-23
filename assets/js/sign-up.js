@@ -29,13 +29,6 @@ form.addEventListener("submit", async (e) => {
     utils.resetErrors(fields);
     utils.cancelSpinner(submitButton, "Sign up");
 
-    // values.firstName = "dsadas";
-    // values.lastName = "dasdas";
-    // values.email = "dsaodksoa@gmail.com";
-    // values.phoneNumber = "321321123";
-    // values.password = "password";
-    // values.confirmPassword = "password";
-
     fields.forEach(field => {
         if (!values[field]) setError(`${field}-error`, "Field required.");
     })
@@ -46,7 +39,6 @@ form.addEventListener("submit", async (e) => {
     if (!isValidPhoneNumber(values.phoneNumber)) setError("phoneNumber-error", "Invalid phone number format.")
 
     if (!shouldSubmit) return;
-
 
     utils.createSpinner(submitButton);
 

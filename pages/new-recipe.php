@@ -14,9 +14,13 @@ $stmt = $pdo->prepare('SELECT `label`, `value` FROM `categories`');
 $stmt->execute();
 
 $categories = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+$user = $_SESSION['user'] ?? "" ;
 ?>
 
 <main id="container" class="container-fluid container-md min-vh-100 pt-0 pt-md-4 d-flex flex-column">
+    <?php if (!$user) die("Unauthorized");?>
+
     <div class="d-flex align-items-center justify-content-between mb-5">
         <div>
             <h2 class="m-0">Create a recipe</h2>
