@@ -53,7 +53,7 @@ if ($user) {
 
     <div class="d-flex align-items-center flex-wrap justify-content-between mb-5">
         <h2><?=$recipe->title?></h2>
-        <?php if ($user) : ?>
+        <?php if ($user && !($recipe->is_pending || $recipe->is_denied)) : ?>
             <?php if ($isBookmarked) : ?>
                 <button id="bookmark-btn" class="btn btn-primary" onclick="handleUnBookmark();">
                     <i class="ti ti-check"></i>
