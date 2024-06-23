@@ -1,4 +1,4 @@
-CREATE TABLE `accounts`
+CREATE TABLE IF NOT EXISTS `accounts`
 (
     `account_id`                 INT UNSIGNED AUTO_INCREMENT
         PRIMARY KEY,
@@ -18,7 +18,7 @@ CREATE TABLE `accounts`
         UNIQUE (`email`)
 );
 
-CREATE TABLE `categories`
+CREATE TABLE IF NOT EXISTS `categories`
 (
     `category_id` INT UNSIGNED AUTO_INCREMENT
         PRIMARY KEY,
@@ -26,7 +26,7 @@ CREATE TABLE `categories`
     `value`       VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE `ingredients`
+CREATE TABLE IF NOT EXISTS `ingredients`
 (
     `ingredient_id` INT UNSIGNED AUTO_INCREMENT
         PRIMARY KEY,
@@ -34,7 +34,7 @@ CREATE TABLE `ingredients`
     `value`         VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE `fridge_ingredients`
+CREATE TABLE IF NOT EXISTS `fridge_ingredients`
 (
     `account_id`    INT UNSIGNED                                NOT NULL,
     `ingredient_id` INT UNSIGNED                                NOT NULL,
@@ -47,7 +47,7 @@ CREATE TABLE `fridge_ingredients`
         FOREIGN KEY (`ingredient_id`) REFERENCES `ingredients` (`ingredient_id`)
 );
 
-CREATE TABLE `recipes`
+CREATE TABLE IF NOT EXISTS `recipes`
 (
     `recipe_id`      INT UNSIGNED AUTO_INCREMENT
         PRIMARY KEY,
@@ -66,11 +66,11 @@ CREATE TABLE `recipes`
             ON DELETE SET NULL
 );
 
-CREATE TABLE `recipe_bookmarks`
+CREATE TABLE IF NOT EXISTS `recipe_bookmarks`
 (
-    `recipe_id`     INT UNSIGNED           NOT NULL,
-    `account_id`    INT UNSIGNED           NOT NULL,
-    `bookmarked_at` DATE DEFAULT curdate() NULL,
+    `recipe_id`     INT UNSIGNED                         NOT NULL,
+    `account_id`    INT UNSIGNED                         NOT NULL,
+    `bookmarked_at` DATETIME DEFAULT current_timestamp() NULL,
     PRIMARY KEY (`recipe_id`, `account_id`),
     CONSTRAINT `recipe_bookmarks_accounts_account_id_fk`
         FOREIGN KEY (`account_id`) REFERENCES `accounts` (`account_id`),
@@ -78,7 +78,7 @@ CREATE TABLE `recipe_bookmarks`
         FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`recipe_id`)
 );
 
-CREATE TABLE `recipe_ingredients`
+CREATE TABLE IF NOT EXISTS `recipe_ingredients`
 (
     `recipe_id`     INT UNSIGNED                                NOT NULL,
     `ingredient_id` INT UNSIGNED                                NOT NULL,
