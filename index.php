@@ -54,6 +54,7 @@ $router->post("/api/accounts/unban", "accounts/unban");
 $router->post("/api/accounts/get", "accounts/get");
 
 $router->post("/api/recipe/create", "recipe/create");
+$router->post("/api/recipe/delete", "recipe/delete");
 $router->post("/api/recipe/get-description", "recipe/get-description");
 $router->post("/api/recipe/approve-recipe", "recipe/approve-recipe");
 $router->post("/api/recipe/deny-recipe", "recipe/deny-recipe");

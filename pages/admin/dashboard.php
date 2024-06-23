@@ -5,7 +5,7 @@ global $pdo;
 $stmtCounts = $pdo->prepare("
     SELECT 
         (SELECT COUNT(*) FROM recipes WHERE `is_pending` = 1) AS recipe_requests_count,
-        (SELECT COUNT(*) FROM recipes WHERE `is_pending` = 0) AS recipe_count,
+        (SELECT COUNT(*) FROM recipes WHERE `is_pending` = 0 AND `is_denied` = 0) AS recipe_count,
         (SELECT COUNT(*) FROM `categories`) AS categories_count,
         (SELECT COUNT(*) FROM `ingredients`) AS ingredients_count,
         (SELECT COUNT(*) FROM `accounts` WHERE `is_banned` = 0) AS accounts_count,

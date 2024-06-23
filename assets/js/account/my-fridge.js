@@ -15,7 +15,7 @@ fetchFridgeIngredients().then(resp => {
     if (ingredients.length < 1) return;
 
     ingredients.forEach(ingredient => {
-        ingredientCards.insertAdjacentHTML("beforeend", `
+        ingredientCards.insertAdjacentHTML("afterbegin", `
             <div id="ingredient-${ingredient.ingredient_id}" class="col-sm-6 col-md-4 align-items-stretch" style="margin-bottom: 24px">
                 <div class="card border shadow-sm p-3 h-100">
                     <div>
@@ -99,7 +99,7 @@ document.getElementById('add-ingredient-form').addEventListener('submit', async 
 
     const ingredientId = data.id;
 
-    ingredientCards.insertAdjacentHTML('beforeend', `
+    ingredientCards.insertAdjacentHTML('afterbegin', `
         <div id="ingredient-${ingredientId}" class="col-sm-6 col-md-4 align-items-stretch" style="margin-bottom: 24px">
             <div class="card border shadow-sm p-3 h-100">
                 <div>
