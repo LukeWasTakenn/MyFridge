@@ -6,10 +6,6 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require base_path('classes/PHPMailer/src/Exception.php');
-require base_path('classes/PHPMailer/src/PHPMailer.php');
-require base_path('classes/PHPMailer/src/SMTP.php');
-
 global $pdo;
 
 $token = createToken(20);
